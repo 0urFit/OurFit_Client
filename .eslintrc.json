@@ -19,7 +19,7 @@
             "error",
             {
                 "component": true,
-                "html": true
+                "html": false
             }
         ],
         "react/jsx-first-prop-new-line": "error",
