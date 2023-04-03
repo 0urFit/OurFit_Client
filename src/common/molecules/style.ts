@@ -66,4 +66,34 @@ const SB = {
     `,
 };
 
-export { LI, II, SB };
+const BB = {
+    BottomBarList: styled.ul`
+        width: 22.125rem;
+        height: 4.375rem;
+        border: 1px solid #000000;
+        border-radius: 2.5rem;
+    `,
+
+    ItemWrapper: styled.li`
+        display: grid;
+        margin-top: 1rem;
+        width: calc(100% / 4);
+        height: 2.8125rem;
+        float: left;
+    `,
+
+    ImgWrapper: styled.div`
+        margin: 0 auto;
+        width: 1.5625rem;
+        height: 1.5625rem;
+    `,
+
+    Span: styled.span`
+        text-align: center;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 0.9375rem;
+    `,
+};
+
+export { LI, II, SB, BB };
