@@ -52,4 +52,18 @@ const II = {
     `,
 };
 
-export { LI, II };
+const SB = {
+    Button: styled.button`
+        width: 18.375rem;
+        height: 3.1875rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        text-align: center;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 0.625rem;
+    `,
+};
+
+export { LI, II, SB };
