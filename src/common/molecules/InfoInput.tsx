@@ -2,11 +2,9 @@ import { II } from './style';
 
 const InfoInput = () => {
     return (
-        <>
-            <II.InputWrapper>
-                <II.Input placeholder="Email" />
-            </II.InputWrapper>
-        </>
+        <II.InputWrapper>
+            <II.Input placeholder="Email" />
+        </II.InputWrapper>
     );
 };
 
