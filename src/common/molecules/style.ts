@@ -68,6 +68,8 @@ const SB = {
 
 const BB = {
     BottomBarList: styled.ul`
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         width: 22.125rem;
         height: 4.375rem;
         border: 1px solid #000000;
@@ -75,11 +77,8 @@ const BB = {
     `,
 
     ItemWrapper: styled.li`
-        display: grid;
-        margin-top: 1rem;
-        width: calc(100% / 4);
-        height: 2.8125rem;
-        float: left;
+        margin: auto 0;
+        text-align: center;
     `,
 
     ImgWrapper: styled.div`
@@ -92,7 +91,7 @@ const BB = {
         text-align: center;
         font-weight: 400;
         font-size: 0.75rem;
-        line-height: 0.9375rem;
+        line-height: 0.75rem;
     `,
 };
 
