@@ -95,4 +95,80 @@ const BB = {
     `,
 };
 
-export { LI, II, SB, BB };
+const RC = {
+    CardBox: styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 22.125rem;
+        height: 6.875rem;
+        border: 1px solid #e1e2e3;
+        border-radius: 0.3125rem;
+    `,
+    CardWrapper: styled.div`
+        display: flex;
+        width: 100%;
+        margin: 0.3125rem;
+    `,
+    ImgWrapper: styled.div`
+        width: 6.25rem;
+        height: 6.25rem;
+    `,
+    DescWrapper: styled.div`
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        margin-left: 1rem;
+    `,
+    span: styled.span`
+        font-size: 1.5rem;
+        font-weight: bold;
+    `,
+    ul: styled.ul`
+        display: flex;
+        align-items: center;
+    `,
+    li: styled.li`
+        margin-right: 0.3125rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    `,
+    DescFooterWrapper: styled.div`
+        display: flex;
+    `,
+    CoachNameWrapper: styled.div`
+        display: flex;
+        align-items: end;
+    `,
+    CoachName: styled.span`
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: #e1e2e3;
+    `,
+    ClickWrapper: styled.div`
+        display: flex;
+        margin-left: 3.5rem;
+    `,
+    LikeIconWrapper: styled.div`
+        width: 1.5625rem;
+        height: 1.5625rem;
+        margin-right: 0.4375rem;
+    `,
+    BtnWrapper: styled.div`
+        width: 4.375rem;
+        height: 1.5625rem;
+        background-color: #317aee;
+        border-radius: 0.3125rem;
+    `,
+    AddBtn: styled.button`
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        background-color: inherit;
+        font-weight: bold;
+        color: #fff;
+    `,
+};
+
+export { LI, II, SB, BB, RC };
