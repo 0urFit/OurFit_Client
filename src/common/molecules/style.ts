@@ -113,6 +113,8 @@ const RC = {
     ImgWrapper: styled.div`
         width: 6.25rem;
         height: 6.25rem;
+        overflow: hidden;
+        border-radius: 5px;
     `,
     DescWrapper: styled.div`
         display: grid;
@@ -171,4 +173,42 @@ const RC = {
     `,
 };
 
-export { LI, II, SB, BB, RC };
+const PC = {
+    CardBox: styled.div`
+        width: 354px;
+        height: 70px;
+        border-bottom: 1px solid #626161;
+        background-color: #bfbfbf;
+    `,
+    CardWrapper: styled.div`
+        display: flex;
+        flex-direction: column;
+        margin: 0 0.625rem 0.3125rem 0.625rem;
+    `,
+    Title: styled.p`
+        margin-bottom: 0.375rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+    `,
+    TagList: styled.ul`
+        display: flex;
+        justify-content: left;
+        margin-bottom: 1.0625rem;
+    `,
+    TagItem: styled.li`
+        margin-right: 0.3125rem;
+        font-size: 0.75rem;
+        color: #626161;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    `,
+    PostDate: styled.span`
+        font-size: 0.75rem;
+        color: #626161;
+    `,
+};
+
+export { LI, II, SB, BB, RC, PC };
