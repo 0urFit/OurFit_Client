@@ -95,4 +95,120 @@ const BB = {
     `,
 };
 
-export { LI, II, SB, BB };
+const RC = {
+    CardBox: styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 22.125rem;
+        height: 6.875rem;
+        border: 1px solid #e1e2e3;
+        border-radius: 0.3125rem;
+    `,
+    CardWrapper: styled.div`
+        display: flex;
+        width: 100%;
+        margin: 0.3125rem;
+    `,
+    ImgWrapper: styled.div`
+        width: 6.25rem;
+        height: 6.25rem;
+        overflow: hidden;
+        border-radius: 5px;
+    `,
+    DescWrapper: styled.div`
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        margin-left: 1rem;
+    `,
+    span: styled.span`
+        font-size: 1.5rem;
+        font-weight: bold;
+    `,
+    ul: styled.ul`
+        display: flex;
+        align-items: center;
+    `,
+    li: styled.li`
+        margin-right: 0.3125rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    `,
+    DescFooterWrapper: styled.div`
+        display: flex;
+    `,
+    CoachNameWrapper: styled.div`
+        display: flex;
+        align-items: end;
+    `,
+    CoachName: styled.span`
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: #e1e2e3;
+    `,
+    ClickWrapper: styled.div`
+        display: flex;
+        margin-left: 3.5rem;
+    `,
+    LikeIconWrapper: styled.div`
+        width: 1.5625rem;
+        height: 1.5625rem;
+        margin-right: 0.4375rem;
+    `,
+    BtnWrapper: styled.div`
+        width: 4.375rem;
+        height: 1.5625rem;
+        background-color: #317aee;
+        border-radius: 0.3125rem;
+    `,
+    AddBtn: styled.button`
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        background-color: inherit;
+        font-weight: bold;
+        color: #fff;
+    `,
+};
+
+const PC = {
+    CardBox: styled.div`
+        width: 354px;
+        height: 70px;
+        border-bottom: 1px solid #626161;
+        background-color: #bfbfbf;
+    `,
+    CardWrapper: styled.div`
+        display: flex;
+        flex-direction: column;
+        margin: 0 0.625rem 0.3125rem 0.625rem;
+    `,
+    Title: styled.p`
+        margin-bottom: 0.375rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+    `,
+    TagList: styled.ul`
+        display: flex;
+        justify-content: left;
+        margin-bottom: 1.0625rem;
+    `,
+    TagItem: styled.li`
+        margin-right: 0.3125rem;
+        font-size: 0.75rem;
+        color: #626161;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    `,
+    PostDate: styled.span`
+        font-size: 0.75rem;
+        color: #626161;
+    `,
+};
+
+export { LI, II, SB, BB, RC, PC };
