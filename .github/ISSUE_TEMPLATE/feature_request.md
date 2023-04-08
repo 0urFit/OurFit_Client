@@ -10,6 +10,6 @@ assignees: ''
 # Description
 
 # Todo
-[ ] todo
+ - [] todo
 
 # ETC
