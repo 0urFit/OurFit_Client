@@ -4,7 +4,7 @@ const PostCard = () => {
     return (
         <PC.CardBox>
             <PC.CardWrapper>
-                <PC.Title>이 운동 루틴 좋네요! 여러분들도 어쩌구 저쩌구</PC.Title>
+                <PC.Title>이 운동 루틴 좋네요! 여러분들도..</PC.Title>
                 <PC.TagList>
                     <PC.TagItem>#diet</PC.TagItem>
                     <PC.TagItem>#woman</PC.TagItem>

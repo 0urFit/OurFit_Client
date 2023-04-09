@@ -176,7 +176,8 @@ const RC = {
 const PC = {
     CardBox: styled.div`
         width: 354px;
-        height: 70px;
+        height: auto;
+        margin-bottom: 10px;
         border-bottom: 1px solid #626161;
         background-color: #bfbfbf;
     `,
@@ -187,7 +188,7 @@ const PC = {
     `,
     Title: styled.p`
         margin-bottom: 0.375rem;
-        font-size: 1rem;
+        font-size: 1.125rem;
         font-weight: bold;
         color: #fff;
     `,
@@ -198,7 +199,7 @@ const PC = {
     `,
     TagItem: styled.li`
         margin-right: 0.3125rem;
-        font-size: 0.75rem;
+        font-size: 1rem;
         color: #626161;
 
         &:last-child {
