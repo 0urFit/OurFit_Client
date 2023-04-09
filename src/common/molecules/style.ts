@@ -13,7 +13,7 @@ const LI = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 2px solid rgba(232, 232, 232, 0.7);
+        border: none;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -43,7 +43,7 @@ const II = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 2px solid rgba(232, 232, 232, 0.7);
+        border: none;
         border-radius: 0.625rem;
 
         &::placeholder {
