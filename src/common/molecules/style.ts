@@ -6,21 +6,19 @@ const LI = {
         width: 18.375rem;
         height: 3.1875rem;
     `,
-
     Input: styled.input`
         padding-left: 3.25rem;
         width: inherit;
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 2px solid rgba(232, 232, 232, 0.7);
+        border: none;
         border-radius: 0.625rem;
 
         &::placeholder {
             color: #27639d;
         }
     `,
-
     ImgWrapper: styled.div`
         position: absolute;
         top: 0.9375rem;
@@ -36,14 +34,34 @@ const II = {
         width: 18.375rem;
         height: 3.1875rem;
     `,
-
     Input: styled.input`
-        padding-left: 1.3125rem;
+        padding-left: 1rem;
         width: inherit;
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 2px solid rgba(232, 232, 232, 0.7);
+        border: none;
+        border-radius: 0.625rem;
+
+        &::placeholder {
+            color: #27639d;
+        }
+    `,
+};
+
+const TI = {
+    InputWrapper: styled.div`
+        position: relative;
+        width: 22.125rem;
+        height: 3.1875rem;
+    `,
+    Input: styled.input`
+        padding-left: 1rem;
+        width: inherit;
+        height: inherit;
+        font-weight: 400;
+        font-size: 0.875rem;
+        border: none;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -61,7 +79,21 @@ const SB = {
         line-height: 1.25rem;
         text-align: center;
         color: #ffffff;
-        background: rgba(0, 0, 0, 0.3);
+        background-color: #868686;
+        border-radius: 0.625rem;
+    `,
+};
+
+const CB = {
+    Button: styled.button`
+        width: 22.125rem;
+        height: 3.75rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        text-align: center;
+        color: #ffffff;
+        background-color: #868686;
         border-radius: 0.625rem;
     `,
 };
@@ -75,18 +107,15 @@ const BB = {
         border: 1px solid #000000;
         border-radius: 2.5rem;
     `,
-
     ItemWrapper: styled.li`
         margin: auto 0;
         text-align: center;
     `,
-
     ImgWrapper: styled.div`
         margin: 0 auto;
         width: 1.5625rem;
         height: 1.5625rem;
     `,
-
     Span: styled.span`
         text-align: center;
         font-weight: 400;
@@ -212,4 +241,4 @@ const PC = {
     `,
 };
 
-export { LI, II, SB, BB, RC, PC };
+export { LI, II, TI, SB, CB, BB, RC, PC };
