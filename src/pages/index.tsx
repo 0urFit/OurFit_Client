@@ -1,3 +1,3 @@
-export default function Home() {
-    return <>init setting</>;
+export default function Login() {
+    return <>로그임당</>;
 }
