@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const DL = {
-    Container: styled.div`
+    PageLayout: styled.div`
         position: relative;
         margin: auto;
         width: 24.375rem;
@@ -14,6 +14,18 @@ const DL = {
         top: 1.25rem;
         left: 1.25rem;
         cursor: pointer;
+    `,
+
+    FirstContainer: styled.div`
+        padding: 2.5rem 3rem;
+        width: inherit;
+        height: inherit;
+    `,
+
+    SecondContainer: styled.div`
+        padding: 2.5rem 1.125rem 1rem;
+        width: inherit;
+        height: inherit;
     `,
 };
 
