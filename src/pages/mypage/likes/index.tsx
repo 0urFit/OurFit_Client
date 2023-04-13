@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import { DL } from '@/common/layout/style';
-import LeftArrowIcon from '../../public/assets/left-arrow-icon.png';
+import LeftArrowIcon from '../../../../public/assets/left-arrow-icon.png';
+import { ReactElement } from 'react';
 
-const SignInKakao = () => {
-    return <></>;
+const MyPageLikes = () => {
+    return <>MyPageLikes</>;
 };
 
-SignInKakao.getLayout = function getLayout(page: any) {
+MyPageLikes.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +18,4 @@ SignInKakao.getLayout = function getLayout(page: any) {
     );
 };
 
-export default SignInKakao;
+export default MyPageLikes;

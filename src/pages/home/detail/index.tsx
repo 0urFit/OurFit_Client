@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import { DL } from '@/common/layout/style';
-import LeftArrowIcon from '../../public/assets/left-arrow-icon.png';
+import LeftArrowIcon from '../../../../public/assets/left-arrow-icon.png';
+import { ReactElement } from 'react';
 
-const PostDetail = () => {
-    return <></>;
+const HomeDetail = () => {
+    return <>home detail</>;
 };
 
-PostDetail.getLayout = function getLayout(page: any) {
+HomeDetail.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +18,4 @@ PostDetail.getLayout = function getLayout(page: any) {
     );
 };
 
-export default PostDetail;
+export default HomeDetail;
