@@ -93,8 +93,8 @@ const CB = {
         line-height: 1.25rem;
         text-align: center;
         color: #ffffff;
-        background-color: #868686;
         border-radius: 0.625rem;
+        background-color: #868686;
     `,
 };
 
@@ -106,6 +106,7 @@ const BB = {
         height: 4.375rem;
         border: 1px solid #000000;
         border-radius: 2.5rem;
+        background-color: #fff;
     `,
     ItemWrapper: styled.li`
         margin: auto 0;
