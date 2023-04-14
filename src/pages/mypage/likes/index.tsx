@@ -1,5 +1,5 @@
 const MyPageLikes = () => {
-    return <></>;
+    return <>MyPageLikes</>;
 };
 
 export default MyPageLikes;
