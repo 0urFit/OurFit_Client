@@ -1,5 +1,5 @@
 const MyPagePosts = () => {
-    return <></>;
+    return <>MyPagePosts</>;
 };
 
 export default MyPagePosts;

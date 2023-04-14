@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { DL } from './style';
-import LeftArrowIcon from '../../../public/assets/left-arrow-icon.png';
+import PrevButton from '../molecules/PrevButton';
 
 interface propsType {
     children: ReactNode;
@@ -10,18 +9,16 @@ interface propsType {
 
 const DefaultLayout = ({ children }: propsType) => {
     const currentRoute = useRouter().pathname;
-    console.log(currentRoute);
 
     return (
         <DL.PageLayout>
-            {currentRoute === '/postCreate' ||
-                currentRoute === '/postEdit' ||
-                currentRoute === '/myPageLikes' ||
-                (currentRoute === '/myPagePosts' && (
-                    <DL.ImgWrapper>
-                        <Image src={LeftArrowIcon} alt="left-arrow-icon" width="20" />
-                    </DL.ImgWrapper>
-                ))}
+            {currentRoute === '/posts/create' || currentRoute === '/posts/edit' || currentRoute === '/mypage/likes' || currentRoute === '/mypage/posts' ? (
+                <DL.ImgWrapper>
+                    <PrevButton />
+                </DL.ImgWrapper>
+            ) : (
+                ''
+            )}
             <DL.SecondContainer>{children}</DL.SecondContainer>
         </DL.PageLayout>
     );

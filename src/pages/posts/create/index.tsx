@@ -1,5 +1,5 @@
 const PostCreate = () => {
-    return <></>;
+    return <>PostCreate</>;
 };
 
 export default PostCreate;

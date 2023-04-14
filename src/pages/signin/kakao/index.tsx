@@ -1,16 +1,16 @@
-import Image from 'next/image';
+import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
-import LeftArrowIcon from '../../public/assets/left-arrow-icon.png';
+import PrevButton from '@/common/molecules/PrevButton';
 
 const SignInKakao = () => {
-    return <></>;
+    return <>SignInKakao</>;
 };
 
-SignInKakao.getLayout = function getLayout(page: any) {
+SignInKakao.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
-                <Image src={LeftArrowIcon} alt="left-arrow-icon" width="20" />
+                <PrevButton />
             </DL.ImgWrapper>
             <DL.FirstContainer>{page}</DL.FirstContainer>
         </DL.PageLayout>
