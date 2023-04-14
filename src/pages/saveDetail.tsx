@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import { DL } from '@/common/layout/style';
-import LeftArrowIcon from '../../../../public/assets/left-arrow-icon.png';
-import { ReactElement } from 'react';
+import LeftArrowIcon from '../../public/assets/left-arrow-icon.png';
 
 const SaveDetail = () => {
-    return <>SaveDetail</>;
+    return <></>;
 };
 
-SaveDetail.getLayout = function getLayout(page: ReactElement) {
+SaveDetail.getLayout = function getLayout(page: any) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>

@@ -1,5 +1,5 @@
 const Save = () => {
-    return <>Save</>;
+    return;
 };
 
 export default Save;
