@@ -1,9 +1,13 @@
 import { II } from './style';
 
-const InfoInput = () => {
+interface propsType {
+    inputEng: string;
+}
+
+const InfoInput = ({ inputEng }: propsType) => {
     return (
         <II.InputWrapper>
-            <II.Input placeholder="Email" />
+            <II.Input placeholder={inputEng} />
         </II.InputWrapper>
     );
 };
