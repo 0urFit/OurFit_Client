@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 
-const HomeDetail = () => {
-    return <>HomeDetail</>;
+const HomeDetailPage = () => {
+    return <>HomeDetailPage</>;
 };
 
-HomeDetail.getLayout = function getLayout(page: ReactElement) {
+HomeDetailPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +17,4 @@ HomeDetail.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default HomeDetail;
+export default HomeDetailPage;

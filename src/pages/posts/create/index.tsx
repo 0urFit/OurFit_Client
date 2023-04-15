@@ -1,5 +1,5 @@
-const PostCreate = () => {
-    return <>PostCreate</>;
+const PostCreatePage = () => {
+    return <>PostCreatePage</>;
 };
 
-export default PostCreate;
+export default PostCreatePage;

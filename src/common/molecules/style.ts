@@ -72,6 +72,8 @@ const TI = {
 
 const SB = {
     Button: styled.button`
+        position: absolute;
+        bottom: 2.5rem;
         width: 18.375rem;
         height: 3.1875rem;
         font-weight: 700;
