@@ -1,5 +1,5 @@
-const Save = () => {
-    return <>Save</>;
+const SavePage = () => {
+    return <>SavePage</>;
 };
 
-export default Save;
+export default SavePage;

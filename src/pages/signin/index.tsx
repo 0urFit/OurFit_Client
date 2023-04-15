@@ -1,12 +1,13 @@
 import { DL } from '@/common/layout/style';
 import { ReactElement } from 'react';
 import PrevButton from '@/common/molecules/PrevButton';
+import SignIn from '@/components/signin';
 
-const SignIn = () => {
-    return <>SignIn</>;
+const SignInPage = () => {
+    return <SignIn />;
 };
 
-SignIn.getLayout = function getLayout(page: ReactElement) {
+SignInPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +18,4 @@ SignIn.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default SignIn;
+export default SignInPage;
