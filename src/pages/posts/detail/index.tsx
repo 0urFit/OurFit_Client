@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 
-const PostDetail = () => {
-    return <>PostDetail</>;
+const PostDetailPage = () => {
+    return <>PostDetailPage</>;
 };
 
-PostDetail.getLayout = function getLayout(page: ReactElement) {
+PostDetailPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +17,4 @@ PostDetail.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default PostDetail;
+export default PostDetailPage;

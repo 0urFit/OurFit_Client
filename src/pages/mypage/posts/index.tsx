@@ -1,5 +1,5 @@
-const MyPagePosts = () => {
-    return <>MyPagePosts</>;
+const MyPagePostsPage = () => {
+    return <>MyPagePostsPage</>;
 };
 
-export default MyPagePosts;
+export default MyPagePostsPage;

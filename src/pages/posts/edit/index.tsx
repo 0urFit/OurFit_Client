@@ -1,5 +1,5 @@
-const PostEdit = () => {
-    return <>PostEdit</>;
+const PostEditPage = () => {
+    return <>PostEditPage</>;
 };
 
-export default PostEdit;
+export default PostEditPage;

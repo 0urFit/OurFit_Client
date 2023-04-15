@@ -1,5 +1,5 @@
-const MyPageLikes = () => {
-    return <>MyPageLikes</>;
+const MyPageLikesPage = () => {
+    return <>MyPageLikesPage</>;
 };
 
-export default MyPageLikes;
+export default MyPageLikesPage;

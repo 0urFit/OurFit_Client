@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 
-const SignInKakao = () => {
-    return <>SignInKakao</>;
+const SignInKakaoPage = () => {
+    return <>SignInKakaoPage</>;
 };
 
-SignInKakao.getLayout = function getLayout(page: ReactElement) {
+SignInKakaoPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +17,4 @@ SignInKakao.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default SignInKakao;
+export default SignInKakaoPage;
