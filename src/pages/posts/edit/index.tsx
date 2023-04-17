@@ -1,5 +1,5 @@
 const PostEdit = () => {
-    return <></>;
+    return <>PostEdit</>;
 };
 
 export default PostEdit;
