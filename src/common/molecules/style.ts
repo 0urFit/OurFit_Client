@@ -71,7 +71,7 @@ const TI = {
 };
 
 const SB = {
-    Button: styled.button`
+    Button: styled.input`
         position: absolute;
         bottom: 2.5rem;
         width: 18.375rem;
@@ -82,6 +82,7 @@ const SB = {
         text-align: center;
         color: #ffffff;
         background-color: #868686;
+        border: none;
         border-radius: 0.625rem;
     `,
 };
