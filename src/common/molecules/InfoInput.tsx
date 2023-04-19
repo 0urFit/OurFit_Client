@@ -1,13 +1,16 @@
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { II } from './style';
 
 interface propsType {
-    inputEng: string;
+    inputType: string;
+    inputValue: string;
+    register: UseFormRegisterReturn;
 }
 
-const InfoInput = ({ inputEng }: propsType) => {
+const InfoInput = ({ inputType, inputValue, register }: propsType) => {
     return (
         <II.InputWrapper>
-            <II.Input placeholder={inputEng} />
+            <II.Input type={inputType} placeholder={inputValue} step={inputType === 'number' ? '0.1' : ''} {...register} />
         </II.InputWrapper>
     );
 };
