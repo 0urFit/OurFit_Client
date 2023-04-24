@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import { SI } from './style';
 import { InputType } from './type';
 import SubmitButton from '@/common/molecules/SubmitButton';
 import InfoInput from '@/common/molecules/InfoInput';
-import EmailCheck from '@/apis/EmailCheck';
-import { SignupData } from '@/data/SignUpData';
 import SelectBox from './SelectBox';
+import { SignupData } from '@/data/SignUpData';
+import EmailCheck from '@/apis/EmailCheck';
+import NicknameCheck from '@/apis/NicknameCheck';
 
 const SignUp = () => {
     const {
@@ -13,7 +15,9 @@ const SignUp = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setError,
     } = useForm<InputType>({
+        mode: 'onChange',
         defaultValues: {
             email: '',
             password: '',
@@ -21,14 +25,19 @@ const SignUp = () => {
         },
     });
     const handleSignUp = (data: InputType) => {
-        console.log(data);
         if (data.password === data.passwordCheck) {
-            EmailCheck(data.email).then(result => console.log(result));
+            // EmailCheck(data.email).then(handleNickname(data));
+            // SignUpSubmit(data);
+            axios.all([EmailCheck(data.email), NicknameCheck(data.nickname)]).then(
+                axios.spread((response1, response2) => {
+                    console.log(response1?.data);
+                    console.log(response2?.data);
+                })
+            );
         } else {
-            console.log('비밀번호 틀림');
+            setError('passwordCheck', { type: 'passwordCheck', message: '비밀번호와 일치하지 않습니다' });
         }
     };
-    console.log(errors);
 
     return (
         <>
@@ -52,7 +61,7 @@ const SignUp = () => {
                                         message: el.minLengthMessage ? el.minLengthMessage : '',
                                     },
                                     pattern: {
-                                        value: el.pattern ? el.pattern : '',
+                                        value: el.pattern ? el.pattern : /^/,
                                         message: el.patternMessage ? el.patternMessage : '',
                                     },
                                 })}
