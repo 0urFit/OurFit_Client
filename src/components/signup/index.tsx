@@ -7,7 +7,7 @@ import InfoInput from '@/common/molecules/InfoInput';
 import SelectBox from './SelectBox';
 import { SignupData } from '@/data/SignUpData';
 import EmailCheck from '@/apis/EmailCheck';
-import NicknameCheck from '@/apis/NicknameCheck';
+import { LocalNickname } from '@/apis/auth';
 
 const SignUp = () => {
     const {
@@ -28,7 +28,7 @@ const SignUp = () => {
         if (data.password === data.passwordCheck) {
             // EmailCheck(data.email).then(handleNickname(data));
             // SignUpSubmit(data);
-            axios.all([EmailCheck(data.email), NicknameCheck(data.nickname)]).then(
+            axios.all([EmailCheck(data.email), LocalNickname(data.nickname)]).then(
                 axios.spread((response1, response2) => {
                     console.log(response1?.data);
                     console.log(response2?.data);
