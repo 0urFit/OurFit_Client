@@ -4,7 +4,11 @@ export type ItemType = {
     inputValue: InputValue;
     inputTitle: string;
     explanation: string;
-    essential: boolean;
+    essential: string | boolean;
+    minLength?: number;
+    minLengthMessage?: string;
+    pattern?: string;
+    patternMessage?: string;
 };
 
 export type InputType = {

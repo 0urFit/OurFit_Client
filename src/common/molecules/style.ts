@@ -54,6 +54,10 @@ const II = {
         &::placeholder {
             color: #27639d;
         }
+
+        &:focus {
+            outline: none;
+        }
     `,
 };
 
