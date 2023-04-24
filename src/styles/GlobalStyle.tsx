@@ -13,10 +13,6 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
-  input {
-    border: none;
-  }
-
   button {
     cursor: pointer;
     border: none;
