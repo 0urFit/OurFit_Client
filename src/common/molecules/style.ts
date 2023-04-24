@@ -5,6 +5,14 @@ const LI = {
         position: relative;
         width: 18.375rem;
         height: 3.1875rem;
+
+        &:nth-child(1) {
+            margin-bottom: 0.9375rem;
+        }
+
+        &:nth-child(2) {
+            margin-bottom: 1.5rem;
+        }
     `,
     Input: styled.input`
         padding-left: 3.25rem;
@@ -72,10 +80,9 @@ const TI = {
 
 const SB = {
     Button: styled.input`
-        position: absolute;
-        bottom: 2.5rem;
-        width: 18.375rem;
-        height: 3.1875rem;
+        display: inline-block;
+        width: inherit;
+        height: inherit;
         font-weight: 700;
         font-size: 1.25rem;
         line-height: 1.25rem;

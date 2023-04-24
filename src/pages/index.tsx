@@ -1,8 +1,9 @@
 import { DL } from '@/common/layout/style';
+import Login from '@/components/login';
 import { ReactElement } from 'react';
 
 export default function LoginPage() {
-    return <>LoginPage</>;
+    return <Login />;
 }
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
