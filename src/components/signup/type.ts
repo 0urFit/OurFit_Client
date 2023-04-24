@@ -7,7 +7,7 @@ export type ItemType = {
     essential: string | boolean;
     minLength?: number;
     minLengthMessage?: string;
-    pattern?: string;
+    pattern?: RegExp;
     patternMessage?: string;
 };
 
