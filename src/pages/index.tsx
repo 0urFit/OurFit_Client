@@ -1,11 +1,12 @@
 import { DL } from '@/common/layout/style';
+import Login from '@/components/login';
 import { ReactElement } from 'react';
 
-export default function Login() {
-    return <>Login</>;
+export default function LoginPage() {
+    return <Login />;
 }
 
-Login.getLayout = function getLayout(page: ReactElement) {
+LoginPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.FirstContainer>{page}</DL.FirstContainer>

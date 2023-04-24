@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 
-const SaveDetail = () => {
-    return <>SaveDetail</>;
+const SaveDetailPage = () => {
+    return <>SaveDetailPage</>;
 };
 
-SaveDetail.getLayout = function getLayout(page: ReactElement) {
+SaveDetailPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +17,4 @@ SaveDetail.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default SaveDetail;
+export default SaveDetailPage;

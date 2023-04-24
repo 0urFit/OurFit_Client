@@ -1,13 +1,21 @@
 import Image from 'next/image';
-import { LI } from './style';
-import EmailIcon from '../../../public/assets/email-icon.png';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
-const LoginInput = () => {
+import { LI } from './style';
+interface LoginInputParameter {
+    register?: UseFormRegisterReturn;
+    type: string;
+    placeholder: string;
+    src: string;
+    alternative: string;
+}
+
+const LoginInput = ({ register, type, placeholder, src, alternative }: LoginInputParameter) => {
     return (
         <LI.InputWrapper>
-            <LI.Input placeholder="Email" />
+            <LI.Input {...register} type={type} placeholder={placeholder} />
             <LI.ImgWrapper>
-                <Image src={EmailIcon} alt="email-icon" width={20} />
+                <Image src={src} alt={alternative} width={20} height={20} />
             </LI.ImgWrapper>
         </LI.InputWrapper>
     );

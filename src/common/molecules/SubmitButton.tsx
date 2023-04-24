@@ -1,7 +1,12 @@
 import { SB } from './style';
 
-const SubmitButton = () => {
-    return <SB.Button>회원가입</SB.Button>;
+interface propsType {
+    buttonValue: string;
+    isValid: boolean;
+}
+
+const SubmitButton = ({ buttonValue, isValid }: propsType) => {
+    return <SB.Button type="submit" value={buttonValue} disabled={isValid} />;
 };
 
 export default SubmitButton;
