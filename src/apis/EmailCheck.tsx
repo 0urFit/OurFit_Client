@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const EmailCheck = async (email: string) => {
-    const URL = `http://www.ourfit.shop/checknick/${email}`;
+    const URL = `https://www.ourfit.shop/checknick/${email}`;
 
     try {
         const response = await axios.get(URL);

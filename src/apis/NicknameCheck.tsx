@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const NicknameCheck = async (nickname: string) => {
-    const URL = `http://www.ourfit.shop/checknick/${nickname}`;
+    const URL = `https://www.ourfit.shop/checknick/${nickname}`;
 
     try {
         const response = await axios.get(URL);

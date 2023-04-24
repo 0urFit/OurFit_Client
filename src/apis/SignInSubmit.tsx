@@ -1,7 +1,7 @@
-import { InputType } from '@/components/signin/type';
+import { InputType } from '@/components/signup/type';
 import axios from 'axios';
 
-const SignInSubmit = async (data: InputType) => {
+const SignUpSubmit = async (data: InputType) => {
     const URL = 'https://www.ourfit.shop/signup';
 
     try {
@@ -24,4 +24,4 @@ const SignInSubmit = async (data: InputType) => {
     }
 };
 
-export default SignInSubmit;
+export default SignUpSubmit;
