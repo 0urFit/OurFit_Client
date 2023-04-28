@@ -3,4 +3,4 @@ type LoginForm = {
     password: string;
 };
 
-export { LoginForm };
+export type { LoginForm };
