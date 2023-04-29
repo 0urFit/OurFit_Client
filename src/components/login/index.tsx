@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-
-import { LocalLogin } from '@/apis/auth';
+import { signIn } from 'next-auth/react';
 
 import LoginInput from '@/common/molecules/LoginInput';
+import ErrorMessage from '@/common/molecules/ErrorMessage';
 
 import { LI } from './style';
 import OurtFitLogo from '../../../public/assets/Ourfit_logo.png';
@@ -13,7 +13,8 @@ import PadlockIcon from '../../../public/assets/padlock-icon.png';
 import SubmitButton from '@/common/molecules/SubmitButton';
 
 import { LoginForm } from './type';
-import ErrorMessage from '@/common/molecules/ErrorMessage';
+
+import { LocalLogin } from '../../apis/auth';
 
 const Login = () => {
     const [emailValidMsg, setEmailValidMsg] = useState<boolean | undefined>(false);
@@ -95,7 +96,7 @@ const Login = () => {
                 </LI.LoginBtnWrapper>
             </LI.LoginForm>
             <LI.KakaoBtnWrapper>
-                <LI.KakaoBtn>카카오로 로그인</LI.KakaoBtn>
+                <LI.KakaoBtn onClick={() => signIn('kakao')}>카카오로 로그인</LI.KakaoBtn>
             </LI.KakaoBtnWrapper>
             <LI.SignUpLinkBtnWrapper>
                 <LI.SignUpLinkBtn>회원가입</LI.SignUpLinkBtn>
