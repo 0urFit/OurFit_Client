@@ -58,6 +58,12 @@ const II = {
         &:focus {
             outline: none;
         }
+
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     `,
 };
 
@@ -95,6 +101,7 @@ const SB = {
         background-color: #868686;
         border: none;
         border-radius: 0.625rem;
+        cursor: pointer;
     `,
 };
 
