@@ -1,17 +1,18 @@
+import { StyledProps } from './type';
 import styled from 'styled-components';
 
 const LI = {
-    InputWrapper: styled.div`
+    InputWrapper: styled.div<StyledProps>`
         position: relative;
         width: 18.375rem;
         height: 3.1875rem;
 
         &:nth-child(1) {
-            margin-bottom: 0.9375rem;
+            margin-bottom: ${({ emailMargin }) => (emailMargin ? '0' : '0.9375rem')};
         }
 
         &:nth-child(2) {
-            margin-bottom: 1.5rem;
+            margin-bottom: ${({ pwMargin }) => (pwMargin ? '0' : '1.5rem')};
         }
     `,
     Input: styled.input`
@@ -256,4 +257,17 @@ const PC = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC };
+const EM = {
+    ErrorMessageWrapper: styled.div`
+        text-align: left;
+        margin: 0.3125rem 0;
+    `,
+    Sentence: styled.span`
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.0625rem;
+        color: #ff0000;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM };
