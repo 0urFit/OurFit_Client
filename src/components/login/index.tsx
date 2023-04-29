@@ -1,9 +1,10 @@
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-
-import { LocalLogin } from '@/apis/auth';
+import { signIn } from 'next-auth/react';
 
 import LoginInput from '@/common/molecules/LoginInput';
+import ErrorMessage from '@/common/molecules/ErrorMessage';
 
 import { LI } from './style';
 import OurtFitLogo from '../../../public/assets/Ourfit_logo.png';
@@ -13,7 +14,11 @@ import SubmitButton from '@/common/molecules/SubmitButton';
 
 import { LoginForm } from './type';
 
+import { LocalLogin } from '../../apis/auth';
+
 const Login = () => {
+    const [emailValidMsg, setEmailValidMsg] = useState<boolean | undefined>(false);
+    const [pwValidMsg, setPwValidMsg] = useState<boolean | undefined>(false);
     const {
         register,
         handleSubmit,
@@ -27,6 +32,7 @@ const Login = () => {
     });
 
     const handleSuccess = () => {
+        // api test
         const test = {
             email: 'aossuper7@naver.com',
             password: 'aossuper7',
@@ -40,6 +46,14 @@ const Login = () => {
     const handleFail = () => {
         console.log('로그인에 실패했습니다.');
     };
+
+    useEffect(() => {
+        errors.email ? setEmailValidMsg(true) : setEmailValidMsg(false);
+    }, [errors.email]);
+
+    useEffect(() => {
+        errors.password ? setPwValidMsg(true) : setPwValidMsg(false);
+    }, [errors.password]);
 
     return (
         <LI.Box>
@@ -59,8 +73,9 @@ const Login = () => {
                     placeholder="Email"
                     src={MailIcon.src}
                     alternative="이메일아이콘"
+                    emailMargin={emailValidMsg}
                 />
-                {errors?.email && <p style={{ color: 'red' }}>{errors.email?.message}</p>}
+                {emailValidMsg && <ErrorMessage errorText={errors.email?.message} />}
                 <LoginInput
                     register={register('password', {
                         required: '비밀번호는 필수 입력란 입니다.',
@@ -73,14 +88,15 @@ const Login = () => {
                     placeholder="Password"
                     src={PadlockIcon.src}
                     alternative="비밀번호아이콘"
+                    pwMargin={pwValidMsg}
                 />
-                {errors?.password && <p style={{ color: 'red' }}>{errors.password?.message}</p>}
+                {pwValidMsg && <ErrorMessage errorText={errors.password?.message} />}
                 <LI.LoginBtnWrapper>
                     <SubmitButton buttonValue="로그인" isValid={!isValid} />
                 </LI.LoginBtnWrapper>
             </LI.LoginForm>
             <LI.KakaoBtnWrapper>
-                <LI.KakaoBtn>카카오로 로그인</LI.KakaoBtn>
+                <LI.KakaoBtn onClick={() => signIn('kakao')}>카카오로 로그인</LI.KakaoBtn>
             </LI.KakaoBtnWrapper>
             <LI.SignUpLinkBtnWrapper>
                 <LI.SignUpLinkBtn>회원가입</LI.SignUpLinkBtn>
