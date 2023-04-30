@@ -2,7 +2,7 @@ import { SB } from './style';
 
 interface propsType {
     buttonValue: string;
-    isValid?: boolean;
+    isValid: boolean;
 }
 
 const SubmitButton = ({ buttonValue, isValid }: propsType) => {

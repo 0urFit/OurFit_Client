@@ -33,6 +33,23 @@ const SI = {
         width: 18.375rem;
         height: 3.1875rem;
     `,
+    CheckboxWrapper: styled.div`
+        margin-top: 2.5rem;
+        width: inherit;
+    `,
+    SelectAllWrapper: styled.div`
+        width: inherit;
+        height: 1.5625rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    `,
+    SelectEachWrapper: styled.div`
+        margin-top: 0.875rem;
+    `,
+    Span: styled.span`
+        margin-left: 0.375rem;
+        font-weight: 400;
+        font-size: 0.875rem;
+    `,
 };
 
 export { SI };
