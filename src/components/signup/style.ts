@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SI = {
+const SU = {
     InputList: styled.form`
         height: calc(100% - 5.0625rem);
         overflow-y: scroll;
@@ -34,7 +34,7 @@ const SI = {
         height: 3.1875rem;
     `,
     CheckboxWrapper: styled.div`
-        margin-top: 2.5rem;
+        margin-top: 2rem;
         width: inherit;
     `,
     SelectAllWrapper: styled.div`
@@ -52,4 +52,4 @@ const SI = {
     `,
 };
 
-export { SI };
+export { SU };
