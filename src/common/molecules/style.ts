@@ -133,6 +133,7 @@ const BB = {
     ItemWrapper: styled.li`
         margin: auto 0;
         text-align: center;
+        cursor: pointer;
     `,
     ImgWrapper: styled.div`
         margin: 0 auto;
