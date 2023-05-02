@@ -11,14 +11,12 @@ interface propsType {
 
 const SelectBox = ({ control, data }: propsType) => {
     const selectStyle = {
-        placeholder: (baseStyles: CSSObjectWithLabel) => {
-            return {
-                ...baseStyles,
-                color: '#27639d',
-                fontWeight: '400',
-                fontSize: '0.875rem',
-            };
-        },
+        placeholder: (baseStyles: CSSObjectWithLabel) => ({
+            ...baseStyles,
+            color: '#27639d',
+            fontWeight: '400',
+            fontSize: '0.875rem',
+        }),
         control: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             paddingLeft: '0.375rem',
@@ -41,6 +39,9 @@ const SelectBox = ({ control, data }: propsType) => {
             render={({ field: { onChange } }) => (
                 <Select
                     styles={selectStyle}
+                    components={{
+                        IndicatorSeparator: () => null,
+                    }}
                     placeholder={data.explanation}
                     onChange={dateString => {
                         onChange(dateString?.value);
