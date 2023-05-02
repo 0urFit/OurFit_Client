@@ -3,4 +3,9 @@ type LoginForm = {
     password: string;
 };
 
-export type { LoginForm };
+type IsUserState = {
+    isUser: boolean;
+    message: string;
+};
+
+export type { LoginForm, IsUserState };

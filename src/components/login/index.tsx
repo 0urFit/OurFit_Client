@@ -2,26 +2,34 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import LoginInput from '@/common/molecules/LoginInput';
 import ErrorMessage from '@/common/molecules/ErrorMessage';
+import SubmitButton from '@/common/molecules/SubmitButton';
+
+import { LocalLogin } from '../../apis/auth';
 
 import { LI } from './style';
 import OurtFitLogo from '../../../public/assets/Ourfit_logo.png';
 import MailIcon from '../../../public/assets/mail-icon.png';
 import PadlockIcon from '../../../public/assets/padlock-icon.png';
-import SubmitButton from '@/common/molecules/SubmitButton';
 
-import { LoginForm } from './type';
-
-import { LocalLogin } from '../../apis/auth';
+import { LoginForm, IsUserState } from './type';
 
 const Login = () => {
     const [emailValidMsg, setEmailValidMsg] = useState<boolean | undefined>(false);
     const [pwValidMsg, setPwValidMsg] = useState<boolean | undefined>(false);
+    const [emailValue, setEmailValue] = useState<string>('');
+    const [pwValue, setPwValue] = useState<string>('');
+    const [isUser, setIsUser] = useState<IsUserState>({ isUser: false, message: '' });
+
+    const router = useRouter();
+
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors, isValid },
     } = useForm<LoginForm>({
         mode: 'onChange',
@@ -31,20 +39,31 @@ const Login = () => {
         },
     });
 
-    const handleSuccess = () => {
-        // api test
-        const test = {
-            email: 'aossuper7@naver.com',
-            password: 'aossuper7',
+    const emailWatch = watch('email');
+    const pwWatch = watch('password');
+
+    const handleSuccess = async () => {
+        const userInfo: LoginForm = {
+            email: emailValue,
+            password: pwValue,
         };
-        LocalLogin(test).then(res => {
-            console.log(res);
-        });
-        console.log('로그인 성공입니다.');
+        try {
+            await LocalLogin(userInfo);
+            router.push('/home');
+        } catch (error) {
+            setIsUser({
+                isUser: true,
+                message: '등록되지 않은 회원정보입니다.',
+            });
+        }
     };
 
     const handleFail = () => {
         console.log('로그인에 실패했습니다.');
+    };
+
+    const handleMoveSignUp = () => {
+        router.push('/signup');
     };
 
     useEffect(() => {
@@ -54,6 +73,14 @@ const Login = () => {
     useEffect(() => {
         errors.password ? setPwValidMsg(true) : setPwValidMsg(false);
     }, [errors.password]);
+
+    useEffect(() => {
+        setEmailValue(emailWatch);
+    }, [emailWatch]);
+
+    useEffect(() => {
+        setPwValue(pwWatch);
+    }, [pwWatch]);
 
     return (
         <LI.Box>
@@ -91,6 +118,7 @@ const Login = () => {
                     pwMargin={pwValidMsg}
                 />
                 {pwValidMsg && <ErrorMessage errorText={errors.password?.message} />}
+                {isUser && <ErrorMessage errorText={isUser.message} />}
                 <LI.LoginBtnWrapper>
                     <SubmitButton buttonValue="로그인" isValid={!isValid} />
                 </LI.LoginBtnWrapper>
@@ -99,7 +127,7 @@ const Login = () => {
                 <LI.KakaoBtn onClick={() => signIn('kakao')}>카카오로 로그인</LI.KakaoBtn>
             </LI.KakaoBtnWrapper>
             <LI.SignUpLinkBtnWrapper>
-                <LI.SignUpLinkBtn>회원가입</LI.SignUpLinkBtn>
+                <LI.SignUpLinkBtn onClick={handleMoveSignUp}>회원가입</LI.SignUpLinkBtn>
             </LI.SignUpLinkBtnWrapper>
         </LI.Box>
     );

@@ -155,8 +155,14 @@ const RC = {
         align-items: center;
         width: 22.125rem;
         height: 6.875rem;
+        margin-bottom: 10px;
         border: 1px solid #e1e2e3;
         border-radius: 0.3125rem;
+        background-color: #fff;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     `,
     CardWrapper: styled.div`
         display: flex;

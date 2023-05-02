@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { RC } from './style';
 
 import CardImg from '../../../public/assets/Card-img.jpg';
-import LikeIcon from '../../../public/assets/like-icon.png';
+import LikeIcon from '../../../public/assets/like-icon.svg';
 
 const RoutineCard = () => {
     return (
