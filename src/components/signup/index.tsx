@@ -17,6 +17,7 @@ const SignUp = () => {
         handleSubmit,
         formState: { errors, isValid },
         setError,
+        setFocus,
     } = useForm<InputType>({
         mode: 'onChange',
     });
@@ -37,10 +38,10 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        document.addEventListener('focusout', listener);
+        window.addEventListener('focusout', listener);
 
         return () => {
-            document.removeEventListener('focusout', listener);
+            window.removeEventListener('focusout', listener);
         };
     }, [inputRef]);
 
@@ -74,6 +75,7 @@ const SignUp = () => {
                 console.log(error);
             }
         } else {
+            setFocus('passwordCheck');
             setError('passwordCheck', { type: 'wrongPassword', message: '비밀번호와 일치하지 않습니다' });
         }
     };
