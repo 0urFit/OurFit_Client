@@ -99,7 +99,7 @@ const SB = {
         line-height: 1.25rem;
         text-align: center;
         color: #ffffff;
-        background-color: #868686;
+        background-color: ${props => (props.disabled ? '#ccc' : '#868686')};
         border: none;
         border-radius: 0.625rem;
         cursor: pointer;
