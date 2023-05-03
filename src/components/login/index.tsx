@@ -51,15 +51,12 @@ const Login = () => {
             await LocalLogin(userInfo);
             router.push('/home');
         } catch (error) {
+            console.log(error);
             setIsUser({
                 isUser: true,
                 message: '등록되지 않은 회원정보입니다.',
             });
         }
-    };
-
-    const handleFail = () => {
-        console.log('로그인에 실패했습니다.');
     };
 
     const handleMoveSignUp = () => {
@@ -87,7 +84,7 @@ const Login = () => {
             <LI.LogoWrapper>
                 <Image src={OurtFitLogo} width={100} height={20.45} alt="로고" />
             </LI.LogoWrapper>
-            <LI.LoginForm onSubmit={handleSubmit(handleSuccess, handleFail)}>
+            <LI.LoginForm onSubmit={handleSubmit(handleSuccess)}>
                 <LoginInput
                     register={register('email', {
                         required: '이메일은 필수 입력란 입니다.',
