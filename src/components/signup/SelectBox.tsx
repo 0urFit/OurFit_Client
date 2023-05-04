@@ -22,11 +22,14 @@ const SelectBox = ({ control, data }: propsType) => {
             paddingLeft: '0.375rem',
             width: '18.375rem',
             height: '3.1875rem',
-            border: 'none',
+            borderColor: 'black',
             borderRadius: '0.625rem',
             boxShadow: 'none',
         }),
         dropdownIndicator: () => ({
+            display: 'none',
+        }),
+        indicatorsContainer: () => ({
             display: 'none',
         }),
     };
@@ -39,9 +42,6 @@ const SelectBox = ({ control, data }: propsType) => {
             render={({ field: { onChange } }) => (
                 <Select
                     styles={selectStyle}
-                    components={{
-                        IndicatorSeparator: () => null,
-                    }}
                     placeholder={data.explanation}
                     onChange={dateString => {
                         onChange(dateString?.value);
