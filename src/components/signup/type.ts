@@ -31,18 +31,23 @@ type StatusType = { email: boolean; nickname: boolean };
 
 type AgreeType = { id: number; content: string; essential: boolean };
 
-type errorType = {
-    response: responseType;
+type ErrorType = {
+    response: ResponseType;
 };
 
-type responseType = {
-    data: dataType;
+type ResponseType = {
+    data: DataType;
 };
 
-type dataType = {
+type DataType = {
     code: number;
     message: string;
     success: boolean;
 };
 
-export type { ItemType, InputType, InputValue, StatusType, AgreeType, errorType };
+type SelectType = {
+    value: string;
+    label: string;
+}
+
+export type { ItemType, InputType, InputValue, StatusType, AgreeType, ErrorType, SelectType };
