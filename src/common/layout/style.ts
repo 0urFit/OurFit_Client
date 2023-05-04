@@ -7,16 +7,13 @@ const DL = {
         position: relative;
         width: 24.375rem;
         height: 52.75rem;
-        background-color: #bfbfbf;
     `,
-
     ImgWrapper: styled.div`
         position: absolute;
         top: 1.25rem;
         left: 1.25rem;
         cursor: pointer;
     `,
-
     FirstContainer: styled.div`
         display: inline-block;
         margin: 2.5rem 3rem;
@@ -24,7 +21,6 @@ const DL = {
         height: calc(100% - 5rem);
         overflow-y: scroll;
     `,
-
     SecondContainer: styled.div`
         display: inline-block;
         margin: 2.5rem 1.125rem 1rem;

@@ -15,6 +15,10 @@ const SV = {
         width: inherit;
         height: calc(100% - 10rem);
         overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     `,
     ButtonWrapper: styled.div`
         position: absolute;

@@ -49,7 +49,7 @@ const II = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: none;
+        border: 1px solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -155,10 +155,9 @@ const RC = {
         align-items: center;
         width: 22.125rem;
         height: 6.875rem;
-        margin-bottom: 10px;
-        border: 1px solid #e1e2e3;
-        border-radius: 0.3125rem;
-        background-color: #fff;
+        margin-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        border-bottom: 1px solid #e1e2e3;
 
         &:last-child {
             margin-bottom: 0;
@@ -173,16 +172,17 @@ const RC = {
         width: 6.25rem;
         height: 6.25rem;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 0.3rem;
     `,
     DescWrapper: styled.div`
         display: grid;
         grid-template-rows: repeat(4, 1fr);
         margin-left: 1rem;
+        width: calc(100% - 6.25rem);
     `,
     span: styled.span`
         font-size: 1.5rem;
-        font-weight: bold;
+        font-weight: 400;
     `,
     ul: styled.ul`
         display: flex;
@@ -190,6 +190,8 @@ const RC = {
     `,
     li: styled.li`
         margin-right: 0.3125rem;
+        color: #232323;
+        font-size: 0.875rem;
 
         &:last-child {
             margin-right: 0;
@@ -197,24 +199,28 @@ const RC = {
     `,
     DescFooterWrapper: styled.div`
         display: flex;
+        width: 100%;
     `,
     CoachNameWrapper: styled.div`
+        flex-grow: 1;
         display: flex;
         align-items: end;
     `,
     CoachName: styled.span`
         font-size: 0.75rem;
-        font-weight: bold;
-        color: #e1e2e3;
+        font-weight: 400;
+        color: #bdbdbd;
     `,
     ClickWrapper: styled.div`
+        flex-wrap: 2;
         display: flex;
-        margin-left: 3.5rem;
+        justify-content: end;
     `,
     LikeIconWrapper: styled.div`
         width: 1.5625rem;
         height: 1.5625rem;
         margin-right: 0.4375rem;
+        cursor: pointer;
     `,
     BtnWrapper: styled.div`
         width: 4.375rem;
