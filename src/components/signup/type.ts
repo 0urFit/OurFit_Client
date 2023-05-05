@@ -4,7 +4,7 @@ type ItemType = {
     inputValue: InputValue;
     inputTitle: string;
     explanation: string;
-    essential: string | boolean;
+    essential: boolean | string;
     minLength?: number;
     minLengthMessage?: string;
     pattern?: RegExp;
@@ -31,4 +31,23 @@ type StatusType = { email: boolean; nickname: boolean };
 
 type AgreeType = { id: number; content: string; essential: boolean };
 
-export type { ItemType, InputType, InputValue, StatusType, AgreeType };
+type ErrorType = {
+    response: ResponseType;
+};
+
+type ResponseType = {
+    data: DataType;
+};
+
+type DataType = {
+    code: number;
+    message: string;
+    success: boolean;
+};
+
+type SelectType = {
+    value: string;
+    label: string;
+}
+
+export type { ItemType, InputType, InputValue, StatusType, AgreeType, ErrorType, SelectType };

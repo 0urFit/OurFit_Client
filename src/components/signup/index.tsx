@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { SU } from './style';
-import { InputType, StatusType, errorType } from './type';
+import { InputType, StatusType, ErrorType } from './type';
 import { AgreeData, SignupData } from '@/data/SignUpData';
 import { LocalEmail, LocalNickname, LocalSignUp } from '@/apis/auth';
 import SubmitButton from '@/common/molecules/SubmitButton';
@@ -17,6 +17,7 @@ const SignUp = () => {
         handleSubmit,
         formState: { errors, isValid },
         setError,
+        setFocus,
     } = useForm<InputType>({
         mode: 'onChange',
     });
@@ -37,10 +38,10 @@ const SignUp = () => {
     };
 
     useEffect(() => {
-        document.addEventListener('focusout', listener);
+        window.addEventListener('focusout', listener);
 
         return () => {
-            document.removeEventListener('focusout', listener);
+            window.removeEventListener('focusout', listener);
         };
     }, [inputRef]);
 
@@ -49,7 +50,7 @@ const SignUp = () => {
             const result = await LocalEmail(email);
             setError('email', { type: 'existEmail', message: '이미 존재하는 이메일입니다.' }), setStatus(prev => ({ email: result.data.success, nickname: prev.nickname }));
         } catch (error) {
-            const err = error as errorType;
+            const err = error as ErrorType;
             setStatus(prev => ({ email: err.response.data.success, nickname: prev.nickname }));
         }
     };
@@ -59,7 +60,7 @@ const SignUp = () => {
             const result = await LocalNickname(email);
             setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(prev => ({ email: prev.email, nickname: result.data.success }));
         } catch (error) {
-            const err = error as errorType;
+            const err = error as ErrorType;
             setStatus(prev => ({ email: prev.email, nickname: err.response.data.success }));
         }
     };
@@ -74,6 +75,7 @@ const SignUp = () => {
                 console.log(error);
             }
         } else {
+            setFocus('passwordCheck');
             setError('passwordCheck', { type: 'wrongPassword', message: '비밀번호와 일치하지 않습니다' });
         }
     };

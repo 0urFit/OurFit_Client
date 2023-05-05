@@ -1,4 +1,4 @@
-import { AgreeType, ItemType } from '@/components/signup/type';
+import { AgreeType, ItemType, SelectType } from '@/components/signup/type';
 
 const SignupData: ItemType[] = [
     {
@@ -87,7 +87,7 @@ const SignupData: ItemType[] = [
     },
 ];
 
-const SelectOptions = [
+const SelectOptions : SelectType[] = [
     { value: 'male', label: '남자' },
     { value: 'female', label: '여자' },
 ];

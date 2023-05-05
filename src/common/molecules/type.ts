@@ -10,8 +10,3 @@ export interface StyledProps extends HTMLAttributes<HTMLDivElement> {
     emailMargin: boolean | undefined;
     pwMargin: boolean | undefined;
 }
-
-export type optionType = {
-    isSelected: boolean;
-    isFocused: boolean;
-};
