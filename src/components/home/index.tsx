@@ -3,6 +3,8 @@ import { H } from './style';
 import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
 import React from 'react';
 import SmallSelect from '@/common/molecules/SmallSelect';
+import RoutineCard from '@/common/molecules/RoutineCard';
+import BottomBar from '@/common/molecules/BottomBar';
 
 const Home = () => {
     const test = [
@@ -19,6 +21,18 @@ const Home = () => {
             <H.SelectBox>
                 <SmallSelect placeholder={'운동종목'} options={test} />
             </H.SelectBox>
+            <H.RoutineListBox>
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+                <RoutineCard />
+            </H.RoutineListBox>
+            <BottomBar />
         </>
     );
 };
