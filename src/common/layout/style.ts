@@ -21,14 +21,12 @@ const DL = {
         margin: 2.5rem 3rem;
         width: calc(100% - 6rem);
         height: calc(100% - 5rem);
-        overflow-y: scroll;
     `,
     SecondContainer: styled.div`
         display: inline-block;
         margin: 2rem 1.125rem 0.625rem;
         width: calc(100% - 2.25rem);
         height: calc(100% - 2.625rem);
-        overflow-y: scroll;
     `,
 };
 
