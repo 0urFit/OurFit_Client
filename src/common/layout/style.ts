@@ -7,6 +7,8 @@ const DL = {
         position: relative;
         width: 24.375rem;
         height: 52.75rem;
+        box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        border-radius: 0.9375rem;
     `,
     ImgWrapper: styled.div`
         position: absolute;
@@ -23,9 +25,9 @@ const DL = {
     `,
     SecondContainer: styled.div`
         display: inline-block;
-        margin: 2.5rem 1.125rem 1rem;
+        margin: 2rem 1.125rem 0.625rem;
         width: calc(100% - 2.25rem);
-        height: calc(100% - 3.5rem);
+        height: calc(100% - 2.625rem);
         overflow-y: scroll;
     `,
 };
