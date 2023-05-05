@@ -159,8 +159,8 @@ const RC = {
         padding-bottom: 0.625rem;
         border-bottom: 1px solid #e1e2e3;
 
-        &:last-child {
-            margin-bottom: 0;
+        &:first-child {
+            margin-top: 0;
         }
     `,
     CardWrapper: styled.div`
