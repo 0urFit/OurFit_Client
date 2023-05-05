@@ -11,9 +11,9 @@ const SV = {
         margin-left: auto;
     `,
     CardList: styled.div`
-        margin-top: 1.875rem;
+        margin-top: 1.25rem;
         width: inherit;
-        height: calc(100% - 10rem);
+        height: calc(100% - 8.125rem);
         overflow-y: scroll;
 
         &::-webkit-scrollbar {
