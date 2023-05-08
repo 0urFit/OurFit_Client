@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { SU } from '../style';
-import { InputType, errorType } from '../type';
+import { InputType, ErrorType } from '../type';
 import { AgreeData } from '@/data/SignUpData';
 import { SignupKakaoData } from '@/data/SignUpKakaoData';
 import { LocalNickname, LocalSignUp } from '@/apis/auth';
@@ -43,13 +43,15 @@ const SignUpKakao = () => {
         };
     }, [inputRef]);
 
-    const handleNickname = async (email: string) => {
+    const handleNickname = async (nickname: string) => {
         try {
-            const result = await LocalNickname(email);
-            setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(result.data.success);
+            const result = await LocalNickname(nickname);
+            setStatus(result.data.success);
         } catch (error) {
-            const err = error as errorType;
-            setStatus(err.response.data.success);
+            const err = error as ErrorType;
+            if (err.response.status === 409) {
+                setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(err.response.data.success);
+            }
         }
     };
 
@@ -62,7 +64,6 @@ const SignUpKakao = () => {
             console.log(error);
         }
     };
-    console.log(status);
 
     const [checkedList, setCheckedList] = useState<number[]>([]);
     const [allChecked, setAllChecked] = useState<boolean>(false);
