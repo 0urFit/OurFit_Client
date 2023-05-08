@@ -48,20 +48,24 @@ const SignUp = () => {
     const handleEmail = async (email: string) => {
         try {
             const result = await LocalEmail(email);
-            setError('email', { type: 'existEmail', message: '이미 존재하는 이메일입니다.' }), setStatus(prev => ({ email: result.data.success, nickname: prev.nickname }));
+            setStatus(prev => ({ email: result.data.success, nickname: prev.nickname }));
         } catch (error) {
             const err = error as ErrorType;
-            setStatus(prev => ({ email: err.response.data.success, nickname: prev.nickname }));
+            if (err.response.status === 409) {
+                setError('email', { type: 'existEmail', message: '이미 존재하는 이메일입니다.' }), setStatus(prev => ({ email: err.response.data.success, nickname: prev.nickname }));
+            }
         }
     };
 
-    const handleNickname = async (email: string) => {
+    const handleNickname = async (nickname: string) => {
         try {
-            const result = await LocalNickname(email);
-            setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(prev => ({ email: prev.email, nickname: result.data.success }));
+            const result = await LocalNickname(nickname);
+            setStatus(prev => ({ email: prev.email, nickname: result.data.success }));
         } catch (error) {
             const err = error as ErrorType;
-            setStatus(prev => ({ email: prev.email, nickname: err.response.data.success }));
+            if (err.response.status === 409) {
+                setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(prev => ({ email: prev.email, nickname: err.response.data.success }));
+            }
         }
     };
 
