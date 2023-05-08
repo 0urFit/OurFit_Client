@@ -1,6 +1,5 @@
 import { InputType } from '@/components/signup/type';
-import { instance } from './client';
-
+import { instance, socialInstance } from './client';
 interface LoginApiType {
     email: string;
     password: string;
@@ -31,4 +30,12 @@ export const LocalNickname = async (nickname: string) => {
 
 export const LocalEmail = async (email: string) => {
     return await instance.get(`/checkemail/${email}`);
+};
+
+export const SocialKakaoLogin = async (authCode: string | null) => {
+    return await socialInstance.post('/auth/kakao/callback', null, {
+        params: {
+            authorizationCode: authCode,
+        },
+    });
 };
