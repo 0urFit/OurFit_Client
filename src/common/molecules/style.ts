@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { StyledProps } from './type';
 import styled from 'styled-components';
 
@@ -130,7 +131,7 @@ const BB = {
         border-radius: 2.5rem;
         background-color: #fff;
     `,
-    ItemWrapper: styled.li`
+    ItemWrapper: styled(Link)`
         margin: auto 0;
         text-align: center;
         cursor: pointer;
@@ -145,6 +146,7 @@ const BB = {
         font-weight: 400;
         font-size: 0.75rem;
         line-height: 0.75rem;
+        color: black;
     `,
 };
 
