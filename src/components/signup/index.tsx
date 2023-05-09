@@ -51,8 +51,10 @@ const SignUp = () => {
             setStatus(prev => ({ email: result.data.success, nickname: prev.nickname }));
         } catch (error) {
             const err = error as ErrorType;
-            if (err.response.status === 409) {
+            if (err.response?.status === 409) {
                 setError('email', { type: 'existEmail', message: '이미 존재하는 이메일입니다.' }), setStatus(prev => ({ email: err.response.data.success, nickname: prev.nickname }));
+            } else {
+                return;
             }
         }
     };
@@ -63,7 +65,7 @@ const SignUp = () => {
             setStatus(prev => ({ email: prev.email, nickname: result.data.success }));
         } catch (error) {
             const err = error as ErrorType;
-            if (err.response.status === 409) {
+            if (err.response?.status === 409) {
                 setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(prev => ({ email: prev.email, nickname: err.response.data.success }));
             }
         }
