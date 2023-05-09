@@ -292,4 +292,11 @@ const EM = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM };
+const PB = {
+    ImgWrapper: styled.button`
+        position: relative;
+        z-index: 999;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB };
