@@ -37,6 +37,7 @@ type ErrorType = {
 
 type ResponseType = {
     data: DataType;
+    status: number;
 };
 
 type DataType = {
@@ -48,6 +49,6 @@ type DataType = {
 type SelectType = {
     value: string;
     label: string;
-}
+};
 
 export type { ItemType, InputType, InputValue, StatusType, AgreeType, ErrorType, SelectType };

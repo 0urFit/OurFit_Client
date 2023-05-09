@@ -1,7 +1,11 @@
 import { CB } from './style';
 
-const CreateButton = () => {
-    return <CB.Button>등록하기</CB.Button>;
+interface propsType {
+    message: string;
+}
+
+const CreateButton = ({ message }: propsType) => {
+    return <CB.Button>{message}</CB.Button>;
 };
 
 export default CreateButton;
