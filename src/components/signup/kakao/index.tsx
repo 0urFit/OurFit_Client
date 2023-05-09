@@ -49,7 +49,7 @@ const SignUpKakao = () => {
             setStatus(result.data.success);
         } catch (error) {
             const err = error as ErrorType;
-            if (err.response.status === 409) {
+            if (err.response?.status === 409) {
                 setError('nickname', { type: 'existNickname', message: '이미 존재하는 닉네임입니다.' }), setStatus(err.response.data.success);
             }
         }
