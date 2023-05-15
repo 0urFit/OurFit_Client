@@ -33,7 +33,7 @@ export const LocalEmail = async (email: string) => {
 };
 
 export const SocialKakaoLogin = async (authCode: string | null) => {
-    return await socialInstance.post('/auth/kakao/callback', null, {
+    return await socialInstance.get('/kakao', {
         params: {
             authorizationCode: authCode,
         },
