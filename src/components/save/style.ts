@@ -70,11 +70,31 @@ const BB = {
         border-top: 1px solid #626161;
         border-radius: 2.5rem 2.5rem 0rem 0rem;
     `,
+    WeekWrapper: styled.div`
+        margin: 1.125rem auto 0;
+        width: 22.125rem;
+        height: 3rem;
+        display: flex;
+    `,
+    WeekButtonWrapper: styled.div`
+        margin-right: 0.1875rem;
+        width: 3rem;
+        height: inherit;
+    `,
+    WeekButton: styled.button`
+        width: inherit;
+        height: inherit;
+        font-weight: 600;
+        font-size: 0.75rem;
+        background-color: white;
+        border-radius: 50%;
+        cursor: pointer;
+    `,
     MainWrapper: styled.div`
-        margin: 3rem auto 0;
+        margin: 1rem auto 0;
         padding-top: 1.25rem;
         width: 22.125rem;
-        height: calc(100% - 8.625rem);
+        height: 33rem;
         background-color: white;
         border-radius: 0.3125rem;
     `,
