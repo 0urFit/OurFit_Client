@@ -1,30 +1,30 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import LoginInput from '@/common/molecules/LoginInput';
 import ErrorMessage from '@/common/molecules/ErrorMessage';
 import SubmitButton from '@/common/molecules/SubmitButton';
 
 import { LocalLogin } from '../../apis/auth';
-
+import { KAKAO_API_URL } from '../../apis/client';
 import { LI } from './style';
-import OurtFitLogo from '../../../public/assets/Ourfit_logo.png';
+import OurtFitLogo from '../../../public/assets/Ourfit_logo.svg';
 import MailIcon from '../../../public/assets/mail-icon.png';
 import PadlockIcon from '../../../public/assets/padlock-icon.png';
 
 import { LoginForm, IsUserState } from './type';
 
 const Login = () => {
+    const router = useRouter();
+
     const [emailValidMsg, setEmailValidMsg] = useState<boolean | undefined>(false);
     const [pwValidMsg, setPwValidMsg] = useState<boolean | undefined>(false);
     const [emailValue, setEmailValue] = useState<string>('');
     const [pwValue, setPwValue] = useState<string>('');
     const [isUser, setIsUser] = useState<IsUserState>({ isUser: false, message: '' });
-
-    const router = useRouter();
 
     const {
         register,
@@ -51,7 +51,6 @@ const Login = () => {
             await LocalLogin(userInfo);
             router.push('/home');
         } catch (error) {
-            console.log(error);
             setIsUser({
                 isUser: true,
                 message: '등록되지 않은 회원정보입니다.',
@@ -120,9 +119,11 @@ const Login = () => {
                     <SubmitButton buttonValue="로그인" isValid={!isValid} />
                 </LI.LoginBtnWrapper>
             </LI.LoginForm>
-            <LI.KakaoBtnWrapper>
-                <LI.KakaoBtn onClick={() => signIn('kakao')}>카카오로 로그인</LI.KakaoBtn>
-            </LI.KakaoBtnWrapper>
+            <Link href={KAKAO_API_URL}>
+                <LI.KakaoBtnWrapper>
+                    <LI.KakaoBtn>카카오로 로그인</LI.KakaoBtn>
+                </LI.KakaoBtnWrapper>
+            </Link>
             <LI.SignUpLinkBtnWrapper>
                 <LI.SignUpLinkBtn onClick={handleMoveSignUp}>회원가입</LI.SignUpLinkBtn>
             </LI.SignUpLinkBtnWrapper>
