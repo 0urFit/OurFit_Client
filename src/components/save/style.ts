@@ -10,6 +10,26 @@ const SV = {
         width: fit-content;
         margin-left: auto;
     `,
+    WarningBox: styled.div`
+        position: relative;
+        height: calc(100% - 6.275rem);
+        text-align: center;
+    `,
+    WarningWrapper: styled.div`
+        position: absolute;
+        bottom: 0.625rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: fit-content;
+    `,
+    WarningMessage: styled.p`
+        margin-top: 2.5rem;
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+    `,
     CardList: styled.div`
         margin-top: 1.25rem;
         width: inherit;
