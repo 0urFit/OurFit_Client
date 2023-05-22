@@ -1,5 +1,5 @@
 import { InputType } from '@/components/signup/type';
-import { instance, socialInstance } from './client';
+import { instance, mainInstance, socialInstance } from './client';
 interface LoginApiType {
     email: string;
     password: string;
@@ -36,6 +36,14 @@ export const SocialKakaoLogin = async (authCode: string | null) => {
     return await socialInstance.get('/kakao', {
         params: {
             authorizationCode: authCode,
+        },
+    });
+};
+
+export const MainSave = async (category: string) => {
+    return await mainInstance.get('/mypage', {
+        params: {
+            category: category,
         },
     });
 };

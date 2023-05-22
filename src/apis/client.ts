@@ -12,6 +12,21 @@ export const instance = axios.create({
     },
 });
 
+export const mainInstance = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json; charset=utf-8;',
+    },
+});
+
+mainInstance.interceptors.request.use(config => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
 export const socialInstance = axios.create({
     baseURL: API_URL,
 });
