@@ -22,7 +22,7 @@ const LI = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: none;
+        border: 1px solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
