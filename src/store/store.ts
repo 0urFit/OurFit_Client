@@ -1,30 +1,44 @@
-import { AnyAction, combineReducers, configureStore } from '@reduxjs/toolkit';
-import { createWrapper, HYDRATE } from 'next-redux-wrapper';
-import authSlice from './slices/authSlice';
+/* eslint-disable indent */
 
-const reducer = (state: any, action: AnyAction) => {
-    if (action.type === HYDRATE) {
-        return {
-            ...state,
-            ...action.payload,
-        };
+import { configureStore, Reducer, AnyAction, CombinedState } from '@reduxjs/toolkit';
+import { HYDRATE, createWrapper } from 'next-redux-wrapper';
+import { combineReducers } from 'redux';
+
+import authSlice, { AuthTokenType } from './slices/authSlice';
+
+export interface ReducerStates {
+    auth: AuthTokenType;
+}
+
+const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<ReducerStates> => {
+    switch (action.type) {
+        case HYDRATE:
+            return { ...state, ...action.payload };
+
+        default: {
+            const combinedReducer = combineReducers({
+                auth: authSlice.reducer,
+            });
+            return combinedReducer(state, action);
+        }
     }
-
-    return combineReducers({
-        auth: authSlice,
-    })(state, action);
 };
 
-const makeStore = () =>
-    configureStore({
-        reducer,
+const makeStore = () => {
+    const store = configureStore({
+        reducer: rootReducer as Reducer<ReducerStates, AnyAction>,
+        devTools: process.env.NODE_ENV === 'development',
     });
 
-const store = makeStore();
+    return store;
+};
 
-export const wrapper = createWrapper(makeStore, {
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = AppStore['dispatch'];
+
+const wrapper = createWrapper<AppStore>(makeStore, {
     debug: process.env.NODE_ENV === 'development',
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export default wrapper;

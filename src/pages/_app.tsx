@@ -4,8 +4,7 @@ import type { NextPage } from 'next';
 
 import DefaultLayout from '@/common/layout/DefaultLayout';
 import GlobalStyle from '@/styles/GlobalStyle';
-import { wrapper } from '@/store/store';
-import { Provider } from 'react-redux';
+import wrapper from '@/store/store';
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;
@@ -15,26 +14,22 @@ type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout;
 };
 
-export default function App({ Component, pageProps, ...rest }: AppPropsWithLayout) {
-    const { store } = wrapper.useWrappedStore(rest);
-
+function App({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout =
         Component.getLayout ??
         (page => (
             <>
                 <GlobalStyle />
-                <Provider store={store}>
-                    <DefaultLayout>{page}</DefaultLayout>
-                </Provider>
+                <DefaultLayout>{page}</DefaultLayout>
             </>
         ));
 
     return getLayout(
         <>
             <GlobalStyle />
-            <Provider store={store}>
-                <Component {...pageProps} />
-            </Provider>
+            <Component {...pageProps} />
         </>,
     );
 }
+
+export default wrapper.withRedux(App);
