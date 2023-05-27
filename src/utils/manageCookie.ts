@@ -13,8 +13,12 @@ const setRefreshToken = (refreshToken: string) => {
     });
 };
 
-const getCookie = () => {
+const getRefreshToken = () => {
     return cookies.get('refresh_token');
 };
 
-export { setRefreshToken, getCookie };
+const removeRefreshToken = () => {
+    return cookies.remove('refresh_token', { path: '/' });
+};
+
+export { setRefreshToken, getRefreshToken, removeRefreshToken };
