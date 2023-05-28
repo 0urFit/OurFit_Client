@@ -68,7 +68,7 @@ tokenInstance.interceptors.response.use(
             }
         }
         return Promise.reject(error);
-    },
+    }
 );
 
 export const socialInstance = axios.create({

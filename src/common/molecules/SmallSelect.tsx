@@ -1,13 +1,14 @@
 import Select, { StylesConfig } from 'react-select';
-import { useId } from 'react';
+import { Dispatch, SetStateAction, useId } from 'react';
 import { SelectType } from '@/components/save/type';
 
 interface propsType {
     placeholder: string;
     options: SelectType[];
+    setSelectedValue: Dispatch<SetStateAction<string>>;
 }
 
-const SmallSelect = ({ placeholder, options }: propsType) => {
+const SmallSelect = ({ placeholder, options, setSelectedValue }: propsType) => {
     const selectStyle: StylesConfig = {
         placeholder: baseStyles => ({
             ...baseStyles,
@@ -41,7 +42,7 @@ const SmallSelect = ({ placeholder, options }: propsType) => {
         }),
     };
 
-    return <Select styles={selectStyle} placeholder={placeholder} options={options} instanceId={useId()} />;
+    return <Select styles={selectStyle} placeholder={placeholder} options={options} onChange={e => setSelectedValue((e as SelectType).value)} instanceId={useId()} />;
 };
 
 export default SmallSelect;

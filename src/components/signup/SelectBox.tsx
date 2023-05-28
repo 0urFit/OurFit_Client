@@ -43,8 +43,8 @@ const SelectBox = ({ control, data }: propsType) => {
                 <Select
                     styles={selectStyle}
                     placeholder={data.explanation}
-                    onChange={dateString => {
-                        onChange(dateString?.value);
+                    onChange={e => {
+                        onChange(e?.value);
                     }}
                     options={SelectOptions}
                     instanceId={useId()}
