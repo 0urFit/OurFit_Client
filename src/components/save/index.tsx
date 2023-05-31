@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { SV } from './style';
+import Image from 'next/image';
+
 import { MainSave } from '@/apis/auth';
 import { SelectOptions } from '@/data/SaveData';
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
+
+import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
-import Image from 'next/image';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
@@ -25,10 +27,14 @@ const Save = () => {
         }
     };
 
+    const handleChangeCategory = (categoryData: string) => {
+        setSelectedValue(categoryData);
+    };
+
     return (
         <SV.Box>
             <SV.SelectWrapper>
-                <SmallSelect placeholder="카테고리" options={SelectOptions} setSelectedValue={setSelectedValue} />
+                <SmallSelect placeholder="카테고리" options={SelectOptions} handleChangeCategory={handleChangeCategory} />
             </SV.SelectWrapper>
             {saveData.length === 0 ? (
                 <SV.WarningBox>
