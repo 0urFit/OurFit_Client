@@ -32,7 +32,7 @@ export const LocalEmail = async (email: string) => {
     return await instance.get(`/checkemail/${email}`);
 };
 
-export const SocialKakaoLogin = async (authCode: string | null) => {
+export const SocialKakaoLogin = async (authCode: string | undefined) => {
     return await socialInstance.get('/kakao', {
         params: {
             authorizationCode: authCode,
