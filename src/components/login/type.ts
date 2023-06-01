@@ -4,7 +4,7 @@ type LoginForm = {
 };
 
 type IsUserState = {
-    isUser: boolean;
+    checkUser: boolean;
     message: string;
 };
 

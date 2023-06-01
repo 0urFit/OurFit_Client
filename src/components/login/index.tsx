@@ -24,7 +24,7 @@ const Login = () => {
     const [pwValidMsg, setPwValidMsg] = useState<boolean | undefined>(false);
     const [emailValue, setEmailValue] = useState<string>('');
     const [pwValue, setPwValue] = useState<string>('');
-    const [isUser, setIsUser] = useState<IsUserState>({ isUser: false, message: '' });
+    const [isUser, setIsUser] = useState<IsUserState>({ checkUser: false, message: '' });
 
     const {
         register,
@@ -47,12 +47,13 @@ const Login = () => {
             email: emailValue,
             password: pwValue,
         };
+
         try {
-            await LocalLogin(userInfo);
+            const response = await LocalLogin(userInfo);
             router.push('/home');
         } catch (error) {
             setIsUser({
-                isUser: true,
+                checkUser: true,
                 message: '등록되지 않은 회원정보입니다.',
             });
         }
@@ -72,6 +73,12 @@ const Login = () => {
 
     useEffect(() => {
         setEmailValue(emailWatch);
+        setIsUser(prev => {
+            return {
+                ...prev,
+                checkUser: false,
+            };
+        });
     }, [emailWatch]);
 
     useEffect(() => {
@@ -114,7 +121,7 @@ const Login = () => {
                     pwMargin={pwValidMsg}
                 />
                 {pwValidMsg && <ErrorMessage errorText={errors.password?.message} />}
-                {isUser && <ErrorMessage errorText={isUser.message} />}
+                {isUser.checkUser && <ErrorMessage errorText={isUser.message} />}
                 <LI.LoginBtnWrapper>
                     <SubmitButton buttonValue="로그인" isValid={!isValid} />
                 </LI.LoginBtnWrapper>

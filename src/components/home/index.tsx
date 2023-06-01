@@ -27,7 +27,7 @@ const Home = () => {
     const [routineList, setRoutineList] = useState([]);
     const [routineCategory, setRoutineCategory] = useState('all');
 
-    const handleChangeCategory = (categoryData: any) => {
+    const handleChangeCategory = (categoryData: string) => {
         setRoutineCategory(categoryData);
     };
 
@@ -92,3 +92,5 @@ const Home = () => {
 };
 
 export default Home;
+
+// routineCard를 눌렀을 때, routineCard에 맞는 페이지로 이동돼야한다.
