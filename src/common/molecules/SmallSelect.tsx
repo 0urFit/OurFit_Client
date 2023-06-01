@@ -1,14 +1,16 @@
+import React from 'react';
 import Select, { StylesConfig } from 'react-select';
-import { Dispatch, SetStateAction, useId } from 'react';
+import { useId } from 'react';
 import { SelectType } from '@/components/save/type';
 
 interface propsType {
     placeholder: string;
     options: SelectType[];
-    setSelectedValue: Dispatch<SetStateAction<string>>;
+    // setSelectedValue: Dispatch<SetStateAction<string>>;
+    handleChangeCategory(categoryData: any): void;
 }
 
-const SmallSelect = ({ placeholder, options, setSelectedValue }: propsType) => {
+const SmallSelect = ({ placeholder, options, handleChangeCategory }: propsType) => {
     const selectStyle: StylesConfig = {
         placeholder: baseStyles => ({
             ...baseStyles,
@@ -42,7 +44,7 @@ const SmallSelect = ({ placeholder, options, setSelectedValue }: propsType) => {
         }),
     };
 
-    return <Select styles={selectStyle} placeholder={placeholder} options={options} onChange={e => setSelectedValue((e as SelectType).value)} instanceId={useId()} />;
+    return <Select styles={selectStyle} placeholder={placeholder} options={options} onChange={(option: any) => handleChangeCategory(option.value)} instanceId={useId()} />;
 };
 
 export default SmallSelect;
