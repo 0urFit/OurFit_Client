@@ -171,6 +171,7 @@ const RC = {
         margin: 0.3125rem;
     `,
     ImgWrapper: styled.div`
+        position: relative;
         width: 6.25rem;
         height: 6.25rem;
         overflow: hidden;
