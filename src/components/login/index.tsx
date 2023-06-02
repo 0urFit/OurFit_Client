@@ -10,6 +10,8 @@ import SubmitButton from '@/common/molecules/SubmitButton';
 
 import { LocalLogin } from '../../apis/auth';
 import { KAKAO_API_URL } from '../../apis/client';
+import { setRefreshToken } from '@/utils/manageCookie';
+
 import { LI } from './style';
 import OurtFitLogo from '../../../public/assets/Ourfit_logo.svg';
 import MailIcon from '../../../public/assets/mail-icon.png';
@@ -50,6 +52,11 @@ const Login = () => {
 
         try {
             const response = await LocalLogin(userInfo);
+            const { refreshToken, token } = response.data.result;
+
+            localStorage.setItem('access_token', token);
+            setRefreshToken(refreshToken);
+
             router.push('/home');
         } catch (error) {
             setIsUser({
