@@ -1,4 +1,6 @@
 import { getServerSideProps } from '@/pages/verifying';
+import { useAppDispatch } from '@/store/hook';
+import { saveUserInfo } from '@/store/slices/userSlice';
 import { setRefreshToken } from '@/utils/manageCookie';
 import { useRouter } from 'next/router';
 import { InferGetServerSidePropsType } from 'next/types';
@@ -15,13 +17,18 @@ export interface VerifyingPagePropsType {
     accessToken: string;
     refreshToken: string;
     success: boolean;
+    userInfo: {
+        userEmail: string;
+        userGender: string;
+    };
 }
 
 const Loading = ({ verifyingPageProps }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const { accessToken, refreshToken, success } = verifyingPageProps;
+        const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
 
         localStorage.setItem('access_token', accessToken);
         setRefreshToken(refreshToken);
@@ -29,9 +36,11 @@ const Loading = ({ verifyingPageProps }: InferGetServerSidePropsType<typeof getS
         if (success) {
             router.push('/home');
         } else {
+            dispatch(saveUserInfo(userInfo));
             router.push('/signup/kakao');
         }
     }, []);
+
     return (
         <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
             <BeatLoader size={20} color="#36d7b7" loading={true} cssOverride={override} />
