@@ -5,7 +5,7 @@ export interface AuthTokenType {
     isLogin: boolean;
 }
 
-const initialState = {
+const initialState: AuthTokenType = {
     accessToken: '',
     isLogin: false,
 };

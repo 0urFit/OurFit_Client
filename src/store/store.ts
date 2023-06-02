@@ -6,10 +6,12 @@ import { combineReducers } from 'redux';
 
 import authSlice, { AuthTokenType } from './slices/authSlice';
 import savedRoutineSlice, { SavedRoutineType } from './slices/savedRoutineSlice';
+import userSlice, { UserInfoType } from './slices/userSlice';
 
 export interface ReducerStates {
     auth: AuthTokenType;
     save: SavedRoutineType;
+    user: UserInfoType;
 }
 
 const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<ReducerStates> => {
@@ -21,6 +23,7 @@ const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<Red
             const combinedReducer = combineReducers({
                 auth: authSlice.reducer,
                 save: savedRoutineSlice.reducer,
+                user: userSlice.reducer,
             });
             return combinedReducer(state, action);
         }
