@@ -1,15 +1,16 @@
 import Select, { CSSObjectWithLabel } from 'react-select';
 import { Control, Controller } from 'react-hook-form';
 import { SelectOptions } from '@/data/SignUpData';
-import { useId } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { InputType, ItemType } from './type';
 
 interface propsType {
     control: Control<InputType, boolean>;
     data: ItemType;
+    defaultValue?: string;
 }
 
-const SelectBox = ({ control, data }: propsType) => {
+const SelectBox = ({ control, data, defaultValue }: propsType) => {
     const selectStyle = {
         placeholder: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
@@ -34,6 +35,16 @@ const SelectBox = ({ control, data }: propsType) => {
         }),
     };
 
+    const [gender, setGender] = useState<string>();
+
+    useEffect(() => {
+        if (defaultValue === 'male') {
+            setGender('남자');
+        } else if (defaultValue === 'female') {
+            setGender('여자');
+        }
+    }, []);
+
     return (
         <Controller
             name={data.inputValue}
@@ -42,12 +53,13 @@ const SelectBox = ({ control, data }: propsType) => {
             render={({ field: { onChange } }) => (
                 <Select
                     styles={selectStyle}
-                    placeholder={data.explanation}
+                    placeholder={gender || data.explanation}
                     onChange={e => {
                         onChange(e?.value);
                     }}
                     options={SelectOptions}
                     instanceId={useId()}
+                    isDisabled={gender ? true : false}
                 />
             )}
         />
