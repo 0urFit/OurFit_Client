@@ -1,17 +1,21 @@
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import { SU } from '../style';
 import { InputType, ErrorType } from '../type';
 import { AgreeData } from '@/data/SignUpData';
 import { SignupKakaoData } from '@/data/SignUpKakaoData';
 import { LocalNickname, LocalSignUp } from '@/apis/auth';
-import InfoInput from '@/common/molecules/InfoInput';
+import { RootState } from '@/store/store';
 import SelectBox from '../SelectBox';
+import InfoInput from '@/common/molecules/InfoInput';
 import SubmitButton from '@/common/molecules/SubmitButton';
 import ErrorMessage from '@/common/molecules/ErrorMessage';
 
 const SignUpKakao = () => {
+    const { user } = useSelector((value: RootState) => value);
+
     const {
         control,
         register,
@@ -20,6 +24,9 @@ const SignUpKakao = () => {
         setError,
     } = useForm<InputType>({
         mode: 'onChange',
+        defaultValues: {
+            email: user.userEmail,
+        },
     });
     const router = useRouter();
 
@@ -112,7 +119,7 @@ const SignUpKakao = () => {
                             {el.essential ? '*' : ''}
                         </SU.InputTitle>
                         {el.inputValue === 'gender' ? (
-                            <SelectBox control={control} data={el} />
+                            <SelectBox control={control} data={el} defaultValue={user.userGender} />
                         ) : (
                             <InfoInput
                                 inputType={el.inputType}

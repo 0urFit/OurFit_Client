@@ -16,7 +16,7 @@ type InputType = {
     password: string;
     passwordCheck: string;
     nickname: string;
-    gender: boolean | undefined;
+    gender: string | undefined;
     height: number;
     weight: number;
     squat: number;
