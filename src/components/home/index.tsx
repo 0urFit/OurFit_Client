@@ -1,6 +1,5 @@
-/* eslint-disable no-fallthrough */
-/* eslint-disable no-case-declarations */
 /* eslint-disable indent */
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -8,20 +7,12 @@ import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
 
-import { H } from './style';
-import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
-
 import { SelectOptions } from '@/data/SaveData';
 import { tokenInstance } from '@/apis/client';
 
-export interface RoutineProps {
-    id?: number | undefined;
-    imgpath: string;
-    period?: number;
-    fewTime?: number;
-    routineName?: string;
-    category?: string;
-}
+import { H } from './style';
+import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
+import { APIErrorType } from '../login/type';
 
 const Home = () => {
     const [routineList, setRoutineList] = useState([]);
@@ -32,30 +23,18 @@ const Home = () => {
     };
 
     const getRoutineData = async (endpoint: string) => {
-        const getRoutine = async () => {
+        try {
             const response = await tokenInstance.get(`/exercise/${endpoint}`);
-
             const { result } = response.data;
 
             setRoutineList(result);
-        };
+        } catch (err) {
+            const apiError = err as APIErrorType;
+            const { error } = apiError.response.data;
 
-        getRoutine();
+            console.log(error);
+        }
     };
-
-    useEffect(() => {
-        const getExerciseList = async () => {
-            try {
-                const response = await tokenInstance.get('/exercise/all');
-                const { result } = response.data;
-
-                setRoutineList(result);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getExerciseList();
-    }, []);
 
     useEffect(() => {
         switch (routineCategory) {
@@ -83,7 +62,7 @@ const Home = () => {
             </H.SelectBox>
             <H.RoutineListBox>
                 {routineList.map(({ id, imgpath, period, fewTime, routineName, category }) => (
-                    <RoutineCard key={id} imgpath={imgpath} period={period} fewTime={fewTime} routineName={routineName} category={category} />
+                    <RoutineCard key={id} id={id} imgpath={imgpath} period={period} fewTime={fewTime} routineName={routineName} category={category} />
                 ))}
             </H.RoutineListBox>
             <BottomBar />
@@ -92,5 +71,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// routineCard를 눌렀을 때, routineCard에 맞는 페이지로 이동돼야한다.
