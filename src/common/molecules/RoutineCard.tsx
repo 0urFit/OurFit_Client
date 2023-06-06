@@ -6,7 +6,6 @@ import { RoutineProps } from '@/components/home';
 import LikeIcon from '../../../public/assets/like-icon.svg';
 import { useAppDispatch } from '@/store/hook';
 import { saveRoutine } from '@/store/slices/savedRoutineSlice';
-import Link from 'next/link';
 
 const RoutineCard = ({ imgpath, period, fewTime, routineName, category }: RoutineProps) => {
     const dispatch = useAppDispatch();
@@ -17,18 +16,16 @@ const RoutineCard = ({ imgpath, period, fewTime, routineName, category }: Routin
 
     return (
         <RC.CardBox>
-            <RC.CardWrapper>
+            <RC.CardWrapper href="/home/detail">
                 <RC.ImgWrapper>
-                    <Image sizes="(max-width: 100px)" src={imgpath} fill={true} alt="운동이미지" />
+                    <Image sizes="(max-width: 100px)" src={imgpath} alt="운동이미지" style={{ objectFit: 'cover' }} fill />
                 </RC.ImgWrapper>
                 <RC.DescWrapper>
-                    <Link href="/home/detail">
-                        <RC.span>{routineName}</RC.span>
-                    </Link>
+                    <RC.span>{routineName}</RC.span>
                     <RC.ul>
-                        <RC.li># {category}</RC.li>
-                        <RC.li># {period}</RC.li>
-                        <RC.li># {fewTime} times a week</RC.li>
+                        <RC.li>#{category}</RC.li>
+                        <RC.li>#{period}Weeks</RC.li>
+                        <RC.li>#{fewTime}/week</RC.li>
                     </RC.ul>
                     <div></div>
                     <RC.DescFooterWrapper>
@@ -51,5 +48,3 @@ const RoutineCard = ({ imgpath, period, fewTime, routineName, category }: Routin
 };
 
 export default RoutineCard;
-
-// 이미지 경로, 운동제목,
