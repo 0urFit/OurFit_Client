@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const DL = {
     PageLayout: styled.div`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-        font-family: 'Roboto', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Open+Sans&display=swap');
+        font-family: 'Nanum Gothic', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         position: relative;
         width: 24.375rem;
         height: 52.75rem;
