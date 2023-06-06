@@ -9,6 +9,7 @@ import BottomBar from '@/common/molecules/BottomBar';
 
 import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
+import { RoutineProps } from '../home';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
@@ -45,7 +46,9 @@ const Save = () => {
                 </SV.WarningBox>
             ) : (
                 <SV.CardList>
-                    <RoutineCard />
+                    {saveData.map((data: RoutineProps, key) => (
+                        <RoutineCard key={key} imgpath={data.imgpath} period={data.period} fewTime={data.fewTime} routineName={data.routineName} category={data.category} />
+                    ))}
                 </SV.CardList>
             )}
             <SV.ButtonWrapper>
