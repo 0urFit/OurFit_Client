@@ -165,10 +165,10 @@ const RC = {
             margin-top: 0;
         }
     `,
-    CardWrapper: styled.div`
+    CardWrapper: styled(Link)`
         display: flex;
         width: 100%;
-        margin: 0.3125rem;
+        height: 100%;
     `,
     ImgWrapper: styled.div`
         position: relative;
@@ -180,12 +180,13 @@ const RC = {
     DescWrapper: styled.div`
         display: grid;
         grid-template-rows: repeat(4, 1fr);
-        margin-left: 1rem;
-        width: calc(100% - 6.25rem);
+        margin-left: 0.5rem;
+        width: calc(100% - 6.75rem);
     `,
     span: styled.span`
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 600;
+        color: black;
     `,
     ul: styled.ul`
         display: flex;
@@ -194,7 +195,7 @@ const RC = {
     li: styled.li`
         margin-right: 0.3125rem;
         color: #232323;
-        font-size: 0.875rem;
+        font-size: 0.75rem;
 
         &:last-child {
             margin-right: 0;
