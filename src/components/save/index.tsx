@@ -9,7 +9,7 @@ import BottomBar from '@/common/molecules/BottomBar';
 
 import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
-import { RoutineProps } from '../home';
+import { RoutineProps } from '../../common/molecules/type';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
