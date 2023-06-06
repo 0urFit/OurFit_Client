@@ -1,11 +1,12 @@
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { BeatLoader } from 'react-spinners';
+import { InferGetServerSidePropsType } from 'next/types';
+
 import { getServerSideProps } from '@/pages/verifying';
 import { useAppDispatch } from '@/store/hook';
 import { saveUserInfo } from '@/store/slices/userSlice';
 import { setRefreshToken } from '@/utils/manageCookie';
-import { useRouter } from 'next/router';
-import { InferGetServerSidePropsType } from 'next/types';
-import React, { useEffect } from 'react';
-import { BeatLoader } from 'react-spinners';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -13,31 +14,27 @@ const override: React.CSSProperties = {
     textAlign: 'center',
 };
 
-export interface VerifyingPagePropsType {
-    accessToken: string;
-    refreshToken: string;
-    success: boolean;
-    userInfo: {
-        userEmail: string;
-        userGender: string;
-    };
-}
-
-const Loading = ({ verifyingPageProps }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const router = useRouter();
     const dispatch = useAppDispatch();
 
+    const { message } = SocialLoginCancelMessage;
+
     useEffect(() => {
-        const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
-
-        localStorage.setItem('access_token', accessToken);
-        setRefreshToken(refreshToken);
-
-        if (success) {
-            router.push('/home');
+        if (message) {
+            router.push('/');
         } else {
-            dispatch(saveUserInfo(userInfo));
-            router.push('/signup/kakao');
+            const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
+
+            localStorage.setItem('access_token', accessToken);
+            setRefreshToken(refreshToken);
+
+            if (success) {
+                router.push('/home');
+            } else {
+                dispatch(saveUserInfo(userInfo));
+                router.push('/signup/kakao');
+            }
         }
     }, []);
 
