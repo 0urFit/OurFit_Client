@@ -8,13 +8,13 @@ interface propsType {
 }
 
 const CreateButton = ({ message }: propsType) => {
-    const currentLocation = useRouter().asPath.substring(0, 12);
+    const currentLocation = useRouter().asPath;
     const [width, setWidth] = useState<CSSProperties>({});
 
     useEffect(() => {
-        if (currentLocation === '/home/detail') {
+        if (currentLocation.includes('home')) {
             setWidth({ width: '19.25rem' });
-        } else if (currentLocation === '/save/detail') {
+        } else if (currentLocation.includes('save')) {
             setWidth({ width: '22.125rem' });
         }
     }, []);
