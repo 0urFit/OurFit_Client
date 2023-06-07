@@ -109,7 +109,6 @@ const SB = {
 
 const CB = {
     Button: styled.button`
-        width: 22.125rem;
         height: 3.75rem;
         font-weight: 700;
         font-size: 1.25rem;
@@ -165,10 +164,10 @@ const RC = {
             margin-top: 0;
         }
     `,
-    CardWrapper: styled(Link)`
+    CardWrapper: styled.div`
         display: flex;
         width: 100%;
-        height: 100%;
+        margin: 0.3125rem;
     `,
     ImgWrapper: styled.div`
         position: relative;
@@ -180,13 +179,12 @@ const RC = {
     DescWrapper: styled.div`
         display: grid;
         grid-template-rows: repeat(4, 1fr);
-        margin-left: 0.5rem;
-        width: calc(100% - 6.75rem);
+        margin-left: 1rem;
+        width: calc(100% - 6.25rem);
     `,
     span: styled.span`
         font-size: 1.5rem;
-        font-weight: 600;
-        color: black;
+        font-weight: 400;
     `,
     ul: styled.ul`
         display: flex;
@@ -195,7 +193,7 @@ const RC = {
     li: styled.li`
         margin-right: 0.3125rem;
         color: #232323;
-        font-size: 0.75rem;
+        font-size: 0.875rem;
 
         &:last-child {
             margin-right: 0;
