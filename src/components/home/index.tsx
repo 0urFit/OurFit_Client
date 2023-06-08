@@ -51,7 +51,7 @@ const Home = () => {
     return (
         <>
             <H.LogoBox>
-                <Image src={OurfitLogo} width={100} height={20} alt="로고" />
+                <Image priority src={OurfitLogo} fill={true} alt="로고" />
             </H.LogoBox>
             <H.SelectBox>
                 <SmallSelect placeholder={'운동종목'} options={SelectOptions} handleChangeCategory={handleChangeCategory} />

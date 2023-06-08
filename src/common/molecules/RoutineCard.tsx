@@ -1,31 +1,51 @@
+import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import LikeControl from './LikeControl';
+
+import { SaveRoutineInfo } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
+import deleteBlank from '@/utils/deleteBlank';
+
+import { RoutineProps } from './type';
+
 import { RC } from './style';
 
-import { RoutineProps } from '@/components/home';
+const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category }: RoutineProps) => {
+    const pathName = useRouter().asPath;
 
-import LikeIcon from '../../../public/assets/like-icon.svg';
-import { useAppDispatch } from '@/store/hook';
-import { saveRoutine } from '@/store/slices/savedRoutineSlice';
+    const DeletedBlankRoutineName = deleteBlank({ routineName });
 
-const RoutineCard = ({ imgpath, period, fewTime, routineName, category }: RoutineProps) => {
-    const dispatch = useAppDispatch();
+    const handleSaveRoutine = async (routineId: number | undefined) => {
+        try {
+            const response = await SaveRoutineInfo(routineId);
 
-    const saveRoutineInfo = () => {
-        dispatch(saveRoutine({ imgpath, period, fewTime, routineName, category }));
+            return response.data;
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
+        }
     };
 
     return (
         <RC.CardBox>
-            <RC.CardWrapper href="/home/detail">
+            <RC.CardWrapper>
                 <RC.ImgWrapper>
-                    <Image sizes="(max-width: 100px)" src={imgpath} alt="운동이미지" style={{ objectFit: 'cover' }} fill />
+                    <Image priority sizes="(max-width: 100px)" src={imgpath} fill={true} alt="운동이미지" />
                 </RC.ImgWrapper>
                 <RC.DescWrapper>
-                    <RC.span>{routineName}</RC.span>
+                    <Link
+                        href={{
+                            pathname: `${pathName}/detail/[slug]`,
+                            query: { slug: DeletedBlankRoutineName },
+                        }}
+                    >
+                        <RC.span>{routineName}</RC.span>
+                    </Link>
                     <RC.ul>
                         <RC.li>#{category}</RC.li>
-                        <RC.li>#{period}Weeks</RC.li>
-                        <RC.li>#{fewTime}/week</RC.li>
+                        <RC.li>#{period}</RC.li>
+                        <RC.li>#{fewTime} times a week</RC.li>
                     </RC.ul>
                     <div></div>
                     <RC.DescFooterWrapper>
@@ -33,11 +53,9 @@ const RoutineCard = ({ imgpath, period, fewTime, routineName, category }: Routin
                             <RC.CoachName>{routineName}</RC.CoachName>
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
-                            <RC.LikeIconWrapper>
-                                <Image src={LikeIcon} alt="좋아요아이콘" width={25} />
-                            </RC.LikeIconWrapper>
+                            <LikeControl routineId={id} />
                             <RC.BtnWrapper>
-                                <RC.AddBtn onClick={saveRoutineInfo}>추 가</RC.AddBtn>
+                                <RC.AddBtn onClick={() => handleSaveRoutine(id)}>추 가</RC.AddBtn>
                             </RC.BtnWrapper>
                         </RC.ClickWrapper>
                     </RC.DescFooterWrapper>

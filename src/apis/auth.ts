@@ -47,3 +47,15 @@ export const MainSave = async (category: string) => {
         },
     });
 };
+
+export const SaveRoutineInfo = async (routineId: number | undefined) => {
+    return await tokenInstance.post(`/exercise/${routineId}`);
+};
+
+export const LikeIconClick = async (routineId: number | undefined) => {
+    return await tokenInstance.post(`/exercise/${routineId}/likes`);
+};
+
+export const LikeIconUnclick = async (routineId: number | undefined) => {
+    return await tokenInstance.delete(`/exercise/${routineId}/likes`);
+};

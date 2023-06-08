@@ -219,13 +219,6 @@ const RC = {
         display: flex;
         justify-content: end;
     `,
-    LikeIconBtn: styled.button`
-        position: relative;
-        width: 1.5625rem;
-        height: 1.5625rem;
-        margin-right: 0.4375rem;
-        cursor: pointer;
-    `,
     BtnWrapper: styled.div`
         width: 4.375rem;
         height: 1.5625rem;
@@ -239,6 +232,16 @@ const RC = {
         background-color: inherit;
         font-weight: bold;
         color: #fff;
+    `,
+};
+
+const LC = {
+    LikeIconBtn: styled.button`
+        position: relative;
+        width: 1.5625rem;
+        height: 1.5625rem;
+        margin-right: 0.4375rem;
+        cursor: pointer;
     `,
 };
 
@@ -301,4 +304,4 @@ const PB = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB };
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC };
