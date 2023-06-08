@@ -1,14 +1,16 @@
 import { SocialKakaoLogin } from '@/apis/auth';
-import Loading, { VerifyingPagePropsType } from '@/components/loading';
+import Loading from '@/components/loading';
+import { VerifyingPagePropsType } from '@/components/loading/type';
 import wrapper from '@/store/store';
 import { GetServerSidePropsContext, GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 
-const VerifyingPage = (verifyingPageProps: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    return <Loading verifyingPageProps={verifyingPageProps} />;
+const VerifyingPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    return <Loading props={props} />;
 };
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async (ctx: GetServerSidePropsContext) => {
-    const { code } = ctx.query;
+    const { code, error_description } = ctx.query;
+
     const KAKAO_CODE = code as string;
     const verifyingPageProps: VerifyingPagePropsType = {
         accessToken: '',
@@ -18,6 +20,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             userEmail: '',
             userGender: '',
         },
+    };
+    const SocialLoginCancelMessage = {
+        message: error_description === undefined ? null : error_description,
     };
 
     try {
@@ -42,7 +47,10 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     }
 
     return {
-        props: verifyingPageProps,
+        props: {
+            verifyingPageProps,
+            SocialLoginCancelMessage,
+        },
     };
 });
 
