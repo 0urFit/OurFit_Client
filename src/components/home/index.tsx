@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -12,7 +11,7 @@ import { tokenInstance } from '@/apis/client';
 
 import { H } from './style';
 import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
-import { APIErrorType } from '../login/type';
+import getErrorMessage from '@/utils/getErrorMessage';
 
 const Home = () => {
     const [routineList, setRoutineList] = useState([]);
@@ -28,11 +27,8 @@ const Home = () => {
             const { result } = response.data;
 
             setRoutineList(result);
-        } catch (err) {
-            const apiError = err as APIErrorType;
-            const { error } = apiError.response.data;
-
-            console.log(error);
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
         }
     };
 
