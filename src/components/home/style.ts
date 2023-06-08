@@ -2,7 +2,10 @@ import styled from 'styled-components';
 
 const H = {
     LogoBox: styled.div`
-        text-align: center;
+        position: relative;
+        width: 100%;
+        height: 1.25rem;
+        margin: 0 auto;
         margin-bottom: 1.2219rem;
     `,
     SelectBox: styled.div`
@@ -14,6 +17,7 @@ const H = {
         height: 39.5rem;
         overflow-y: scroll;
         margin-bottom: 0.625rem;
+        padding-top: 0.625rem;
 
         &::-webkit-scrollbar {
             display: none;
@@ -41,6 +45,7 @@ const HD = {
         border-top-left-radius: 2.5rem;
         border-top-right-radius: 2.5rem;
         background-color: #ededed;
+        overflow-x: scroll;
     `,
     OverviewBox: styled.div`
         display: flex;
@@ -101,8 +106,12 @@ const HD = {
             margin-left: 1.125rem;
         }
     `,
-    PrevButton: styled.button``,
-    NextButton: styled.button``,
+    FooterBox: styled.div`
+        position: absolute;
+        bottom: 0.625rem;
+        right: 1.125rem;
+        border: 0.0625rem solid red;
+    `,
 };
 
 export { H, HD };
