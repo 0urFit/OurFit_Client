@@ -1,7 +1,8 @@
-import { BB } from '../../style';
+import { WeekOptions } from '@/data/SaveData';
+import { BB } from '../style';
 import CreateButton from '@/common/molecules/CreateButton';
 
-const Strength = () => {
+const SaveDetail = () => {
     return (
         <BB.Container>
             <BB.TopBox>
@@ -15,6 +16,13 @@ const Strength = () => {
                 </BB.TopWrapper>
             </BB.TopBox>
             <BB.BottomBox>
+                <BB.WeekWrapper>
+                    {WeekOptions.map(el => (
+                        <BB.WeekButtonWrapper key={el.value}>
+                            <BB.WeekButton>{el.label}</BB.WeekButton>
+                        </BB.WeekButtonWrapper>
+                    ))}
+                </BB.WeekWrapper>
                 <BB.MainWrapper>
                     <BB.ListWrapper>
                         <BB.ExerciseTitle>Bench Press</BB.ExerciseTitle>
@@ -57,11 +65,11 @@ const Strength = () => {
                     </BB.ListWrapper>
                 </BB.MainWrapper>
                 <BB.ButtonWrapper>
-                    <CreateButton message='운동 완료' />
+                    <CreateButton message="운동 완료" />
                 </BB.ButtonWrapper>
             </BB.BottomBox>
         </BB.Container>
     );
 };
 
-export default Strength;
+export default SaveDetail;
