@@ -238,9 +238,9 @@ const RC = {
 const LC = {
     LikeIconBtn: styled.button`
         position: relative;
-        width: 1.5625rem;
-        height: 1.5625rem;
-        margin-right: 0.4375rem;
+        width: 1.875rem;
+        height: 1.875rem;
+        margin-right: 1rem;
         cursor: pointer;
     `,
 };
