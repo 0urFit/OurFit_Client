@@ -46,8 +46,8 @@ const Save = () => {
                 </SV.WarningBox>
             ) : (
                 <SV.CardList>
-                    {saveData.map((data: RoutineProps, key) => (
-                        <RoutineCard key={key} imgpath={data.imgpath} period={data.period} fewTime={data.fewTime} routineName={data.routineName} category={data.category} />
+                    {saveData.map((data: RoutineProps) => (
+                        <RoutineCard key={data.id} id={data.id} imgpath={data.imgpath} period={data.period} fewTime={data.fewTime} routineName={data.routineName} category={data.category} />
                     ))}
                 </SV.CardList>
             )}

@@ -1,8 +1,18 @@
 import { WeekOptions } from '@/data/SaveData';
 import { BB } from '../style';
 import CreateButton from '@/common/molecules/CreateButton';
+import { RoutineSuccess } from '@/apis/auth';
 
 const SaveDetail = () => {
+    const handleSubmit = async () => {
+        try {
+            const result = await RoutineSuccess(1);
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <BB.Container>
             <BB.TopBox>
@@ -65,7 +75,7 @@ const SaveDetail = () => {
                     </BB.ListWrapper>
                 </BB.MainWrapper>
                 <BB.ButtonWrapper>
-                    <CreateButton message="운동 완료" />
+                    <CreateButton message="운동 완료" handleSubmit={handleSubmit} />
                 </BB.ButtonWrapper>
             </BB.BottomBox>
         </BB.Container>
