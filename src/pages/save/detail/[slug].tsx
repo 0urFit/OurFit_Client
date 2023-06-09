@@ -1,12 +1,13 @@
 import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
+import SaveDetail from '@/components/save/detail';
 
-const DietPage = () => {
-    return <div></div>;
+const SaveDetailPage = () => {
+    return <SaveDetail />;
 };
 
-DietPage.getLayout = function getLayout(page: ReactElement) {
+SaveDetailPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -17,4 +18,4 @@ DietPage.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default DietPage;
+export default SaveDetailPage;
