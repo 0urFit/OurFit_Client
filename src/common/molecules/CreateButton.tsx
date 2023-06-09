@@ -5,9 +5,10 @@ import { CSSProperties } from 'styled-components';
 
 interface propsType {
     message: string;
+    handleSubmit: () => void;
 }
 
-const CreateButton = ({ message }: propsType) => {
+const CreateButton = ({ message, handleSubmit }: propsType) => {
     const currentLocation = useRouter().asPath;
     const [width, setWidth] = useState<CSSProperties>({});
 
@@ -19,7 +20,11 @@ const CreateButton = ({ message }: propsType) => {
         }
     }, []);
 
-    return <CB.Button style={width}>{message}</CB.Button>;
+    return (
+        <CB.Button style={width} onClick={handleSubmit}>
+            {message}
+        </CB.Button>
+    );
 };
 
 export default CreateButton;
