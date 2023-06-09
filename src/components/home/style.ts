@@ -107,10 +107,12 @@ const HD = {
         }
     `,
     FooterBox: styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         bottom: 0.625rem;
         right: 1.125rem;
-        border: 0.0625rem solid red;
     `,
 };
 
