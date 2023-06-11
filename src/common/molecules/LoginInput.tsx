@@ -8,11 +8,13 @@ interface LoginInputParameter {
     placeholder: string;
     src: string;
     alternative: string;
+    emailMargin?: boolean | undefined;
+    pwMargin?: boolean | undefined;
 }
 
-const LoginInput = ({ register, type, placeholder, src, alternative }: LoginInputParameter) => {
+const LoginInput = ({ register, type, placeholder, src, alternative, emailMargin, pwMargin }: LoginInputParameter) => {
     return (
-        <LI.InputWrapper>
+        <LI.InputWrapper emailMargin={emailMargin} pwMargin={pwMargin}>
             <LI.Input {...register} type={type} placeholder={placeholder} />
             <LI.ImgWrapper>
                 <Image src={src} alt={alternative} width={20} height={20} />
