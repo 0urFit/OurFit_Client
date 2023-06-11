@@ -32,7 +32,7 @@ tokenInstance.interceptors.request.use(
     },
     error => {
         return Promise.reject(error);
-    },
+    }
 );
 
 tokenInstance.interceptors.response.use(
@@ -73,7 +73,7 @@ tokenInstance.interceptors.response.use(
             }
         }
         return Promise.reject(error);
-    },
+    }
 );
 
 export const socialInstance = axios.create({
