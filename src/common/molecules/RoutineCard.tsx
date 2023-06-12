@@ -37,7 +37,7 @@ const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category }: Ro
                     <Link
                         href={{
                             pathname: `${pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName },
+                            query: { slug: DeletedBlankRoutineName, routineId: id },
                         }}
                     >
                         <RC.span>{routineName}</RC.span>
