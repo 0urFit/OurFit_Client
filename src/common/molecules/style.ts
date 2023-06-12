@@ -1,17 +1,19 @@
+import Link from 'next/link';
+import { StyledProps } from './type';
 import styled from 'styled-components';
 
 const LI = {
-    InputWrapper: styled.div`
+    InputWrapper: styled.div<StyledProps>`
         position: relative;
         width: 18.375rem;
         height: 3.1875rem;
 
         &:nth-child(1) {
-            margin-bottom: 0.9375rem;
+            margin-bottom: ${({ emailMargin }) => (emailMargin ? '0' : '0.9375rem')};
         }
 
         &:nth-child(2) {
-            margin-bottom: 1.5rem;
+            margin-bottom: ${({ pwMargin }) => (pwMargin ? '0' : '1.5rem')};
         }
     `,
     Input: styled.input`
@@ -20,7 +22,7 @@ const LI = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: none;
+        border: 1px solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -48,11 +50,21 @@ const II = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: none;
+        border: 1px solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
             color: #27639d;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &[type='number']::-webkit-outer-spin-button,
+        &[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
     `,
 };
@@ -88,15 +100,15 @@ const SB = {
         line-height: 1.25rem;
         text-align: center;
         color: #ffffff;
-        background-color: #868686;
+        background-color: ${props => (props.disabled ? '#ccc' : '#868686')};
         border: none;
         border-radius: 0.625rem;
+        cursor: pointer;
     `,
 };
 
 const CB = {
     Button: styled.button`
-        width: 22.125rem;
         height: 3.75rem;
         font-weight: 700;
         font-size: 1.25rem;
@@ -118,9 +130,10 @@ const BB = {
         border-radius: 2.5rem;
         background-color: #fff;
     `,
-    ItemWrapper: styled.li`
+    ItemWrapper: styled(Link)`
         margin: auto 0;
         text-align: center;
+        cursor: pointer;
     `,
     ImgWrapper: styled.div`
         margin: 0 auto;
@@ -132,6 +145,7 @@ const BB = {
         font-weight: 400;
         font-size: 0.75rem;
         line-height: 0.75rem;
+        color: black;
     `,
 };
 
@@ -142,28 +156,36 @@ const RC = {
         align-items: center;
         width: 22.125rem;
         height: 6.875rem;
-        border: 1px solid #e1e2e3;
-        border-radius: 0.3125rem;
+        margin-top: 0.625rem;
+        padding-bottom: 0.625rem;
+        border-bottom: 1px solid #e1e2e3;
+
+        &:first-child {
+            margin-top: 0;
+        }
     `,
     CardWrapper: styled.div`
         display: flex;
         width: 100%;
-        margin: 0.3125rem;
+        /* margin: 0.3125rem;  */
+        height: 100%;
     `,
     ImgWrapper: styled.div`
+        position: relative;
         width: 6.25rem;
         height: 6.25rem;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 0.3rem;
     `,
     DescWrapper: styled.div`
         display: grid;
         grid-template-rows: repeat(4, 1fr);
-        margin-left: 1rem;
+        margin-left: 0.5rem;
+        width: calc(100% - 6.75rem);
     `,
     span: styled.span`
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-weight: 600;
+        color: black;
     `,
     ul: styled.ul`
         display: flex;
@@ -171,6 +193,8 @@ const RC = {
     `,
     li: styled.li`
         margin-right: 0.3125rem;
+        color: #232323;
+        font-size: 0.75rem;
 
         &:last-child {
             margin-right: 0;
@@ -178,24 +202,22 @@ const RC = {
     `,
     DescFooterWrapper: styled.div`
         display: flex;
+        width: 100%;
     `,
     CoachNameWrapper: styled.div`
+        flex-grow: 1;
         display: flex;
         align-items: end;
     `,
     CoachName: styled.span`
         font-size: 0.75rem;
-        font-weight: bold;
-        color: #e1e2e3;
+        font-weight: 400;
+        color: #bdbdbd;
     `,
     ClickWrapper: styled.div`
+        flex-wrap: 2;
         display: flex;
-        margin-left: 3.5rem;
-    `,
-    LikeIconWrapper: styled.div`
-        width: 1.5625rem;
-        height: 1.5625rem;
-        margin-right: 0.4375rem;
+        justify-content: end;
     `,
     BtnWrapper: styled.div`
         width: 4.375rem;
@@ -210,6 +232,16 @@ const RC = {
         background-color: inherit;
         font-weight: bold;
         color: #fff;
+    `,
+};
+
+const LC = {
+    LikeIconBtn: styled.button`
+        position: relative;
+        width: 1.875rem;
+        height: 1.875rem;
+        margin-right: 1rem;
+        cursor: pointer;
     `,
 };
 
@@ -252,4 +284,24 @@ const PC = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC };
+const EM = {
+    ErrorMessageWrapper: styled.div`
+        text-align: left;
+        margin: 0.3125rem 0;
+    `,
+    Sentence: styled.span`
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.0625rem;
+        color: #ff0000;
+    `,
+};
+
+const PB = {
+    ImgWrapper: styled.button`
+        position: relative;
+        z-index: 999;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC };

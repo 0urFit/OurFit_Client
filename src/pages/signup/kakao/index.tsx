@@ -1,13 +1,13 @@
-import { DL } from '@/common/layout/style';
 import { ReactElement } from 'react';
+import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
-import SignIn from '@/components/signin';
+import SignUpKakao from '@/components/signup/kakao';
 
-const SignInPage = () => {
-    return <SignIn />;
+const SignUpKakaoPage = () => {
+    return <SignUpKakao />;
 };
 
-SignInPage.getLayout = function getLayout(page: ReactElement) {
+SignUpKakaoPage.getLayout = function getLayout(page: ReactElement) {
     return (
         <DL.PageLayout>
             <DL.ImgWrapper>
@@ -18,4 +18,4 @@ SignInPage.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export default SignInPage;
+export default SignUpKakaoPage;
