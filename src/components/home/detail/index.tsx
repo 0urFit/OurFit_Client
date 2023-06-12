@@ -1,14 +1,49 @@
+import { useRouter } from 'next/router';
+
+import SmallSelect from '@/common/molecules/SmallSelect';
+import CreateButton from '@/common/molecules/CreateButton';
+import LikeControl from '@/common/molecules/LikeControl';
+
+import { GetDetailRoutine, SaveRoutineInfo } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
+
 import { HD } from '../style';
+import { useEffect } from 'react';
+import useAddOptions from '@/hooks/useAddOptions';
 
 const HomeDetail = () => {
-    // const [currentIndex, setCurrentIndex] = useState(0);
-    const slides = [
-        { key: 1, test: 'one' },
-        { key: 2, test: 'two' },
-        { key: 3, test: 'three' },
-        { key: 4, test: 'four' },
-        { key: 5, test: 'five' },
-    ];
+    const router = useRouter();
+    const { selectWeekOptions, setOptionArray } = useAddOptions();
+
+    const { routineId } = router.query;
+    const assuredId = routineId as string;
+    const convertedId = parseInt(assuredId, 10);
+
+    const handleSaveRoutine = async () => {
+        try {
+            const response = await SaveRoutineInfo(convertedId);
+
+            return response.data;
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
+        }
+    };
+
+    useEffect(() => {
+        const getRoutineDetailInfo = async () => {
+            try {
+                const response = await GetDetailRoutine(convertedId, 1);
+                const { result } = response.data;
+                const { period } = result[0];
+
+                setOptionArray(period);
+            } catch (e) {
+                throw new Error(getErrorMessage(e));
+            }
+        };
+
+        getRoutineDetailInfo();
+    }, []);
 
     return (
         <>
@@ -16,6 +51,9 @@ const HomeDetail = () => {
                 <HD.RoutineTitle>nSuns</HD.RoutineTitle>
             </HD.RoutineTitleBox>
             <HD.RoutineDescBox>
+                <HD.WeekSelectBox>
+                    <SmallSelect placeholder="week" options={selectWeekOptions} />
+                </HD.WeekSelectBox>
                 <HD.OverviewBox>
                     <HD.OverviewDataTable>
                         <HD.Thead>
@@ -47,6 +85,10 @@ const HomeDetail = () => {
                         <HD.RoutineDetailBox key={element.key}>{element.test}</HD.RoutineDetailBox>
                     ))}
                 </HD.RoutineSlideBox>
+                <HD.FooterBox>
+                    <LikeControl routineId={convertedId} />
+                    <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" />
+                </HD.FooterBox>
             </HD.RoutineDescBox>
         </>
     );
