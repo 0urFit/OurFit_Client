@@ -47,6 +47,11 @@ const HD = {
         background-color: #ededed;
         overflow-x: scroll;
     `,
+    WeekSelectBox: styled.div`
+        position: absolute;
+        top: 0.625rem;
+        right: 1.125rem;
+    `,
     OverviewBox: styled.div`
         display: flex;
         justify-content: center;
