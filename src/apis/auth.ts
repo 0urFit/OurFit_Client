@@ -63,3 +63,7 @@ export const LikeIconUnclick = async (routineId: number | undefined) => {
 export const RoutineSuccess = async (routineId: number | undefined) => {
     return await tokenInstance.delete(`/exercise/${routineId}/likes`);
 };
+
+export const GetDetailRoutine = async (routineId: number, week: number) => {
+    return await tokenInstance.get(`/exercise/${routineId}/${week}`);
+};
