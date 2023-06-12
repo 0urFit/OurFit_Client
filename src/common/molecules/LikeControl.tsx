@@ -9,7 +9,6 @@ import getErrorMessage from '@/utils/getErrorMessage';
 import { LC } from './style';
 import LikeIcon from '../../../public/assets/like-icon.svg';
 import FilledLikeIcon from '../../../public/assets/filled-like-icon.svg';
-import { tokenInstance } from '@/apis/client';
 
 interface LikeControlPropsType {
     routineId: number | undefined;
@@ -35,7 +34,6 @@ const LikeControl = ({ routineId }: LikeControlPropsType) => {
                     return response.data;
                 }
             } catch (e) {
-                console.log(e);
                 throw new Error(getErrorMessage(e));
             }
         };
