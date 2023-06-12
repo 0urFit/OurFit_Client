@@ -60,8 +60,16 @@ export const LikeIconUnclick = async (routineId: number | undefined) => {
     return await tokenInstance.delete(`/exercise/${routineId}/likes`);
 };
 
-export const RoutineSuccess = async (routineId: number | undefined) => {
-    return await tokenInstance.delete(`/exercise/${routineId}/likes`);
+export const SaveRoutineDetail = async (routineId: number, week: number) => {
+    return await tokenInstance.get(`/mypage/exercise/${routineId}/${week}`);
+};
+
+export const RoutineSuccess = async (routineId: number, percent: number) => {
+    return await tokenInstance.patch(`/mypage/exercise/${routineId}/complete`, {
+        params: {
+            percent: percent,
+        },
+    });
 };
 
 export const GetDetailRoutine = async (routineId: number, week: number) => {
