@@ -8,13 +8,13 @@ const SelectOptions: SelectType[] = [
 ];
 
 const WeekOptions: SelectType[] = [
-    { value: 'Monday', label: 'Mon' },
-    { value: 'Tuesday', label: 'Tue' },
-    { value: 'Wednesday', label: 'Wed' },
-    { value: 'Thursday', label: 'Thu' },
-    { value: 'Friday', label: 'Fri' },
-    { value: 'Saturday', label: 'Sat' },
-    { value: 'Sunday', label: 'Sun' },
+    { value: 'Mon', label: 'Mon' },
+    { value: 'Tue', label: 'Tue' },
+    { value: 'Wed', label: 'Wed' },
+    { value: 'Thu', label: 'Thu' },
+    { value: 'Fri', label: 'Fri' },
+    { value: 'Sat', label: 'Sat' },
+    { value: 'Sun', label: 'Sun' },
 ];
 
 export { SelectOptions, WeekOptions };

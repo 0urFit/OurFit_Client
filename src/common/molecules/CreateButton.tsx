@@ -5,7 +5,7 @@ import { CSSProperties } from 'styled-components';
 
 interface propsType {
     message: string;
-    handleSubmit: () => void;
+    handleSubmit?: () => void;
 }
 
 const CreateButton = ({ message, handleSubmit }: propsType) => {

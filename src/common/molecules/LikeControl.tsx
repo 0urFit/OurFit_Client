@@ -34,7 +34,6 @@ const LikeControl = ({ routineId }: LikeControlPropsType) => {
                     return response.data;
                 }
             } catch (e) {
-                console.log(e);
                 throw new Error(getErrorMessage(e));
             }
         };

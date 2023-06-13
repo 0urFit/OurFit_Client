@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const H = {
+    Box: styled.div`
+        position: relative;
+        height: 100%;
+    `,
     LogoBox: styled.div`
         position: relative;
         width: 100%;
@@ -14,14 +18,18 @@ const H = {
         margin-bottom: 0.625rem;
     `,
     RoutineListBox: styled.div`
-        height: 39.5rem;
+        height: calc(100% - 10rem);
         overflow-y: scroll;
-        margin-bottom: 0.625rem;
         padding-top: 0.625rem;
 
         &::-webkit-scrollbar {
             display: none;
         }
+    `,
+    BottomButtonWrapper: styled.div`
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     `,
 };
 
@@ -46,6 +54,11 @@ const HD = {
         border-top-right-radius: 2.5rem;
         background-color: #ededed;
         overflow-x: scroll;
+    `,
+    WeekSelectBox: styled.div`
+        position: absolute;
+        top: 0.625rem;
+        right: 1.125rem;
     `,
     OverviewBox: styled.div`
         display: flex;
