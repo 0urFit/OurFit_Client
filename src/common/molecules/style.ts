@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const LI = {
     InputWrapper: styled.div<StyledProps>`
         position: relative;
-        width: 18.375rem;
+        width: 100%;
         height: 3.1875rem;
 
         &:nth-child(1) {
@@ -124,7 +124,7 @@ const BB = {
     BottomBarList: styled.ul`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        width: 22.125rem;
+        width: 100%;
         height: 4.375rem;
         border: 1px solid #000000;
         border-radius: 2.5rem;
@@ -154,7 +154,7 @@ const RC = {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 22.125rem;
+        width: 100%;
         height: 6.875rem;
         margin-top: 0.625rem;
         padding-bottom: 0.625rem;
