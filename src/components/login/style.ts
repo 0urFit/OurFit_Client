@@ -22,6 +22,7 @@ const Btn = {
 export const LI = {
     Box: styled.div`
         text-align: center;
+        width: 100%;
     `,
     LogoWrapper: styled.div`
         margin-bottom: 2.4719rem;
@@ -55,15 +56,19 @@ export const LI = {
         top: 1rem;
         left: 1.25rem;
     `,
-    LoginBtnWrapper: styled(Btn.BtnWrapper)``,
+    LoginBtnWrapper: styled(Btn.BtnWrapper)`
+        width: 100%;
+    `,
     KakaoBtnWrapper: styled(Btn.BtnWrapper)`
         background-color: rgba(254, 229, 0, 0.9);
+        width: 100%;
     `,
     KakaoBtn: styled(Btn.Btn)`
         color: #000;
     `,
     SignUpLinkBtnWrapper: styled.div`
         text-align: center;
+        width: 100%;
     `,
     SignUpLinkBtn: styled.button`
         font-size: 0.9375rem;

@@ -49,7 +49,7 @@ const Home = () => {
     }, [routineCategory]);
 
     return (
-        <>
+        <H.Box>
             <H.LogoBox>
                 <Image priority src={OurfitLogo} fill={true} alt="로고" />
             </H.LogoBox>
@@ -61,8 +61,10 @@ const Home = () => {
                     <RoutineCard key={id} id={id} imgpath={imgpath} period={period} fewTime={fewTime} routineName={routineName} category={category} />
                 ))}
             </H.RoutineListBox>
-            <BottomBar />
-        </>
+            <H.BottomButtonWrapper>
+                <BottomBar />
+            </H.BottomButtonWrapper>
+        </H.Box>
     );
 };
 
