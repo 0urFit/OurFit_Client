@@ -5,10 +5,20 @@ type SelectType = {
 
 type RoutineType = {
     weeks: number;
+    fewTime: number;
+    level: number;
+    period: number;
+    routineName: string;
+    category: string;
     days: DaysType[];
 };
 
 type DaysType = {
+    day: string;
+    exercises: ExercisesType[];
+};
+
+type TodayExercisesType = {
     day: string;
     exercises: ExercisesType[];
 };
@@ -26,4 +36,4 @@ type SetsType = {
     id: number;
 };
 
-export type { SelectType, RoutineType, ExercisesType };
+export type { SelectType, RoutineType, TodayExercisesType };

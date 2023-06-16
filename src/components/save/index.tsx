@@ -13,7 +13,7 @@ import { RoutineProps } from '../../common/molecules/type';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
-    const [saveData, setSaveData] = useState([]);
+    const [saveData, setSaveData] = useState<RoutineProps[]>([]);
 
     useEffect(() => {
         handleSave(selectedValue);
@@ -47,7 +47,16 @@ const Save = () => {
             ) : (
                 <SV.CardList>
                     {saveData.map((data: RoutineProps) => (
-                        <RoutineCard key={data.id} id={data.id} imgpath={data.imgpath} period={data.period} fewTime={data.fewTime} routineName={data.routineName} category={data.category} />
+                        <RoutineCard
+                            key={data.id}
+                            id={data.id}
+                            imgpath={data.imgpath}
+                            period={data.period}
+                            fewTime={data.fewTime}
+                            routineName={data.routineName}
+                            category={data.category}
+                            weekProgress={data.weekProgress}
+                        />
                     ))}
                 </SV.CardList>
             )}
