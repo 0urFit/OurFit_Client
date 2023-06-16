@@ -174,13 +174,13 @@ const PN = {
         width: 3rem;
         height: inherit;
     `,
-    WeekButton: styled.button<{ currentWeek: boolean }>`
+    WeekButton: styled.button<{ currentDay: boolean }>`
         width: inherit;
         height: inherit;
         font-weight: 600;
         font-size: 0.75rem;
-        color: ${props => (props.currentWeek ? '#fff' : '#000')};
-        background-color: ${props => (props.currentWeek ? '#373737' : '#fff')};
+        color: ${props => (props.currentDay ? '#fff' : '#000')};
+        background-color: ${props => (props.currentDay ? '#373737' : '#fff')};
         border-radius: 50%;
         cursor: pointer;
     `,

@@ -5,14 +5,13 @@ const DL = {
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Open+Sans&display=swap');
         font-family: 'Nanum Gothic', sans-serif;
         font-family: 'Open Sans', sans-serif;
-        /* position: relative; */
+        position: relative;
         margin: 0 auto;
         width: 24.375rem;
         min-width: 25rem;
         height: 52.75rem;
         box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
         border-radius: 0.9375rem;
-        border: 1px solid red;
 
         @media screen and (max-width: 500px) {
             width: 100vw;
