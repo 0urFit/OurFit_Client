@@ -6,10 +6,17 @@ const DL = {
         font-family: 'Nanum Gothic', sans-serif;
         font-family: 'Open Sans', sans-serif;
         position: relative;
+        margin: 0 auto;
         width: 24.375rem;
+        min-width: 25rem;
         height: 52.75rem;
         box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
         border-radius: 0.9375rem;
+
+        @media screen and (max-width: 500px) {
+            width: 100vw;
+            height: 100vh;
+        }
     `,
     ImgWrapper: styled.div`
         position: absolute;

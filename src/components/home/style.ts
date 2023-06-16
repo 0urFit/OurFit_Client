@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const H = {
+    Box: styled.div`
+        position: relative;
+        height: 100%;
+    `,
     LogoBox: styled.div`
         position: relative;
         width: 100%;
@@ -14,14 +18,18 @@ const H = {
         margin-bottom: 0.625rem;
     `,
     RoutineListBox: styled.div`
-        height: 39.5rem;
+        height: calc(100% - 10rem);
         overflow-y: scroll;
-        margin-bottom: 0.625rem;
         padding-top: 0.625rem;
 
         &::-webkit-scrollbar {
             display: none;
         }
+    `,
+    BottomButtonWrapper: styled.div`
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     `,
 };
 
@@ -45,22 +53,20 @@ const HD = {
         border-top-left-radius: 2.5rem;
         border-top-right-radius: 2.5rem;
         background-color: #ededed;
-        overflow-x: scroll;
     `,
     WeekSelectBox: styled.div`
-        position: absolute;
-        top: 0.625rem;
-        right: 1.125rem;
+        display: flex;
+        justify-content: right;
+        width: 90%;
+        margin: 0.625rem 1.25rem 0 1.25rem;
     `,
     OverviewBox: styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        position: absolute;
-        top: 3rem;
-        left: 1.125rem;
-        width: 22.125rem;
+        width: 90%;
         height: 8.5rem;
+        margin: 0.5rem 1.25rem 0 1.25rem;
         border-radius: 0.3125rem;
         background-color: #fff;
     `,
@@ -101,15 +107,30 @@ const HD = {
         }
     `,
     RoutineDetailBox: styled.div`
+        width: 100%;
         min-width: 14.625rem;
         height: inherit;
         margin-right: 15px;
         border-radius: 0.3125rem;
         background-color: #fff;
+        overflow-y: scroll;
 
         &:first-child {
             margin-left: 1.125rem;
         }
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    `,
+    Day: styled.div`
+        text-align: center;
+        margin-top: 0.625rem;
+        font-weight: bold;
+    `,
+    ExerciseDetailBox: styled.div`
+        min-width: 12.75rem;
+        margin: 1rem 0.9375rem;
     `,
     FooterBox: styled.div`
         display: flex;
@@ -118,6 +139,32 @@ const HD = {
         position: absolute;
         bottom: 0.625rem;
         right: 1.125rem;
+    `,
+    ExerciseCardItem: styled.div`
+        margin-bottom: 0.9375rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    `,
+    ExerciseTitle: styled.div`
+        font-weight: bold;
+    `,
+    ExerciseTable: styled.table`
+        width: 100%;
+    `,
+    ExerciseThead: styled.thead`
+        line-height: 2.5rem;
+    `,
+    ExerciseTr: styled.tr`
+        display: flex;
+        justify-content: space-between;
+    `,
+    ExerciseTh: styled.th``,
+    ExerciseDetailTbody: styled.tbody``,
+    ExerciseDetailTd: styled.td`
+        margin-bottom: 5px;
+        padding: 0 0.625rem;
     `,
 };
 

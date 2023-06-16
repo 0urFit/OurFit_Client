@@ -43,7 +43,7 @@ const SV = {
     ButtonWrapper: styled.div`
         position: absolute;
         bottom: 0;
-        width: fit-content;
+        width: 100%;
         height: fit-content;
     `,
 };

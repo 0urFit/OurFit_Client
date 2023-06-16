@@ -7,11 +7,13 @@ import { combineReducers } from 'redux';
 import authSlice, { AuthTokenType } from './slices/authSlice';
 import userSlice, { UserInfoType } from './slices/userSlice';
 import routineSlice, { RoutineType } from './slices/routineSlice';
+import periodSlice, { PeriodType } from './slices/periodSlice';
 
 export interface ReducerStates {
     auth: AuthTokenType;
     user: UserInfoType;
     routine: RoutineType;
+    period: PeriodType;
 }
 
 const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<ReducerStates> => {
@@ -24,6 +26,7 @@ const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<Red
                 auth: authSlice.reducer,
                 user: userSlice.reducer,
                 routine: routineSlice.reducer,
+                period: periodSlice.reducer,
             });
             return combinedReducer(state, action);
         }

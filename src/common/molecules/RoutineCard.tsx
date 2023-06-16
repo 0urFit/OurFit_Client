@@ -8,9 +8,8 @@ import { SaveRoutineInfo } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 import deleteBlank from '@/utils/deleteBlank';
 
-import { RoutineProps } from './type';
-
 import { RC } from './style';
+import { RoutineProps } from './type';
 
 const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category, weekProgress }: RoutineProps) => {
     const pathName = useRouter().asPath;
@@ -37,7 +36,7 @@ const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category, week
                     <Link
                         href={{
                             pathname: `${pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, routineId: id, weekProgress },
+                            query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
                         }}
                         as={`${pathName}/detail/${DeletedBlankRoutineName}`}
                     >
