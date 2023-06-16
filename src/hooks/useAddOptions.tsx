@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 type OptionPropertyType = {
-    value: number;
-    label: number;
+    value: string;
+    label: string;
 };
 
 const useAddOptions = () => {
@@ -10,8 +10,13 @@ const useAddOptions = () => {
 
     const setOptionArray = (period: number) => {
         const periodArray = Array.from({ length: period }, (_, index) => index + 1);
+        const result: string[] = [];
 
         for (const element of periodArray) {
+            result.push(String(element));
+        }
+
+        for (const element of result) {
             setSelectWeekOptions((prev: Array<OptionPropertyType>) => {
                 return [...prev, { value: element, label: element }];
             });
