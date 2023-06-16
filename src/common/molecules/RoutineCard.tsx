@@ -12,7 +12,7 @@ import { RoutineProps } from './type';
 
 import { RC } from './style';
 
-const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category, weekProgress }: RoutineProps) => {
     const pathName = useRouter().asPath;
 
     const DeletedBlankRoutineName = deleteBlank({ routineName });
@@ -37,8 +37,9 @@ const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category }: Ro
                     <Link
                         href={{
                             pathname: `${pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, routineId: id },
+                            query: { slug: DeletedBlankRoutineName, routineId: id, weekProgress },
                         }}
+                        as={`${pathName}/detail/${DeletedBlankRoutineName}`}
                     >
                         <RC.span>{routineName}</RC.span>
                     </Link>

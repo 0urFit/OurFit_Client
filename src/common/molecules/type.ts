@@ -19,6 +19,7 @@ type RoutineProps = {
     fewTime?: number;
     routineName?: string;
     category?: string;
+    weekProgress?: number;
 };
 
 export type { ItemType, StyledProps, RoutineProps };
