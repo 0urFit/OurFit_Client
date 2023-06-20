@@ -22,16 +22,13 @@ import { LoginForm, IsUserState } from './type';
 const Login = () => {
     const router = useRouter();
 
-    const [emailValidMsg, setEmailValidMsg] = useState<boolean | undefined>(false);
-    const [pwValidMsg, setPwValidMsg] = useState<boolean | undefined>(false);
-    const [emailValue, setEmailValue] = useState<string>('');
-    const [pwValue, setPwValue] = useState<string>('');
+    const [emailValidMsg, setEmailValidMsg] = useState(false);
+    const [pwValidMsg, setPwValidMsg] = useState(false);
     const [isUser, setIsUser] = useState<IsUserState>({ checkUser: false, message: '' });
 
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors, isValid },
     } = useForm<LoginForm>({
         mode: 'onChange',
@@ -41,15 +38,7 @@ const Login = () => {
         },
     });
 
-    const emailWatch = watch('email');
-    const pwWatch = watch('password');
-
-    const handleSuccess = async () => {
-        const userInfo: LoginForm = {
-            email: emailValue,
-            password: pwValue,
-        };
-
+    const handleSuccess = async (userInfo: LoginForm) => {
         try {
             const response = await LocalLogin(userInfo);
             const { refreshToken, token } = response.data.result;
@@ -58,7 +47,8 @@ const Login = () => {
             setRefreshToken(refreshToken);
 
             router.push('/home');
-        } catch (error) {
+        } catch (e) {
+            setPwValidMsg(true);
             setIsUser({
                 checkUser: true,
                 message: '등록되지 않은 회원정보입니다.',
@@ -71,26 +61,32 @@ const Login = () => {
     };
 
     useEffect(() => {
-        errors.email ? setEmailValidMsg(true) : setEmailValidMsg(false);
+        if (errors.email) {
+            setEmailValidMsg(true);
+            setIsUser(prev => {
+                return {
+                    ...prev,
+                    checkUser: false,
+                };
+            });
+        } else {
+            setEmailValidMsg(false);
+        }
     }, [errors.email]);
 
     useEffect(() => {
-        errors.password ? setPwValidMsg(true) : setPwValidMsg(false);
+        if (errors.password) {
+            setPwValidMsg(true);
+            setIsUser(prev => {
+                return {
+                    ...prev,
+                    checkUser: false,
+                };
+            });
+        } else {
+            setPwValidMsg(false);
+        }
     }, [errors.password]);
-
-    useEffect(() => {
-        setEmailValue(emailWatch);
-        setIsUser(prev => {
-            return {
-                ...prev,
-                checkUser: false,
-            };
-        });
-    }, [emailWatch]);
-
-    useEffect(() => {
-        setPwValue(pwWatch);
-    }, [pwWatch]);
 
     return (
         <LI.Box>
