@@ -8,8 +8,9 @@ type ItemType = {
     pageRoot: string;
 };
 interface StyledProps extends HTMLAttributes<HTMLDivElement> {
-    emailMargin: boolean | undefined;
-    pwMargin: boolean | undefined;
+    emailMargin?: boolean | undefined;
+    pwMargin?: boolean | undefined;
+    savedCard?: boolean;
 }
 
 type RoutineProps = {
