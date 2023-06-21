@@ -6,12 +6,13 @@ import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
 
-import { SelectOptions } from '@/data/SaveData';
+import { SaveRoutineInfo } from '@/apis/auth';
 import { tokenInstance } from '@/apis/client';
+import getErrorMessage from '@/utils/getErrorMessage';
+import { SelectOptions } from '@/data/SaveData';
 
 import { H } from './style';
 import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
-import getErrorMessage from '@/utils/getErrorMessage';
 
 const Home = () => {
     const [routineList, setRoutineList] = useState([]);
@@ -27,6 +28,16 @@ const Home = () => {
             const { result } = response.data;
 
             setRoutineList(result);
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
+        }
+    };
+
+    const handleSaveRoutine = async (routineId: number | undefined) => {
+        try {
+            const response = await SaveRoutineInfo(routineId);
+
+            return response.data;
         } catch (e) {
             throw new Error(getErrorMessage(e));
         }
@@ -57,8 +68,18 @@ const Home = () => {
                 <SmallSelect placeholder={'운동종목'} options={SelectOptions} handleChangeCategory={handleChangeCategory} />
             </H.SelectBox>
             <H.RoutineListBox>
-                {routineList.map(({ id, imgpath, period, fewTime, routineName, category }) => (
-                    <RoutineCard key={id} id={id} imgpath={imgpath} period={period} fewTime={fewTime} routineName={routineName} category={category} />
+                {routineList.map(({ id, imgpath, period, enrolled, fewTime, routineName, category }) => (
+                    <RoutineCard
+                        key={id}
+                        id={id}
+                        imgpath={imgpath}
+                        period={period}
+                        enrolled={enrolled}
+                        fewTime={fewTime}
+                        routineName={routineName}
+                        category={category}
+                        handleButton={handleSaveRoutine}
+                    />
                 ))}
             </H.RoutineListBox>
             <H.BottomButtonWrapper>

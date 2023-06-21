@@ -222,7 +222,7 @@ const RC = {
     BtnWrapper: styled.div`
         width: 4.375rem;
         height: 1.5625rem;
-        background-color: #317aee;
+        background-color: ${({ enrolled }) => (enrolled ? '#e1e2e3' : '#317aee')};
         border-radius: 0.3125rem;
     `,
     AddBtn: styled.button`

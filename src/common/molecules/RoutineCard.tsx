@@ -4,27 +4,16 @@ import { useRouter } from 'next/router';
 
 import LikeControl from './LikeControl';
 
-import { SaveRoutineInfo } from '@/apis/auth';
-import getErrorMessage from '@/utils/getErrorMessage';
 import deleteBlank from '@/utils/deleteBlank';
 
 import { RC } from './style';
+
 import { RoutineProps } from './type';
 
-const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category, weekProgress }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, weekProgress, handleButton }: RoutineProps) => {
     const pathName = useRouter().asPath;
 
     const DeletedBlankRoutineName = deleteBlank({ routineName });
-
-    const handleSaveRoutine = async (routineId: number | undefined) => {
-        try {
-            const response = await SaveRoutineInfo(routineId);
-
-            return response.data;
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    };
 
     return (
         <RC.CardBox>
@@ -54,8 +43,10 @@ const RoutineCard = ({ id, imgpath, period, fewTime, routineName, category, week
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
                             <LikeControl routineId={id} />
-                            <RC.BtnWrapper>
-                                <RC.AddBtn onClick={() => handleSaveRoutine(id)}>추 가</RC.AddBtn>
+                            <RC.BtnWrapper enrolled={enrolled}>
+                                <RC.AddBtn onClick={() => handleButton?.(id)} disabled={enrolled}>
+                                    추 가
+                                </RC.AddBtn>
                             </RC.BtnWrapper>
                         </RC.ClickWrapper>
                     </RC.DescFooterWrapper>
