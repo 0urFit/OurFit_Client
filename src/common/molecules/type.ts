@@ -10,17 +10,19 @@ type ItemType = {
 interface StyledProps extends HTMLAttributes<HTMLDivElement> {
     emailMargin?: boolean | undefined;
     pwMargin?: boolean | undefined;
-    savedCard?: boolean;
+    enrolled?: boolean;
 }
 
 type RoutineProps = {
     id?: number | undefined;
     imgpath: string;
     period?: number;
+    enrolled?: boolean;
     fewTime?: number;
     routineName?: string;
     category?: string;
     weekProgress?: number;
+    handleButton?: (id: number | undefined) => void;
 };
 
 export type { ItemType, StyledProps, RoutineProps };
