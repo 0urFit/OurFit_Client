@@ -7,6 +7,7 @@ const LI = {
         position: relative;
         width: 100%;
         height: 3.1875rem;
+        margin-bottom: 1.25rem;
 
         &:nth-child(1) {
             margin-bottom: ${({ emailMargin }) => (emailMargin ? '0' : '0.9375rem')};
