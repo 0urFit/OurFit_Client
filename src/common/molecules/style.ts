@@ -219,7 +219,7 @@ const RC = {
         display: flex;
         justify-content: end;
     `,
-    BtnWrapper: styled.div`
+    BtnWrapper: styled.div<StyledProps>`
         width: 4.375rem;
         height: 1.5625rem;
         background-color: ${({ enrolled }) => (enrolled ? '#e1e2e3' : '#317aee')};
