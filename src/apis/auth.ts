@@ -77,6 +77,14 @@ export const RoutineSuccess = async (routineId: number, week: number, day: strin
     });
 };
 
+export const GetRoutine = async (endpoint: string | undefined) => {
+    return await tokenInstance.get(`/exercise/${endpoint}`);
+};
+
 export const GetDetailRoutine = async (routineId: number, week: number) => {
     return await tokenInstance.get(`/exercise/${routineId}/${week}`);
+};
+
+export const DeleteRoutine = async (id: number | undefined) => {
+    return await tokenInstance.delete(`/exercise/${id}`);
 };
