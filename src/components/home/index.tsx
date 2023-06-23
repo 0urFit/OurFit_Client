@@ -6,8 +6,7 @@ import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
 
-import { SaveRoutineInfo } from '@/apis/auth';
-import { tokenInstance } from '@/apis/client';
+import { GetRoutine, SaveRoutineInfo } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { SelectOptions } from '@/data/SaveData';
 
@@ -24,7 +23,7 @@ const Home = () => {
 
     const getRoutineData = async (endpoint: string) => {
         try {
-            const response = await tokenInstance.get(`/exercise/${endpoint}`);
+            const response = await GetRoutine(endpoint);
             const { result } = response.data;
 
             setRoutineList(result);
@@ -37,6 +36,8 @@ const Home = () => {
         try {
             const response = await SaveRoutineInfo(routineId);
 
+            getRoutineData(routineCategory);
+
             return response.data;
         } catch (e) {
             throw new Error(getErrorMessage(e));
@@ -44,19 +45,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        switch (routineCategory) {
-            case 'bodybuilding':
-                getRoutineData('bodybuilding');
-                break;
-            case 'strength':
-                getRoutineData('strength');
-                break;
-            case 'all':
-                getRoutineData('all');
-                break;
-            default:
-                setRoutineList([]);
-        }
+        getRoutineData(routineCategory);
     }, [routineCategory]);
 
     return (
