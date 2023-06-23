@@ -43,11 +43,17 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
                             <LikeControl routineId={id} />
-                            <RC.BtnWrapper enrolled={enrolled}>
-                                <RC.AddBtn onClick={() => handleButton?.(id)} disabled={enrolled}>
-                                    추 가
-                                </RC.AddBtn>
-                            </RC.BtnWrapper>
+                            {pathName === '/save' ? (
+                                <RC.DeleteWrapper>
+                                    <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>
+                                </RC.DeleteWrapper>
+                            ) : (
+                                <RC.BtnWrapper enrolled={enrolled}>
+                                    <RC.AddBtn onClick={() => handleButton?.(id)} disabled={enrolled}>
+                                        추 가
+                                    </RC.AddBtn>
+                                </RC.BtnWrapper>
+                            )}
                         </RC.ClickWrapper>
                     </RC.DescFooterWrapper>
                 </RC.DescWrapper>
