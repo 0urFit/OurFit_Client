@@ -14,15 +14,18 @@ interface StyledProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 type RoutineProps = {
-    id?: number | undefined;
+    id?: number;
     imgpath: string;
     period?: number;
     enrolled?: boolean;
     fewTime?: number;
     routineName?: string;
+    liked: boolean;
     category?: string;
     weekProgress?: number;
+    routineCategory: string;
     handleButton?: (id: number | undefined) => void;
+    handleLike: (endpoint: string) => void;
 };
 
 export type { ItemType, StyledProps, RoutineProps };

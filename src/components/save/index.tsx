@@ -68,11 +68,14 @@ const Save = () => {
                             id={data.id}
                             imgpath={data.imgpath}
                             period={data.period}
+                            liked={data.liked}
                             fewTime={data.fewTime}
                             routineName={data.routineName}
                             category={data.category}
+                            routineCategory={selectedValue}
                             weekProgress={data.weekProgress}
                             handleButton={handleDeleteRoutine}
+                            handleLike={handleSave}
                         />
                     ))}
                 </SV.CardList>

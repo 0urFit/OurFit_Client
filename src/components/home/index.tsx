@@ -57,7 +57,7 @@ const Home = () => {
                 <SmallSelect placeholder={'운동종목'} options={SelectOptions} handleChangeCategory={handleChangeCategory} />
             </H.SelectBox>
             <H.RoutineListBox>
-                {routineList.map(({ id, imgpath, period, enrolled, fewTime, routineName, category }) => (
+                {routineList.map(({ id, imgpath, period, liked, enrolled, fewTime, routineName, category }) => (
                     <RoutineCard
                         key={id}
                         id={id}
@@ -67,7 +67,10 @@ const Home = () => {
                         fewTime={fewTime}
                         routineName={routineName}
                         category={category}
+                        liked={liked}
+                        routineCategory={routineCategory}
                         handleButton={handleSaveRoutine}
+                        handleLike={getRoutineData}
                     />
                 ))}
             </H.RoutineListBox>
