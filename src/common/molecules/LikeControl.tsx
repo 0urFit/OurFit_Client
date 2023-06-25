@@ -1,58 +1,44 @@
 /* eslint-disable indent */
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-
-import { LikeIconClick, LikeIconUnclick } from '@/apis/auth';
-import getErrorMessage from '@/utils/getErrorMessage';
 
 import { LC } from './style';
 import LikeIcon from '../../../public/assets/like-icon.svg';
 import FilledLikeIcon from '../../../public/assets/filled-like-icon.svg';
-
-interface LikeControlPropsType {
-    routineId: number | undefined;
+import { LikeIconClick, LikeIconUnclick } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
+interface LikeControlType {
+    id: number | undefined;
+    liked: boolean | undefined;
+    routineCategory: string;
+    handleLike: (endpoind: string) => void;
 }
 
-const LikeControl = ({ routineId }: LikeControlPropsType) => {
-    const [isFillLikeIcon, setIsFillLikeIcon] = useState<boolean | null>(null);
-
-    const handleFillLikeIcon = () => {
-        setIsFillLikeIcon(prev => (prev === null || prev === false ? true : false));
-    };
-
-    useEffect(() => {
-        const fetchLikeIcon = async (routineId: number | undefined) => {
+const LikeControl = ({ id, liked, routineCategory, handleLike }: LikeControlType) => {
+    const handleIsLike = async (routineId: number | undefined) => {
+        if (!liked) {
             try {
-                if (isFillLikeIcon) {
-                    const response = await LikeIconClick(routineId);
+                const response = await LikeIconClick(routineId);
+                handleLike(routineCategory);
 
-                    return response.data;
-                } else {
-                    const response = await LikeIconUnclick(routineId);
-
-                    return response.data;
-                }
+                return response.data;
             } catch (e) {
                 throw new Error(getErrorMessage(e));
             }
-        };
+        } else {
+            try {
+                const response = await LikeIconUnclick(routineId);
+                handleLike(routineCategory);
 
-        switch (isFillLikeIcon) {
-            case true:
-                fetchLikeIcon(routineId);
-                break;
-            case false:
-                fetchLikeIcon(routineId);
-                break;
-            default:
-                return;
+                return response.data;
+            } catch (e) {
+                throw new Error(getErrorMessage(e));
+            }
         }
-    }, [isFillLikeIcon]);
+    };
 
     return (
-        <LC.LikeIconBtn onClick={handleFillLikeIcon}>
-            {isFillLikeIcon ? <Image src={FilledLikeIcon} alt="채워진좋아요아이콘" fill={true} /> : <Image src={LikeIcon} alt="비어있는좋아요아이콘" fill={true} />}
+        <LC.LikeIconBtn onClick={() => handleIsLike(id)}>
+            {liked ? <Image src={FilledLikeIcon} alt="채워진좋아요아이콘" fill={true} /> : <Image src={LikeIcon} alt="비어있는좋아요아이콘" fill={true} />}
         </LC.LikeIconBtn>
     );
 };
