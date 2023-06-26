@@ -138,7 +138,7 @@ const HD = {
         align-items: center;
         position: absolute;
         bottom: 0.625rem;
-        right: 1.125rem;
+        width: 100%;
     `,
     ExerciseCardItem: styled.div`
         margin-bottom: 0.9375rem;
