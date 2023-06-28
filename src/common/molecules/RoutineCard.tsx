@@ -10,7 +10,7 @@ import { RC } from './style';
 
 import { RoutineProps } from './type';
 
-const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineName, category, routineCategory, handleLike, weekProgress, handleButton }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineName, category, weekProgress, handleButton }: RoutineProps) => {
     const pathName = useRouter().asPath;
 
     const DeletedBlankRoutineName = deleteBlank({ routineName });
@@ -25,7 +25,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                     <Link
                         href={{
                             pathname: `${pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
+                            query: { slug: DeletedBlankRoutineName, routineId: id, liked, period, weekProgress },
                         }}
                         as={`${pathName}/detail/${DeletedBlankRoutineName}`}
                     >
@@ -42,7 +42,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                             <RC.CoachName>{routineName}</RC.CoachName>
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
-                            <LikeControl id={id} liked={liked} routineCategory={routineCategory} handleLike={handleLike} />
+                            <LikeControl id={id} liked={liked} />
                             {pathName === '/save' ? (
                                 <RC.DeleteWrapper>
                                     <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>
