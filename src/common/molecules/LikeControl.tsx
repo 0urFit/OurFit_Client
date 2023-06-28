@@ -5,40 +5,37 @@ import { LC } from './style';
 import LikeIcon from '../../../public/assets/like-icon.svg';
 import FilledLikeIcon from '../../../public/assets/filled-like-icon.svg';
 import { LikeIconClick, LikeIconUnclick } from '@/apis/auth';
-import getErrorMessage from '@/utils/getErrorMessage';
+import { useState } from 'react';
+
 interface LikeControlType {
     id: number | undefined;
-    liked: boolean | undefined;
-    routineCategory: string;
-    handleLike: (endpoind: string) => void;
+    liked: boolean;
 }
 
-const LikeControl = ({ id, liked, routineCategory, handleLike }: LikeControlType) => {
-    const handleIsLike = async (routineId: number | undefined) => {
-        if (!liked) {
-            try {
+const LikeControl = ({ id, liked }: LikeControlType) => {
+    const [test, setTest] = useState(liked);
+
+    const fetchLiked = async (routineId: number | undefined) => {
+        try {
+            if (!test) {
                 const response = await LikeIconClick(routineId);
-                handleLike(routineCategory);
+                const { result } = response.data;
 
-                return response.data;
-            } catch (e) {
-                throw new Error(getErrorMessage(e));
-            }
-        } else {
-            try {
+                setTest(result);
+            } else {
                 const response = await LikeIconUnclick(routineId);
-                handleLike(routineCategory);
+                const { result } = response.data;
 
-                return response.data;
-            } catch (e) {
-                throw new Error(getErrorMessage(e));
+                setTest(result);
             }
+        } catch (error) {
+            console.log(error);
         }
     };
 
     return (
-        <LC.LikeIconBtn onClick={() => handleIsLike(id)}>
-            {liked ? <Image src={FilledLikeIcon} alt="채워진좋아요아이콘" fill={true} /> : <Image src={LikeIcon} alt="비어있는좋아요아이콘" fill={true} />}
+        <LC.LikeIconBtn onClick={() => fetchLiked(id)}>
+            {test ? <Image src={FilledLikeIcon} alt="채워진좋아요아이콘" fill={true} /> : <Image src={LikeIcon} alt="비어있는좋아요아이콘" fill={true} />}
         </LC.LikeIconBtn>
     );
 };

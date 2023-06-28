@@ -23,9 +23,7 @@ type RoutineProps = {
     liked: boolean;
     category?: string;
     weekProgress?: number;
-    routineCategory: string;
     handleButton?: (id: number | undefined) => void;
-    handleLike: (endpoint: string) => void;
 };
 
 export type { ItemType, StyledProps, RoutineProps };

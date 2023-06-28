@@ -21,7 +21,7 @@ const Home = () => {
         setRoutineCategory(categoryData);
     };
 
-    const getRoutineData = async (endpoint: string) => {
+    const getRoutineData = async (endpoint: string | undefined) => {
         try {
             const response = await GetRoutine(endpoint);
             const { result } = response.data;
@@ -68,9 +68,7 @@ const Home = () => {
                         routineName={routineName}
                         category={category}
                         liked={liked}
-                        routineCategory={routineCategory}
                         handleButton={handleSaveRoutine}
-                        handleLike={getRoutineData}
                     />
                 ))}
             </H.RoutineListBox>
