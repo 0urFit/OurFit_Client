@@ -72,10 +72,8 @@ const Save = () => {
                             fewTime={data.fewTime}
                             routineName={data.routineName}
                             category={data.category}
-                            routineCategory={selectedValue}
                             weekProgress={data.weekProgress}
                             handleButton={handleDeleteRoutine}
-                            handleLike={handleSave}
                         />
                     ))}
                 </SV.CardList>
