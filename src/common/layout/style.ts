@@ -31,6 +31,7 @@ const DL = {
         height: calc(100% - 5rem);
     `,
     SecondContainer: styled.div`
+        position: relative;
         display: inline-block;
         margin: 2rem 1.125rem 0.625rem;
         width: calc(100% - 2.25rem);
