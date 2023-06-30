@@ -24,6 +24,7 @@ type RoutineProps = {
     category?: string;
     weekProgress?: number;
     handleButton?: (id: number | undefined) => void;
+    handleLikeList?: () => void;
 };
 
 export type { ItemType, StyledProps, RoutineProps };

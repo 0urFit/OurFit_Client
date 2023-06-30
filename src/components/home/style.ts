@@ -34,6 +34,10 @@ const H = {
 };
 
 const HD = {
+    Box: styled.div`
+        position: relative;
+        height: 100%;
+    `,
     RoutineTitleBox: styled.div`
         display: flex;
         justify-content: center;
@@ -48,11 +52,19 @@ const HD = {
     RoutineDescBox: styled.div`
         position: relative;
         width: 100%;
-        height: 43.75rem;
+        height: calc(100% - 9rem);
         border: 0.0625rem solid #e1e2e3;
         border-top-left-radius: 2.5rem;
         border-top-right-radius: 2.5rem;
         background-color: #ededed;
+    `,
+    RoutineMain: styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: inherit;
+        margin-top: 10px;
     `,
     WeekSelectBox: styled.div`
         display: flex;
@@ -66,7 +78,7 @@ const HD = {
         align-items: center;
         width: 90%;
         height: 8.5rem;
-        margin: 0.5rem 1.25rem 0 1.25rem;
+        margin-bottom: 0.625rem;
         border-radius: 0.3125rem;
         background-color: #fff;
     `,
@@ -96,10 +108,7 @@ const HD = {
     `,
     RoutineSlideBox: styled.div`
         display: flex;
-        position: absolute;
-        top: 12.1875rem;
         width: inherit;
-        height: 26.125rem;
         overflow-x: scroll;
 
         &::-webkit-scrollbar {
@@ -108,8 +117,8 @@ const HD = {
     `,
     RoutineDetailBox: styled.div`
         width: 100%;
-        min-width: 14.625rem;
         height: inherit;
+        min-width: 14.625rem;
         margin-right: 15px;
         border-radius: 0.3125rem;
         background-color: #fff;

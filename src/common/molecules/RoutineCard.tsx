@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import LikeControl from './LikeControl';
 
@@ -9,11 +10,26 @@ import deleteBlank from '@/utils/deleteBlank';
 import { RC } from './style';
 
 import { RoutineProps } from './type';
+import { SaveRoutineInfo } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
 
-const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineName, category, weekProgress, handleButton }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineName, category, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
+    const [isEnrolled, setIsEnrolled] = useState(enrolled);
+
     const pathName = useRouter().asPath;
 
     const DeletedBlankRoutineName = deleteBlank({ routineName });
+
+    const fetchEnrolled = async (routineId: number | undefined) => {
+        try {
+            const response = await SaveRoutineInfo(routineId);
+            const { success } = response.data;
+
+            setIsEnrolled(success);
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
+        }
+    };
 
     return (
         <RC.CardBox>
@@ -42,14 +58,14 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                             <RC.CoachName>{routineName}</RC.CoachName>
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
-                            <LikeControl id={id} liked={liked} />
+                            <LikeControl id={id} liked={liked} handleLikeList={handleLikeList} />
                             {pathName === '/save' ? (
                                 <RC.DeleteWrapper>
                                     <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>
                                 </RC.DeleteWrapper>
                             ) : (
-                                <RC.BtnWrapper enrolled={enrolled}>
-                                    <RC.AddBtn onClick={() => handleButton?.(id)} disabled={enrolled}>
+                                <RC.BtnWrapper enrolled={isEnrolled}>
+                                    <RC.AddBtn onClick={() => fetchEnrolled?.(id)} disabled={isEnrolled}>
                                         추 가
                                     </RC.AddBtn>
                                 </RC.BtnWrapper>

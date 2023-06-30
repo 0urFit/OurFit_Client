@@ -6,7 +6,7 @@ import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
 
-import { GetRoutine, SaveRoutineInfo } from '@/apis/auth';
+import { GetRoutine } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { SelectOptions } from '@/data/SaveData';
 
@@ -32,18 +32,6 @@ const Home = () => {
         }
     };
 
-    const handleSaveRoutine = async (routineId: number | undefined) => {
-        try {
-            const response = await SaveRoutineInfo(routineId);
-
-            getRoutineData(routineCategory);
-
-            return response.data;
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    };
-
     useEffect(() => {
         getRoutineData(routineCategory);
     }, [routineCategory]);
@@ -58,18 +46,7 @@ const Home = () => {
             </H.SelectBox>
             <H.RoutineListBox>
                 {routineList.map(({ id, imgpath, period, liked, enrolled, fewTime, routineName, category }) => (
-                    <RoutineCard
-                        key={id}
-                        id={id}
-                        imgpath={imgpath}
-                        period={period}
-                        enrolled={enrolled}
-                        fewTime={fewTime}
-                        routineName={routineName}
-                        category={category}
-                        liked={liked}
-                        handleButton={handleSaveRoutine}
-                    />
+                    <RoutineCard key={id} id={id} imgpath={imgpath} period={period} enrolled={enrolled} fewTime={fewTime} routineName={routineName} category={category} liked={liked} />
                 ))}
             </H.RoutineListBox>
             <H.BottomButtonWrapper>
