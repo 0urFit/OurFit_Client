@@ -86,7 +86,7 @@ const HomeDetail = ({ props: { converted_routine_id, converted_routine_liked } }
     }, [week]);
 
     return (
-        <>
+        <HD.Box>
             <HD.RoutineTitleBox>
                 <HD.RoutineTitle>nSuns</HD.RoutineTitle>
             </HD.RoutineTitleBox>
@@ -94,43 +94,45 @@ const HomeDetail = ({ props: { converted_routine_id, converted_routine_liked } }
                 <HD.WeekSelectBox>
                     <SmallSelect placeholder="week" options={selectWeekOptions} handleChangeCategory={handleWeek} />
                 </HD.WeekSelectBox>
-                <HD.OverviewBox>
-                    <HD.OverviewDataTable>
-                        <HD.Thead>
-                            <HD.Tr>
-                                <HD.Th>Program Overview</HD.Th>
-                            </HD.Tr>
-                            <HD.Tr>
-                                <HD.JustSpacing />
-                            </HD.Tr>
-                        </HD.Thead>
-                        <HD.Tbody>
-                            <HD.Tr>
-                                <HD.ContentTitle>Level</HD.ContentTitle>
-                                <HD.Content>상급</HD.Content>
-                            </HD.Tr>
-                            <HD.Tr>
-                                <HD.ContentTitle>Day Per Week</HD.ContentTitle>
-                                <HD.Content>{overviewInformation.dayPerWeek} days</HD.Content>
-                            </HD.Tr>
-                            <HD.Tr>
-                                <HD.ContentTitle>Program Length</HD.ContentTitle>
-                                <HD.Content>{overviewInformation.programLength} weeks</HD.Content>
-                            </HD.Tr>
-                        </HD.Tbody>
-                    </HD.OverviewDataTable>
-                </HD.OverviewBox>
-                <HD.RoutineSlideBox>
-                    {routineSlideList.map(({ day, exercises }) => (
-                        <RoutineDetail key={day} day={day} exercises={exercises} />
-                    ))}
-                </HD.RoutineSlideBox>
+                <HD.RoutineMain>
+                    <HD.OverviewBox>
+                        <HD.OverviewDataTable>
+                            <HD.Thead>
+                                <HD.Tr>
+                                    <HD.Th>Program Overview</HD.Th>
+                                </HD.Tr>
+                                <HD.Tr>
+                                    <HD.JustSpacing />
+                                </HD.Tr>
+                            </HD.Thead>
+                            <HD.Tbody>
+                                <HD.Tr>
+                                    <HD.ContentTitle>Level</HD.ContentTitle>
+                                    <HD.Content>상급</HD.Content>
+                                </HD.Tr>
+                                <HD.Tr>
+                                    <HD.ContentTitle>Day Per Week</HD.ContentTitle>
+                                    <HD.Content>{overviewInformation.dayPerWeek} days</HD.Content>
+                                </HD.Tr>
+                                <HD.Tr>
+                                    <HD.ContentTitle>Program Length</HD.ContentTitle>
+                                    <HD.Content>{overviewInformation.programLength} weeks</HD.Content>
+                                </HD.Tr>
+                            </HD.Tbody>
+                        </HD.OverviewDataTable>
+                    </HD.OverviewBox>
+                    <HD.RoutineSlideBox>
+                        {routineSlideList.map(({ day, exercises }) => (
+                            <RoutineDetail key={day} day={day} exercises={exercises} />
+                        ))}
+                    </HD.RoutineSlideBox>
+                </HD.RoutineMain>
                 <HD.FooterBox>
                     <LikeControl id={converted_routine_id} liked={converted_routine_liked} />
                     <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" />
                 </HD.FooterBox>
             </HD.RoutineDescBox>
-        </>
+        </HD.Box>
     );
 };
 
