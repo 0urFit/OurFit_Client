@@ -8,5 +8,5 @@ export const BottomBarData: ItemType[] = [
     { id: 0, imageRoot: HomeIcon, listName: 'Home', pageRoot: '/home' },
     { id: 1, imageRoot: SaveIcon, listName: 'Save', pageRoot: '/save' },
     { id: 2, imageRoot: PostIcon, listName: 'Post', pageRoot: '/posts' },
-    { id: 3, imageRoot: ProfileIcon, listName: 'Profile', pageRoot: '/mypage' },
+    { id: 3, imageRoot: ProfileIcon, listName: 'mypage', pageRoot: '/mypage' },
 ];
