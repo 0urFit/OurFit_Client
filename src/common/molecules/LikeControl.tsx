@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LikeIconClick, LikeIconUnclick } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
@@ -12,9 +12,10 @@ import FilledLikeIcon from '../../../public/assets/filled-like-icon.svg';
 interface LikeControlType {
     id: number | undefined;
     liked: boolean;
+    handleLikeList?: () => void;
 }
 
-const LikeControl = ({ id, liked }: LikeControlType) => {
+const LikeControl = ({ id, liked, handleLikeList }: LikeControlType) => {
     const [isLike, setIsLike] = useState(liked);
 
     const fetchLiked = async (routineId: number | undefined) => {
@@ -34,6 +35,10 @@ const LikeControl = ({ id, liked }: LikeControlType) => {
             throw new Error(getErrorMessage(e));
         }
     };
+
+    useEffect(() => {
+        handleLikeList?.();
+    }, [isLike]);
 
     return (
         <LC.LikeIconBtn onClick={() => fetchLiked(id)}>
