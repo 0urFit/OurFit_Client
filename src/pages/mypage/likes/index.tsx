@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
+import MypageLikes from '@/components/mypage/likes';
 
 const MyPageLikesPage = () => {
-    return <>MyPageLikesPage</>;
+    return <MypageLikes />;
 };
 
 MyPageLikesPage.getLayout = function getLayout(page: ReactElement) {

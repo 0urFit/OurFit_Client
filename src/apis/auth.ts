@@ -48,10 +48,6 @@ export const MainSave = async (category: string) => {
     });
 };
 
-export const SaveRoutineInfo = async (routineId: number | undefined) => {
-    return await tokenInstance.post(`/exercise/${routineId}`);
-};
-
 export const LikeIconClick = async (routineId: number | undefined) => {
     return await tokenInstance.post(`/exercise/${routineId}/likes`);
 };
@@ -77,6 +73,22 @@ export const RoutineSuccess = async (routineId: number, week: number, day: strin
     });
 };
 
+export const GetRoutine = async (endpoint: string | undefined) => {
+    return await tokenInstance.get(`/exercise/${endpoint}`);
+};
+
 export const GetDetailRoutine = async (routineId: number, week: number) => {
     return await tokenInstance.get(`/exercise/${routineId}/${week}`);
+};
+
+export const SaveRoutineInfo = async (routineId: number | undefined) => {
+    return await tokenInstance.post(`/exercise/${routineId}`);
+};
+
+export const DeleteRoutine = async (id: number | undefined) => {
+    return await tokenInstance.delete(`/exercise/${id}`);
+};
+
+export const GetLikedRoutine = async () => {
+    return await tokenInstance.get('/mypage/like');
 };

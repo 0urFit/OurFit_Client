@@ -6,12 +6,12 @@ import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
 
+import { GetRoutine } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
 import { SelectOptions } from '@/data/SaveData';
-import { tokenInstance } from '@/apis/client';
 
 import { H } from './style';
 import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
-import getErrorMessage from '@/utils/getErrorMessage';
 
 const Home = () => {
     const [routineList, setRoutineList] = useState([]);
@@ -21,9 +21,9 @@ const Home = () => {
         setRoutineCategory(categoryData);
     };
 
-    const getRoutineData = async (endpoint: string) => {
+    const getRoutineData = async (endpoint: string | undefined) => {
         try {
-            const response = await tokenInstance.get(`/exercise/${endpoint}`);
+            const response = await GetRoutine(endpoint);
             const { result } = response.data;
 
             setRoutineList(result);
@@ -33,19 +33,7 @@ const Home = () => {
     };
 
     useEffect(() => {
-        switch (routineCategory) {
-            case 'bodybuilding':
-                getRoutineData('bodybuilding');
-                break;
-            case 'strength':
-                getRoutineData('strength');
-                break;
-            case 'all':
-                getRoutineData('all');
-                break;
-            default:
-                setRoutineList([]);
-        }
+        getRoutineData(routineCategory);
     }, [routineCategory]);
 
     return (
@@ -57,8 +45,8 @@ const Home = () => {
                 <SmallSelect placeholder={'운동종목'} options={SelectOptions} handleChangeCategory={handleChangeCategory} />
             </H.SelectBox>
             <H.RoutineListBox>
-                {routineList.map(({ id, imgpath, period, fewTime, routineName, category }) => (
-                    <RoutineCard key={id} id={id} imgpath={imgpath} period={period} fewTime={fewTime} routineName={routineName} category={category} />
+                {routineList.map(({ id, imgpath, period, liked, enrolled, fewTime, routineName, category }) => (
+                    <RoutineCard key={id} id={id} imgpath={imgpath} period={period} enrolled={enrolled} fewTime={fewTime} routineName={routineName} category={category} liked={liked} />
                 ))}
             </H.RoutineListBox>
             <H.BottomButtonWrapper>

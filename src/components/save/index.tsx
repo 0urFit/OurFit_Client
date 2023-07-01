@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import { MainSave } from '@/apis/auth';
-import { SelectOptions } from '@/data/SaveData';
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
+
+import { DeleteRoutine, MainSave } from '@/apis/auth';
+import { SelectOptions } from '@/data/SaveData';
+import getErrorMessage from '@/utils/getErrorMessage';
 
 import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
@@ -15,22 +17,36 @@ const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
     const [saveData, setSaveData] = useState<RoutineProps[]>([]);
 
-    useEffect(() => {
-        handleSave(selectedValue);
-    }, [selectedValue]);
-
     const handleSave = async (category: string) => {
         try {
-            const result = await MainSave(category);
-            setSaveData(result.data.result);
-        } catch (error) {
-            console.log(error);
+            const response = await MainSave(category);
+            const { result } = response.data;
+
+            setSaveData(result);
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
+        }
+    };
+
+    const handleDeleteRoutine = async (id: number | undefined) => {
+        try {
+            const response = await DeleteRoutine(id);
+
+            handleSave(selectedValue);
+
+            return response;
+        } catch (e) {
+            throw new Error(getErrorMessage(e));
         }
     };
 
     const handleChangeCategory = (categoryData: string) => {
         setSelectedValue(categoryData);
     };
+
+    useEffect(() => {
+        handleSave(selectedValue);
+    }, [selectedValue]);
 
     return (
         <SV.Box>
@@ -52,10 +68,12 @@ const Save = () => {
                             id={data.id}
                             imgpath={data.imgpath}
                             period={data.period}
+                            liked={data.liked}
                             fewTime={data.fewTime}
                             routineName={data.routineName}
                             category={data.category}
                             weekProgress={data.weekProgress}
+                            handleButton={handleDeleteRoutine}
                         />
                     ))}
                 </SV.CardList>

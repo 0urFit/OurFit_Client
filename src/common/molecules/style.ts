@@ -7,6 +7,7 @@ const LI = {
         position: relative;
         width: 100%;
         height: 3.1875rem;
+        margin-bottom: 1.25rem;
 
         &:nth-child(1) {
             margin-bottom: ${({ emailMargin }) => (emailMargin ? '0' : '0.9375rem')};
@@ -219,10 +220,16 @@ const RC = {
         display: flex;
         justify-content: end;
     `,
-    BtnWrapper: styled.div`
+    BtnWrapper: styled.div<StyledProps>`
         width: 4.375rem;
         height: 1.5625rem;
-        background-color: #317aee;
+        background-color: ${({ enrolled }) => (enrolled ? '#e1e2e3' : '#317aee')};
+        border-radius: 0.3125rem;
+    `,
+    DeleteWrapper: styled.div`
+        width: 4.375rem;
+        height: 1.5625rem;
+        background-color: red;
         border-radius: 0.3125rem;
     `,
     AddBtn: styled.button`
