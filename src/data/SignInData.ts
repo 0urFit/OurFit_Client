@@ -1,4 +1,4 @@
-import { ItemType } from '@/components/signin/type';
+import { ItemType } from '@/components/signup/type';
 
 export const SigninData: ItemType[] = [
     { id: 0, inputType: 'email', inputValue: 'email', inputTitle: '이메일', explanation: 'Email', essential: true },
@@ -11,5 +11,5 @@ export const SigninData: ItemType[] = [
     { id: 7, inputType: 'number', inputValue: 'squat', inputTitle: 'Squat(kg)', explanation: 'Weight', essential: false },
     { id: 8, inputType: 'number', inputValue: 'benchpress', inputTitle: 'Bench Press(kg)', explanation: 'Weight', essential: false },
     { id: 9, inputType: 'number', inputValue: 'deadlift', inputTitle: 'Deadlift(kg)', explanation: 'Weight', essential: false },
-    { id: 10, inputType: 'number', inputValue: 'overheadPress', inputTitle: 'Overhead Press(kg)', explanation: 'Weight', essential: false },
+    { id: 10, inputType: 'number', inputValue: 'overheadpress', inputTitle: 'Overhead Press(kg)', explanation: 'Weight', essential: false },
 ];
