@@ -80,7 +80,12 @@ const Mypage = () => {
             <MP.LikeListBox>
                 <MP.LikeHeader>
                     <MP.Title>Likes</MP.Title>
-                    <Link href="/mypage/likes">
+                    <Link
+                        href="/mypage/likes"
+                        style={{
+                            color: '#000',
+                        }}
+                    >
                         <MP.MoreBtnBox>
                             <MP.MoreIconWrapper>+</MP.MoreIconWrapper>
                             <MP.MoreBtn>더보기</MP.MoreBtn>
