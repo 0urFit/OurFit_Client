@@ -1,5 +1,7 @@
+import Posts from '@/components/posts';
+
 const PostPage = () => {
-    return <>PostPage</>;
+    return <Posts />;
 };
 
 export default PostPage;
