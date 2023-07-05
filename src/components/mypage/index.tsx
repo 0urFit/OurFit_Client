@@ -81,27 +81,27 @@ const Mypage = () => {
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Height</MP.contentTitle>
-                            <MP.content>{userData.height}cm</MP.content>
+                            <MP.content>{userData.height ? `${userData.height}cm` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Weight</MP.contentTitle>
-                            <MP.content>{userData.weight}kg</MP.content>
+                            <MP.content>{userData.weight ? `${userData.weight}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Squat</MP.contentTitle>
-                            <MP.content>{userData.squat}kg</MP.content>
+                            <MP.content>{userData.squat ? `${userData.squat}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Bench Press</MP.contentTitle>
-                            <MP.content>{userData.benchpress}kg</MP.content>
+                            <MP.content>{userData.benchpress ? `${userData.benchpress}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Deadlift</MP.contentTitle>
-                            <MP.content>{userData.deadlift}kg</MP.content>
+                            <MP.content>{userData.deadlift ? `${userData.deadlift}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Overhead Press</MP.contentTitle>
-                            <MP.content>{userData.overheadpress}kg</MP.content>
+                            <MP.content>{userData.overheadpress ? `${userData.overheadpress}kg` : '-'}</MP.content>
                         </MP.Tr>
                     </MP.Tbody>
                 </MP.DescTable>
