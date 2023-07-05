@@ -41,7 +41,7 @@ export const SocialKakaoLogin = async (authCode: string | undefined) => {
 };
 
 export const MainSave = async (category: string) => {
-    return await tokenInstance.get('/mypage', {
+    return await tokenInstance.get('/mypage/exercise', {
         params: {
             category: category,
         },
