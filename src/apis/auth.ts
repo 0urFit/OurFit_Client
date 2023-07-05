@@ -92,3 +92,7 @@ export const DeleteRoutine = async (id: number | undefined) => {
 export const GetLikedRoutine = async () => {
     return await tokenInstance.get('/mypage/like');
 };
+
+export const GetUserInfo = async () => {
+    return await tokenInstance.get('/mypage');
+};
