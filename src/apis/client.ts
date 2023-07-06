@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import { getRefreshToken, removeRefreshToken } from '@/utils/manageCookie';
 import axios from 'axios';
 
