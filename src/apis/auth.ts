@@ -41,7 +41,7 @@ export const SocialKakaoLogin = async (authCode: string | undefined) => {
 };
 
 export const MainSave = async (category: string) => {
-    return await tokenInstance.get('/mypage', {
+    return await tokenInstance.get('/mypage/exercise', {
         params: {
             category: category,
         },
@@ -91,4 +91,8 @@ export const DeleteRoutine = async (id: number | undefined) => {
 
 export const GetLikedRoutine = async () => {
     return await tokenInstance.get('/mypage/like');
+};
+
+export const GetUserInfo = async () => {
+    return await tokenInstance.get('/mypage');
 };

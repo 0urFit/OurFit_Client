@@ -1,13 +1,25 @@
-import BottomBar from '@/common/molecules/BottomBar';
-import { MP } from './style';
-import RoutineCard from '@/common/molecules/RoutineCard';
-import { useEffect, useState } from 'react';
-import { GetLikedRoutine, SaveRoutineInfo } from '@/apis/auth';
-import getErrorMessage from '@/utils/getErrorMessage';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import BottomBar from '@/common/molecules/BottomBar';
+import RoutineCard from '@/common/molecules/RoutineCard';
+
+import { GetLikedRoutine, GetUserInfo, SaveRoutineInfo } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
+
+import { MP } from './style';
 
 const Mypage = () => {
     const [routineCardList, setRoutineCardList] = useState([]);
+    const [userData, setUserdata] = useState({
+        nickname: '',
+        weight: 0,
+        height: 0,
+        squat: 0,
+        benchpress: 0,
+        deadlift: 0,
+        overheadpress: 0,
+    });
 
     const handleSaveRoutine = async (routineId: number | undefined) => {
         try {
@@ -36,6 +48,23 @@ const Mypage = () => {
         getRoutineList();
     }, []);
 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await GetUserInfo();
+                const { result } = response.data;
+
+                setUserdata(result);
+
+                return response.data;
+            } catch (e) {
+                throw new Error(getErrorMessage(e));
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
     return (
         <>
             <MP.DescBox>
@@ -48,31 +77,31 @@ const Mypage = () => {
                     <MP.Tbody>
                         <MP.Tr>
                             <MP.contentTitle>NickName</MP.contentTitle>
-                            <MP.content>최선재</MP.content>
+                            <MP.content>{userData.nickname}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Height</MP.contentTitle>
-                            <MP.content>180</MP.content>
+                            <MP.content>{userData.height ? `${userData.height}cm` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Weight</MP.contentTitle>
-                            <MP.content>80</MP.content>
+                            <MP.content>{userData.weight ? `${userData.weight}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Squat</MP.contentTitle>
-                            <MP.content>100</MP.content>
+                            <MP.content>{userData.squat ? `${userData.squat}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Bench Press</MP.contentTitle>
-                            <MP.content>100</MP.content>
+                            <MP.content>{userData.benchpress ? `${userData.benchpress}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Deadlift</MP.contentTitle>
-                            <MP.content>100</MP.content>
+                            <MP.content>{userData.deadlift ? `${userData.deadlift}kg` : '-'}</MP.content>
                         </MP.Tr>
                         <MP.Tr>
                             <MP.contentTitle>Overhead Press</MP.contentTitle>
-                            <MP.content>100</MP.content>
+                            <MP.content>{userData.overheadpress ? `${userData.overheadpress}kg` : '-'}</MP.content>
                         </MP.Tr>
                     </MP.Tbody>
                 </MP.DescTable>
@@ -80,7 +109,12 @@ const Mypage = () => {
             <MP.LikeListBox>
                 <MP.LikeHeader>
                     <MP.Title>Likes</MP.Title>
-                    <Link href="/mypage/likes">
+                    <Link
+                        href="/mypage/likes"
+                        style={{
+                            color: '#000',
+                        }}
+                    >
                         <MP.MoreBtnBox>
                             <MP.MoreIconWrapper>+</MP.MoreIconWrapper>
                             <MP.MoreBtn>더보기</MP.MoreBtn>

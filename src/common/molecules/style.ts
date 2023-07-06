@@ -311,4 +311,22 @@ const PB = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC };
+const PP = {
+    PrepareBox: styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    `,
+    IconWrapper: styled.div`
+        position: relative;
+        width: 6.25rem;
+        height: 6.25rem;
+    `,
+    Message: styled.span`
+        margin-top: 1.25rem;
+        font-weight: bold;
+        font-size: 1.25rem;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP };
