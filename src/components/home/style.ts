@@ -48,6 +48,10 @@ const HD = {
     RoutineTitle: styled.span`
         font-size: 1.875rem;
         font-weight: bold;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     `,
     RoutineDescBox: styled.div`
         position: relative;
