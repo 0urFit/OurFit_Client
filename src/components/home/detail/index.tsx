@@ -19,7 +19,7 @@ import { InferGetServerSidePropsType } from 'next/types';
 import { getServerSideProps } from '@/pages/home/detail/[slug]';
 
 const HomeDetail = ({ props: { converted_routine_id, converted_routine_liked } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const [overviewInformation, setOverviewInformation] = useState({ programLength: 0, dayPerWeek: 0 });
+    const [overviewInformation, setOverviewInformation] = useState({ routineName: '', programLength: 0, dayPerWeek: 0 });
     const [routineSlideList, setRoutineSlideList] = useState([]);
 
     const dispatch = useAppDispatch();
@@ -41,12 +41,12 @@ const HomeDetail = ({ props: { converted_routine_id, converted_routine_liked } }
     const saveRoutineInformation = (response: DetailRoutineType) => {
         const { result } = response.data;
         const [routine_information]: resultType = result;
-        const { period, days } = routine_information;
+        const { routineName, period, days } = routine_information;
 
         const dayPerWeek = days.length;
 
         setOverviewInformation(() => {
-            return { programLength: period, dayPerWeek };
+            return { routineName, programLength: period, dayPerWeek };
         });
     };
 
@@ -88,7 +88,7 @@ const HomeDetail = ({ props: { converted_routine_id, converted_routine_liked } }
     return (
         <HD.Box>
             <HD.RoutineTitleBox>
-                <HD.RoutineTitle>nSuns</HD.RoutineTitle>
+                <HD.RoutineTitle>{overviewInformation.routineName}</HD.RoutineTitle>
             </HD.RoutineTitleBox>
             <HD.RoutineDescBox>
                 <HD.WeekSelectBox>

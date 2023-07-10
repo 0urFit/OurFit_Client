@@ -4,7 +4,7 @@ type DetailRoutineType = {
     };
 };
 
-type resultType = [{ period: number; weeks: number; days: daysType }];
+type resultType = [{ routineName: string; period: number; weeks: number; days: daysType }];
 
 type daysType = [];
 
