@@ -61,7 +61,6 @@ export const SaveRoutineDetail = async (routineId: number, week: number) => {
 };
 
 export const RoutineSuccess = async (routineId: number, week: number, day: string, percent: number, lastday: boolean) => {
-    console.log(routineId, week, day, percent, lastday);
     return await tokenInstance.patch('/mypage/exercise/complete', {
         params: {
             routineId,
