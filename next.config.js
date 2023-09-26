@@ -5,7 +5,7 @@ const nextConfig = {
         styledComponents: true,
     },
     images: {
-        domains: ['ourfit.s3.ap-northeast-2.amazonaws.com'],
+        domains: ['ourfits3.s3.ap-northeast-2.amazonaws.com'],
     },
 };
 
