@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
-import { getRefreshToken, removeRefreshToken } from '@/utils/manageCookie';
+import { manageRefreshToken } from '@/utils/manageCookie';
+import { manageAccessToken } from '@/utils/manageLocalStorage';
 import axios from 'axios';
 
 const API_URL = 'http://43.200.180.163:8080/';
@@ -27,7 +28,7 @@ export const tokenInstance = axios.create({
 
 tokenInstance.interceptors.request.use(
     config => {
-        config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`;
+        config.headers.Authorization = `Bearer ${manageAccessToken.GET()}`;
 
         return config;
     },
@@ -47,26 +48,27 @@ tokenInstance.interceptors.response.use(
 
         if (status === 401) {
             if (message === '액세스 토큰이 만료되었습니다.') {
-                const refreshToken = getRefreshToken();
+                const refreshToken = manageRefreshToken.GET();
 
                 try {
                     const newAccessToken = await updateToken.post('/newtoken', {
                         refreshToken,
                     });
-                    const { token } = newAccessToken.data.result;
 
-                    localStorage.removeItem('access_token');
-                    localStorage.setItem('access_token', token);
+                    const { accessToken } = newAccessToken.data.result;
 
-                    config.headers.Authorization = `Bearer ${token}`;
+                    manageAccessToken.REMOVE();
+                    manageAccessToken.SET(accessToken);
+
+                    config.headers.Authorization = `Bearer ${accessToken}`;
 
                     return axios(config);
                 } catch (error: any) {
                     const { message } = error.response.data;
 
                     if (message === '리프레시 토큰이 만료되었습니다.') {
-                        localStorage.removeItem('access_token');
-                        removeRefreshToken();
+                        manageAccessToken.REMOVE();
+                        manageRefreshToken.REMOVE();
 
                         window.location.href = '/';
                     }
