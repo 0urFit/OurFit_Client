@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const SV = {
     Box: styled.div`
-        position: relative;
         width: 100%;
         height: 100%;
     `,
@@ -50,6 +49,8 @@ const SV = {
 
 const BB = {
     Container: styled.div`
+        display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
     `,
@@ -86,65 +87,27 @@ const BB = {
             margin-right: 0;
         }
     `,
-    BottomBox: styled.div`
-        position: relative;
-        width: inherit;
-        height: calc(100% - 9rem);
-        background: #ededed;
-        border-top: 1px solid #626161;
-        border-radius: 2.5rem 2.5rem 0rem 0rem;
-    `,
-    WeekWrapper: styled.div`
-        margin: 1.125rem auto 0;
-        width: 22.125rem;
-        height: 3rem;
+    MainContainer: styled.div`
         display: flex;
+        flex-grow: 1;
+        padding: 1.125rem;
+        background-color: #ededed;
+        border-radius: 2.5rem 2.5rem 0rem 0rem;
+        border-top: 0.0625rem solid #626161;
     `,
     MainBox: styled.div`
-        margin: 1rem auto 0;
-        padding-top: 1.25rem;
-        width: 22.125rem;
-        height: 33rem;
-        background-color: white;
-        border-radius: 0.3125rem;
+        flex-grow: 1;
+        position: relative;
+        text-align: center;
     `,
-    MainWrapper: styled.div`
-        margin: 0 auto;
-        width: 18.75rem;
-        height: 100%;
+    Form: styled.form``,
+    FormContents: styled.div`
+        padding: 1rem 1.6875rem 0 1.6875rem;
         overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
     `,
-    ListWrapper: styled.div`
-        margin-bottom: 1.875rem;
-
-        &:last-child {
-            margin-bottom: 1.25rem;
-        }
-    `,
-    ExerciseTitle: styled.p`
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.5rem;
-    `,
-    Table: styled.table`
-        width: 100%;
-
-        & thead {
-            font-weight: 600;
-            font-size: 1rem;
-            line-height: 1.875rem;
-        }
-
-        & tbody {
-            font-weight: 600;
-            font-size: 0.875rem;
-            line-height: 1.375rem;
-            color: #828282;
-        }
+    SubmitBtnWrapper: styled.div`
+        position: absolute;
+        bottom: 0;
     `,
     WarningWrapper: styled.div`
         display: flex;
@@ -159,12 +122,6 @@ const BB = {
         font-weight: 600;
         font-size: 1.25rem;
         line-height: 1.5rem;
-    `,
-    ButtonWrapper: styled.div`
-        position: absolute;
-        bottom: 0.625rem;
-        left: 50%;
-        transform: translate(-50%, 0);
     `,
 };
 
