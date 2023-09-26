@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
-import { getRefreshToken, removeRefreshToken } from '@/utils/manageCookie';
+import { manageRefreshToken } from '@/utils/manageCookie';
+import { accessTokenManager } from '@/utils/manageLocalStorage';
 import axios from 'axios';
 
 const API_URL = 'http://43.200.180.163:8080/';
@@ -47,7 +48,7 @@ tokenInstance.interceptors.response.use(
 
         if (status === 401) {
             if (message === '액세스 토큰이 만료되었습니다.') {
-                const refreshToken = getRefreshToken();
+                const refreshToken = manageRefreshToken.GET();
 
                 try {
                     const newAccessToken = await updateToken.post('/newtoken', {
@@ -55,8 +56,8 @@ tokenInstance.interceptors.response.use(
                     });
                     const { token } = newAccessToken.data.result;
 
-                    localStorage.removeItem('access_token');
-                    localStorage.setItem('access_token', token);
+                    accessTokenManager.REMOVE();
+                    accessTokenManager.SET(token);
 
                     config.headers.Authorization = `Bearer ${token}`;
 
@@ -65,8 +66,8 @@ tokenInstance.interceptors.response.use(
                     const { message } = error.response.data;
 
                     if (message === '리프레시 토큰이 만료되었습니다.') {
-                        localStorage.removeItem('access_token');
-                        removeRefreshToken();
+                        accessTokenManager.REMOVE();
+                        manageRefreshToken.REMOVE();
 
                         window.location.href = '/';
                     }
