@@ -1,124 +1,87 @@
 import { useEffect, useState } from 'react';
-import { SaveRoutineDetail, RoutineSuccess } from '@/apis/auth';
-import { BB } from '../style';
-import { RoutineType, TodayExercisesType } from '../type';
+
+import PagiNation from '@/common/molecules/PagiNation';
 import CreateButton from '@/common/molecules/CreateButton';
-import Pagination from './Pagination';
-import RestIcon from '../../../../public/assets/rest-icon.svg';
-import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
+import ExerciseDetail from './ExerciseDetail';
 
-const SaveDetail = () => {
-    const router = useRouter();
-    const { routineId, weekProgress } = router.query;
-    const usedId = routineId as unknown as number;
-    const usedWeek = weekProgress as unknown as number;
+import { SaveRoutineDetail } from '@/apis/auth';
+import getErrorMessage from '@/utils/getErrorMessage';
+import { getServerSideProps } from '@/pages/save/detail/[slug]';
 
-    const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const todayDate = new Date();
-    const [currentDay, setCurrentWeek] = useState<string>(week[todayDate.getDay()]);
+import { InferGetServerSidePropsType } from 'next/types';
 
-    const { register, reset, handleSubmit } = useForm<boolean[]>();
+import { BB } from '../style';
 
-    const [routine, setRoutine] = useState<RoutineType>();
-    const [exercise, setExercise] = useState<TodayExercisesType>();
-    const [isLastDay, setIsLastDay] = useState<boolean>(false);
+type SaveRoutineInfo = {
+    category?: string;
+    fewTime?: number;
+    period?: number;
+    days?: [
+        {
+            day: string;
+            exercises: [];
+        },
+    ];
+};
 
-    useEffect(() => {
-        reset();
-        setIsLastDay(routine?.days[routine.days.length - 1].day === currentDay);
-        const todayRoutine = routine?.days.filter(el => el.day === currentDay)[0];
-        setExercise(todayRoutine);
-    }, [routine, currentDay]);
+const SaveDetail = ({ props: { data } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    const [saveRoutineDetail, setSaveRoutineDetail] = useState<SaveRoutineInfo>({});
+    const [today, setToday] = useState('Mon');
 
-    useEffect(() => {
-        handleData();
-    }, [usedId]);
-
-    const handleData = async () => {
-        try {
-            const result = await SaveRoutineDetail(usedId, usedWeek);
-            setRoutine(result.data.result[0]);
-        } catch (error) {
-            console.log(error);
-        }
+    const handleDay = (clickedDay: string) => {
+        setToday(clickedDay);
     };
 
-    const handleSuccess = async (data: boolean[]) => {
-        const dataArr = Object.values(data);
-        const successRate = ((dataArr.filter(el => el === true).length / dataArr.length) * 100).toFixed(1) as unknown as number;
+    useEffect(() => {
+        const { routineId, weekProgress } = data;
 
-        try {
-            const result = await RoutineSuccess(usedId, usedWeek, currentDay, successRate, isLastDay);
-            console.log(result);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        const assure_routineId = routineId;
+        const conveted_routineId = parseInt(assure_routineId);
+
+        const assure_weekProgress = weekProgress;
+        const conveted_weekProgress = parseInt(assure_weekProgress);
+
+        const fetchSaveData = async (id: number, week: number) => {
+            try {
+                const response = await SaveRoutineDetail(id, week);
+                const { result } = response.data;
+
+                setSaveRoutineDetail(result);
+
+                return response.data;
+            } catch (e) {
+                throw new Error(getErrorMessage(e));
+            }
+        };
+
+        fetchSaveData(conveted_routineId, conveted_weekProgress);
+    }, []);
 
     return (
         <BB.Container>
             <BB.TopBox>
                 <BB.TopWrapper>
-                    <BB.Title>{routine?.routineName}</BB.Title>
+                    <BB.Title>routineName</BB.Title>
                     <BB.TagWrapper>
-                        <BB.Tag>#{routine?.category}</BB.Tag>
-                        <BB.Tag>#{routine?.fewTime}/week</BB.Tag>
-                        <BB.Tag>#{routine?.period} weeks</BB.Tag>
+                        <BB.Tag>#{saveRoutineDetail.category}</BB.Tag>
+                        <BB.Tag>#{saveRoutineDetail.fewTime}/week</BB.Tag>
+                        <BB.Tag>#{saveRoutineDetail.period}weeks</BB.Tag>
                     </BB.TagWrapper>
                 </BB.TopWrapper>
             </BB.TopBox>
-            <BB.BottomBox>
-                <BB.WeekWrapper>
-                    <Pagination currentDay={currentDay} setCurrentWeek={setCurrentWeek} />
-                </BB.WeekWrapper>
-                <form onSubmit={handleSubmit(handleSuccess)}>
-                    <BB.MainBox>
-                        <BB.MainWrapper>
-                            {exercise ? (
-                                exercise?.exercises.map((data, key) => (
-                                    <BB.ListWrapper key={key}>
-                                        <BB.ExerciseTitle>
-                                            {key + 1}.&nbsp;{data.name}
-                                        </BB.ExerciseTitle>
-                                        <BB.Table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Set</th>
-                                                    <th>Weight</th>
-                                                    <th>Reps</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            {data.sets.map(element => (
-                                                <tbody key={element.id}>
-                                                    <tr>
-                                                        <th>{element.sequence}</th>
-                                                        <th>{element.weight}</th>
-                                                        <th>{element.reps}</th>
-                                                        <th>
-                                                            <input type="checkbox" {...register(`${element.id}`)} />
-                                                        </th>
-                                                    </tr>
-                                                </tbody>
-                                            ))}
-                                        </BB.Table>
-                                    </BB.ListWrapper>
-                                ))
-                            ) : (
-                                <BB.WarningWrapper>
-                                    <Image src={RestIcon} alt="rest-icon" width={100} height={100} />
-                                    <BB.WarningMessage>오늘 운동 루틴은 없는 날입니다!</BB.WarningMessage>
-                                </BB.WarningWrapper>
-                            )}
-                        </BB.MainWrapper>
-                    </BB.MainBox>
-                    <BB.ButtonWrapper>
-                        <CreateButton message="운동 완료" />
-                    </BB.ButtonWrapper>
-                </form>
-            </BB.BottomBox>
+            <BB.MainContainer>
+                <BB.MainBox>
+                    <PagiNation handleDay={handleDay} />
+                    <BB.Form>
+                        <BB.FormContents>
+                            <ExerciseDetail today={today} saveRoutineDetail={saveRoutineDetail.days} />
+                        </BB.FormContents>
+                        <BB.SubmitBtnWrapper>
+                            <CreateButton message="운동완료" />
+                        </BB.SubmitBtnWrapper>
+                    </BB.Form>
+                </BB.MainBox>
+            </BB.MainContainer>
         </BB.Container>
     );
 };
