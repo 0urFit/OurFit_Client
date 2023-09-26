@@ -6,7 +6,8 @@ import { InferGetServerSidePropsType } from 'next/types';
 import { getServerSideProps } from '@/pages/verifying';
 import { useAppDispatch } from '@/store/hook';
 import { saveUserInfo } from '@/store/slices/userSlice';
-import { setRefreshToken } from '@/utils/manageCookie';
+import { manageAccessToken } from '@/utils/manageLocalStorage';
+import { manageRefreshToken } from '@/utils/manageCookie';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -26,8 +27,8 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
         } else {
             const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
 
-            localStorage.setItem('access_token', accessToken);
-            setRefreshToken(refreshToken);
+            manageAccessToken.SET(accessToken);
+            manageRefreshToken.SET(refreshToken);
 
             if (success) {
                 router.push('/home');
