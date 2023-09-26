@@ -21,18 +21,18 @@ const Home = () => {
         setRoutineCategory(categoryData);
     };
 
-    const getRoutineData = async (endpoint: string | undefined) => {
-        try {
-            const response = await GetRoutine(endpoint);
-            const { result } = response.data;
-
-            setRoutineList(result);
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    };
-
     useEffect(() => {
+        const getRoutineData = async (endpoint: string | undefined) => {
+            try {
+                const response = await GetRoutine(endpoint);
+                const { result } = response.data;
+
+                setRoutineList(result);
+            } catch (e) {
+                throw new Error(getErrorMessage(e));
+            }
+        };
+
         getRoutineData(routineCategory);
     }, [routineCategory]);
 
