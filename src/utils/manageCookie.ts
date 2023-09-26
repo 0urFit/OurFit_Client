@@ -7,9 +7,9 @@ export const manageRefreshToken = {
         return cookies.get('refresh_token');
     },
     SET: (token: string) => {
-        cookies.set('refresh_token', token);
+        return cookies.set('refresh_token', token);
     },
     REMOVE: () => {
-        cookies.remove('refresh_token', { path: '/' });
+        return cookies.remove('refresh_token', { path: '/' });
     },
 };

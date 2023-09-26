@@ -1,11 +1,11 @@
-export const accessTokenManager = {
+export const manageAccessToken = {
     GET: () => {
         return localStorage.getItem('access_token');
     },
     SET: (token: string) => {
-        localStorage.setItem('access_token', token);
+        return localStorage.setItem('access_token', token);
     },
     REMOVE: () => {
-        localStorage.removeItem('access_token');
+        return localStorage.removeItem('access_token');
     },
 };
