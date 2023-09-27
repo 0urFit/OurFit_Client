@@ -31,9 +31,9 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
         const { success } = response.data;
 
-        const { token, refreshToken } = response.data.result;
+        const { accessToken, refreshToken } = response.data.result;
 
-        verifyingPageProps.accessToken = token;
+        verifyingPageProps.accessToken = accessToken;
         verifyingPageProps.refreshToken = refreshToken;
         verifyingPageProps.success = success;
     } catch (error: any) {
