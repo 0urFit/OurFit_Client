@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
 
-import { NOT_FOUND, NOT_FOUND_MESSAGE, NOT_FOUND_PREV_BUTTON_TITLE } from '@/utils/ClientErrorMessage';
+import { NOT_FOUND, NOT_FOUND_MESSAGE, NOT_FOUND_PREV_BUTTON_TITLE } from '@/utils/clientErrorMessage';
 
 const Custom404 = () => {
     const router = useRouter();
