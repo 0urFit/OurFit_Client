@@ -25,7 +25,8 @@ const DL = {
         cursor: pointer;
     `,
     FirstContainer: styled.div`
-        display: inline-block;
+        display: flex;
+        align-items: center;
         margin: 2.5rem 3rem;
         width: calc(100% - 6rem);
         height: calc(100% - 5rem);
