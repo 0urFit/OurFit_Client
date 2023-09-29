@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import { DL } from './style';
+
 import PrevButton from '../molecules/PrevButton';
+
+import { DL } from './style';
 
 interface propsType {
     children: ReactNode;
@@ -20,6 +22,8 @@ const DefaultLayout = ({ children }: propsType) => {
                 ''
             )}
             <DL.SecondContainer>{children}</DL.SecondContainer>
+            <div id="back-drop"></div>
+            <div id="portal"></div>
         </DL.PageLayout>
     );
 };
