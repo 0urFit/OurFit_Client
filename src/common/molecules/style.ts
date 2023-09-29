@@ -329,4 +329,26 @@ const PP = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP };
+const RM = {
+    Box: styled.div`
+        z-index: 11;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    `,
+};
+
+const BD = {
+    Box: styled.div`
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background: rgba(11, 19, 30, 0.37);
+        backdrop-filter: blur(0.0938rem);
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD };
