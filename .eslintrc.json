@@ -23,16 +23,7 @@
             }
         ],
         "react/jsx-first-prop-new-line": "error",
-        "comma-dangle": [
-            "error",
-            {
-                "arrays": "always-multiline",
-                "objects": "always-multiline",
-                "imports": "never",
-                "exports": "never",
-                "functions": "never"
-            }
-        ],
+        "comma-dangle": "off",
         "react/react-in-jsx-scope": "off",
         "indent": ["error", 4],
         "quotes": ["error", "single"],
