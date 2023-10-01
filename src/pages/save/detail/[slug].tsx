@@ -3,7 +3,6 @@ import { ReactElement } from 'react';
 import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 import SaveDetail from '@/components/save/detail';
-import wrapper from '@/store/store';
 
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import { GetServerSidePropsContext } from 'next/types';
@@ -23,10 +22,21 @@ SaveDetailPage.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(() => async (ctx: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const { cookies } = ctx.req;
+
+    if (!cookies.refresh_token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
+
     return {
         props: { data: ctx.query },
     };
-});
+};
 
 export default SaveDetailPage;

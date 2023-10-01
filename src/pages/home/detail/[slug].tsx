@@ -3,7 +3,6 @@ import { DL } from '@/common/layout/style';
 import PrevButton from '@/common/molecules/PrevButton';
 import HomeDetail from '@/components/home/detail';
 import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next/types';
-import wrapper from '@/store/store';
 
 const HomeDetailPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <HomeDetail props={props} />;
@@ -20,8 +19,18 @@ HomeDetailPage.getLayout = function getLayout(page: ReactElement) {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async (ctx: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const { routineId, liked } = ctx.query;
+    const { cookies } = ctx.req;
+
+    if (!cookies.refresh_token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
 
     const assure_routine_id = routineId as string;
     const assure_routine_liked = liked as string;
@@ -35,6 +44,6 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             converted_routine_liked,
         },
     };
-});
+};
 
 export default HomeDetailPage;
