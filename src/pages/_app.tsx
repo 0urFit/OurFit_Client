@@ -28,7 +28,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         <>
             <GlobalStyle />
             <Component {...pageProps} />
-        </>
+        </>,
     );
 }
 
