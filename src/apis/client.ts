@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 import { manageRefreshToken } from '@/utils/manageCookie';
 import { manageAccessToken } from '@/utils/manageLocalStorage';
 import axios from 'axios';

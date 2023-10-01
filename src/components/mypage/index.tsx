@@ -8,6 +8,7 @@ import { GetLikedRoutine, GetUserInfo, SaveRoutineInfo } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 
 import { MP } from './style';
+import LogoutButton from './LogoutButton';
 
 const Mypage = () => {
     const [routineCardList, setRoutineCardList] = useState([]);
@@ -139,6 +140,7 @@ const Mypage = () => {
                     ))}
                 </MP.LikeContentsBox>
             </MP.LikeListBox>
+            <LogoutButton />
             <MP.BottomWrapper>
                 <BottomBar />
             </MP.BottomWrapper>
