@@ -48,20 +48,11 @@ export const MainSave = async (category: string) => {
     });
 };
 
-export const LikeIconClick = async (routineId: number | undefined) => {
-    return await tokenInstance.post(`/exercise/${routineId}/likes`);
-};
-
-export const LikeIconUnclick = async (routineId: number | undefined) => {
-    return await tokenInstance.delete(`/exercise/${routineId}/likes`);
-};
-
 export const SaveRoutineDetail = async (routineId: number, week: number) => {
     return await tokenInstance.get(`/mypage/exercise/${routineId}/${week}`);
 };
 
 export const RoutineSuccess = async (routineId: number, week: number, day: string, percent: number, lastday: boolean) => {
-    console.log(routineId, week, day, percent, lastday);
     return await tokenInstance.patch('/mypage/exercise/complete', {
         params: {
             routineId,

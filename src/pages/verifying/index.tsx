@@ -21,28 +21,30 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
             userGender: '',
         },
     };
+
     const SocialLoginCancelMessage = {
         message: error_description === undefined ? null : error_description,
     };
 
     try {
         const response = await SocialKakaoLogin(KAKAO_CODE);
+
         const { success } = response.data;
 
-        const { token, refreshToken } = response.data.result;
+        const { accessToken, refreshToken } = response.data.result;
 
-        verifyingPageProps.accessToken = token;
+        verifyingPageProps.accessToken = accessToken;
         verifyingPageProps.refreshToken = refreshToken;
         verifyingPageProps.success = success;
     } catch (error: any) {
         const { response } = error;
         const { status } = response;
 
-        if (status === 401) {
+        if (status === 404) {
             const { email, gender } = response.data.result;
 
             verifyingPageProps.userInfo.userEmail = email;
-            verifyingPageProps.userInfo.userGender = gender;
+            verifyingPageProps.userInfo.userGender = gender || '';
         }
     }
 

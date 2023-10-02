@@ -43,7 +43,6 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                             pathname: `${pathName}/detail/[slug]`,
                             query: { slug: DeletedBlankRoutineName, routineId: id, liked, period, weekProgress },
                         }}
-                        as={`${pathName}/detail/${DeletedBlankRoutineName}`}
                     >
                         <RC.span>{routineName}</RC.span>
                     </Link>
@@ -58,7 +57,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                             <RC.CoachName>{routineName}</RC.CoachName>
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
-                            <LikeControl id={id} liked={liked} handleLikeList={handleLikeList} />
+                            <LikeControl id={id} handleLikeList={handleLikeList} />
                             {pathName === '/save' ? (
                                 <RC.DeleteWrapper>
                                     <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>

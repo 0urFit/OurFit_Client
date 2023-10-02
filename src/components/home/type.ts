@@ -1,11 +1,18 @@
 type DetailRoutineType = {
     data: {
-        result: resultType;
+        result: ResultType;
     };
 };
 
-type resultType = [{ period: number; weeks: number; days: daysType }];
+type ResponseResult = {
+    routineName: string;
+    period: number;
+    weeks: number;
+    days: daysType;
+};
+
+type ResultType = ResponseResult[];
 
 type daysType = [];
 
-export type { DetailRoutineType, resultType, daysType };
+export type { DetailRoutineType, ResultType, daysType };

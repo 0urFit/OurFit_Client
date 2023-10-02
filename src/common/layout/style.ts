@@ -5,17 +5,20 @@ const DL = {
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Open+Sans&display=swap');
         font-family: 'Nanum Gothic', sans-serif;
         font-family: 'Open Sans', sans-serif;
-        position: relative;
-        margin: 0 auto;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, 5%);
         width: 24.375rem;
-        min-width: 25rem;
         height: 52.75rem;
-        box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
         border-radius: 0.9375rem;
 
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 414px) {
             width: 100vw;
+            min-width: 374px;
             height: 100vh;
+            left: 0;
+            transform: none;
         }
     `,
     ImgWrapper: styled.div`
@@ -25,7 +28,8 @@ const DL = {
         cursor: pointer;
     `,
     FirstContainer: styled.div`
-        display: inline-block;
+        display: flex;
+        align-items: center;
         margin: 2.5rem 3rem;
         width: calc(100% - 6rem);
         height: calc(100% - 5rem);

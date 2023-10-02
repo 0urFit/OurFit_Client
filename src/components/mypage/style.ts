@@ -39,6 +39,7 @@ const MP = {
     LikeListBox: styled.div`
         width: 100%;
         height: 16.8125rem;
+        margin-bottom: 0.625rem;
     `,
     LikeHeader: styled.div`
         display: flex;
@@ -60,6 +61,16 @@ const MP = {
     LikeContentsBox: styled.div`
         height: 14.375rem;
         overflow-y: hidden;
+    `,
+    LogoutWrapper: styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `,
+    LogoutButton: styled.button`
+        font-size: 0.875rem;
+        font-weight: bold;
+        color: red;
     `,
 };
 

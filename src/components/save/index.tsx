@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import BottomBar from '@/common/molecules/BottomBar';
+import RoutineModal from '@/common/molecules/RoutineModal';
+import BackDrop from '@/common/molecules/BackDrop';
 
 import { DeleteRoutine, MainSave } from '@/apis/auth';
 import { SelectOptions } from '@/data/SaveData';
@@ -12,10 +15,14 @@ import getErrorMessage from '@/utils/getErrorMessage';
 import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
 import { RoutineProps } from '../../common/molecules/type';
+import { ModalType } from './type';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
     const [saveData, setSaveData] = useState<RoutineProps[]>([]);
+    const [deleteResponse, setDeleteResponse] = useState(false);
+    const [portalElement, setPortalElement] = useState<ModalType>(null);
+    const [backDropElement, setBackDropElement] = useState<ModalType>(null);
 
     const handleSave = async (category: string) => {
         try {
@@ -29,9 +36,10 @@ const Save = () => {
     };
 
     const handleDeleteRoutine = async (id: number | undefined) => {
+        setDeleteResponse(true);
         try {
             const response = await DeleteRoutine(id);
-
+            setDeleteResponse(false);
             handleSave(selectedValue);
 
             return response;
@@ -43,6 +51,11 @@ const Save = () => {
     const handleChangeCategory = (categoryData: string) => {
         setSelectedValue(categoryData);
     };
+
+    useEffect(() => {
+        setPortalElement(document.getElementById('portal'));
+        setBackDropElement(document.getElementById('back-drop'));
+    }, []);
 
     useEffect(() => {
         handleSave(selectedValue);
@@ -81,6 +94,8 @@ const Save = () => {
             <SV.ButtonWrapper>
                 <BottomBar />
             </SV.ButtonWrapper>
+            {portalElement && deleteResponse ? createPortal(<RoutineModal />, portalElement) : null}
+            {backDropElement && deleteResponse ? createPortal(<BackDrop />, backDropElement) : null}
         </SV.Box>
     );
 };

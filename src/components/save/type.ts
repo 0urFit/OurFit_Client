@@ -36,4 +36,6 @@ type SetsType = {
     id: number;
 };
 
-export type { SelectType, RoutineType, TodayExercisesType };
+type ModalType = Element | null;
+
+export type { SelectType, RoutineType, TodayExercisesType, ModalType };
