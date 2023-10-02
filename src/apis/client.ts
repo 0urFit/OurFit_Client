@@ -1,6 +1,9 @@
+import axios from 'axios';
+
 import { manageRefreshToken } from '@/utils/manageCookie';
 import { manageAccessToken } from '@/utils/manageLocalStorage';
-import axios from 'axios';
+
+import { ServiceErrorMessage } from './type';
 
 const API_URL = 'http://43.200.180.163:8080/';
 const REDIRECT_URI = 'http://localhost:3000/verifying';
@@ -43,26 +46,25 @@ tokenInstance.interceptors.response.use(
     async error => {
         const { config, response } = error;
         const { status } = response;
-        const { message } = response.data;
 
         if (status === 401) {
-            if (message === '액세스 토큰이 만료되었습니다.') {
-                const refreshToken = manageRefreshToken.GET();
+            const refreshToken = manageRefreshToken.GET();
 
-                try {
-                    const newAccessToken = await updateToken.post('/newtoken', {
-                        refreshToken,
-                    });
+            try {
+                const newAccessToken = await updateToken.post('/newtoken', {
+                    refreshToken,
+                });
 
-                    const { accessToken } = newAccessToken.data.result;
+                const { accessToken } = newAccessToken.data.result;
 
-                    manageAccessToken.REMOVE();
-                    manageAccessToken.SET(accessToken);
+                manageAccessToken.REMOVE();
+                manageAccessToken.SET(accessToken);
 
-                    config.headers.Authorization = `Bearer ${accessToken}`;
+                config.headers.Authorization = `Bearer ${accessToken}`;
 
-                    return axios(config);
-                } catch (error: any) {
+                return axios(config);
+            } catch (error) {
+                if (axios.isAxiosError<ServiceErrorMessage>(error) && error.response) {
                     const { message } = error.response.data;
 
                     if (message === '리프레시 토큰이 만료되었습니다.') {
