@@ -73,6 +73,11 @@ const Mypage = () => {
                     <MP.Thead>
                         <MP.Tr>
                             <MP.Th>Profile Description</MP.Th>
+                            <MP.Th>
+                                <MP.EditButtonWrapper>
+                                    <MP.Editbutton>수 정</MP.Editbutton>
+                                </MP.EditButtonWrapper>
+                            </MP.Th>
                         </MP.Tr>
                     </MP.Thead>
                     <MP.Tbody>

@@ -19,6 +19,15 @@ const MP = {
         text-align: left;
         font-weight: 900;
     `,
+    EditButtonWrapper: styled.div`
+        text-align: right;
+    `,
+    Editbutton: styled.button`
+        padding: 0.1875rem;
+        border-radius: 0.25rem;
+        background-color: #888;
+        color: #fff;
+    `,
     contentTitle: styled.td`
         vertical-align: middle;
         width: 50%;
