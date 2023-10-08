@@ -1,5 +1,6 @@
 import { InputType } from '@/components/signup/type';
 import { instance, socialInstance, tokenInstance } from './client';
+import { ProfileInfoEditType } from '@/components/mypage/types';
 interface LoginApiType {
     email: string;
     password: string;
@@ -69,7 +70,7 @@ export const GetRoutine = async (endpoint: string | undefined) => {
 };
 
 export const GetDetailRoutine = async (routineId: number, week: number) => {
-    return await tokenInstance.get(`/exercise/${routineId}/${week}`);
+    return await tokenInstance.get(`/exercise/${routineId}/week/${week}`);
 };
 
 export const SaveRoutineInfo = async (routineId: number | undefined) => {
@@ -86,4 +87,8 @@ export const GetLikedRoutine = async () => {
 
 export const GetUserInfo = async () => {
     return await tokenInstance.get('/mypage');
+};
+
+export const EditUserInfo = async (editedUserInfoData: ProfileInfoEditType) => {
+    return await tokenInstance.patch('/mypage/m', editedUserInfoData);
 };
