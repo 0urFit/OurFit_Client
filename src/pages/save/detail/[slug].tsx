@@ -35,7 +35,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     }
 
     return {
-        props: { data: ctx.query },
+        props: {
+            data: ctx.query,
+        },
     };
 };
 
