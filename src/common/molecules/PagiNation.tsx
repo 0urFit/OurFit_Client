@@ -1,15 +1,18 @@
-import { days } from '@/data/Days';
 import styled from 'styled-components';
 
-interface Props {
+import { DAYS } from '@/data/Days';
+import { StyledProps } from './type';
+
+interface PagiNationProps {
+    today: string;
     handleDay: (clikedDay: string) => void;
 }
 
-const PagiNation = ({ handleDay }: Props) => {
+const PagiNation = ({ today, handleDay }: PagiNationProps) => {
     return (
         <PagiNationBox>
-            {days.map(element => (
-                <DayBtn onClick={() => handleDay(element)} key={element}>
+            {DAYS.map(element => (
+                <DayBtn onClick={() => handleDay(element)} key={element} $today={today === element}>
                     <Day>{element}</Day>
                 </DayBtn>
             ))}
@@ -21,15 +24,15 @@ const PagiNationBox = styled.div`
     display: flex;
     justify-content: space-between;
 `;
-const DayBtn = styled.button`
+const DayBtn = styled.button<StyledProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3.125rem;
-    height: 3.125rem;
+    width: 14.5%;
+    height: 3rem;
     font-size: 0.875rem;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: ${({ $today }) => $today && '#3179ee'};
 `;
 const Day = styled.span``;
 
