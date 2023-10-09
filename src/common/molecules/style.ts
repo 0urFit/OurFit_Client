@@ -110,6 +110,7 @@ const SB = {
 
 const CB = {
     Button: styled.button`
+        width: inherit;
         height: 3.75rem;
         font-weight: 700;
         font-size: 1.25rem;
@@ -117,7 +118,7 @@ const CB = {
         text-align: center;
         color: #ffffff;
         border-radius: 0.625rem;
-        background-color: #868686;
+        background-color: rgb(49, 121, 238);
     `,
 };
 
@@ -351,4 +352,17 @@ const BD = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD };
+const NE = {
+    Box: styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: inherit;
+    `,
+    Title: styled.p`
+        font-size: 1.5rem;
+        font-weight: bold;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE };
