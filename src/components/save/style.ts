@@ -52,7 +52,8 @@ const BB = {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 100%;
+        height: inherit;
+        border-radius: 0.9375rem;
     `,
     TopBox: styled.div`
         width: inherit;
@@ -88,26 +89,26 @@ const BB = {
         }
     `,
     MainContainer: styled.div`
-        display: flex;
-        flex-grow: 1;
-        padding: 1.125rem;
+        height: 100%;
+        padding: 0.5rem;
         background-color: #ededed;
-        border-radius: 2.5rem 2.5rem 0rem 0rem;
+        border-radius: 2.5rem 2.5rem 0.9375rem 0.9375rem;
         border-top: 0.0625rem solid #626161;
+        overflow: hidden;
     `,
     MainBox: styled.div`
-        flex-grow: 1;
-        position: relative;
-        text-align: center;
+        height: inherit;
     `,
-    Form: styled.form``,
+    Form: styled.form`
+        height: calc(100% - 3rem);
+    `,
     FormContents: styled.div`
-        padding: 1rem 1.6875rem 0 1.6875rem;
+        height: calc(100% - 3.75rem);
         overflow-y: scroll;
     `,
     SubmitBtnWrapper: styled.div`
-        position: absolute;
-        bottom: 0;
+        text-align: center;
+        margin-top: 5px;
     `,
     WarningWrapper: styled.div`
         display: flex;
