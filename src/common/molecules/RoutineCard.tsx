@@ -13,7 +13,7 @@ import { RoutineProps } from './type';
 import { SaveRoutineInfo } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 
-const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineName, category, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
     const [isEnrolled, setIsEnrolled] = useState(enrolled);
 
     const pathName = useRouter().asPath;
@@ -41,7 +41,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, liked, fewTime, routineNam
                     <Link
                         href={{
                             pathname: `${pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, routineId: id, liked, period, weekProgress },
+                            query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
                         }}
                     >
                         <RC.span>{routineName}</RC.span>

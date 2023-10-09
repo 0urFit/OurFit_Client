@@ -1,7 +1,9 @@
-import { useRouter } from 'next/router';
-import { CB } from './style';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { CSSProperties } from 'styled-components';
+
+import { CB } from './style';
 
 interface propsType {
     message: string;

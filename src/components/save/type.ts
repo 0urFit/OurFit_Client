@@ -36,6 +36,25 @@ type SetsType = {
     id: number;
 };
 
+type SaveRoutineInfo = {
+    category?: string;
+    fewTime?: number;
+    period?: number;
+    days?: [
+        {
+            day: string;
+            exercises: [];
+        },
+    ];
+};
+
 type ModalType = Element | null;
 
-export type { SelectType, RoutineType, TodayExercisesType, ModalType };
+type RoutineItemType = {
+    sequence: number;
+    weight: number;
+    reps: number;
+    id: number;
+};
+
+export type { SelectType, RoutineType, TodayExercisesType, ModalType, SaveRoutineInfo, RoutineItemType };

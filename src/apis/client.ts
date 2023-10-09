@@ -5,10 +5,9 @@ import { manageAccessToken } from '@/utils/manageLocalStorage';
 
 import { ServiceErrorMessage } from './type';
 
-const API_URL = 'http://43.200.180.163:8080/';
-const REDIRECT_URI = 'http://localhost:3000/verifying';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const KAKAO_API_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+export const KAKAO_API_URL = process.env.NEXT_PUBLIC_KAKAO_API_URL;
 
 export const updateToken = axios.create({
     baseURL: API_URL,
