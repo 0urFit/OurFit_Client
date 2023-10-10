@@ -21,7 +21,7 @@ const SelectBox = ({ control, data, defaultValue }: propsType) => {
         control: (baseStyles: CSSObjectWithLabel) => ({
             ...baseStyles,
             paddingLeft: '0.375rem',
-            width: '18.375rem',
+            width: '100%',
             height: '3.1875rem',
             borderColor: 'black',
             borderRadius: '0.625rem',
