@@ -54,7 +54,3 @@ const ExerciseDetailMain = ({ routineId, weekProgress }: ExerciseDetailMain) => 
 };
 
 export default ExerciseDetailMain;
-
-// 월요일 입장
-// isSuccess의 값
-// 버튼 색 결정
