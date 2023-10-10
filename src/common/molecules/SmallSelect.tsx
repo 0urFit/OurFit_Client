@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import Select, { StylesConfig } from 'react-select';
 import { useId } from 'react';
@@ -6,8 +7,7 @@ import { SelectType } from '@/components/save/type';
 interface propsType {
     placeholder: string;
     options: SelectType[];
-    // setSelectedValue: Dispatch<SetStateAction<string>>;
-    handleChangeCategory(categoryData: any): void;
+    handleChangeCategory(categoryData: string | number): void;
 }
 
 const SmallSelect = ({ placeholder, options, handleChangeCategory }: propsType) => {
