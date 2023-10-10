@@ -40,8 +40,8 @@ const MP = {
         margin-bottom: 0.9375rem;
     `,
     Title: styled.span`
-        font-size: 20px;
-        font-weight: 700px;
+        font-size: 1.25rem;
+        font-weight: 43.75rem;
     `,
     MoreBtnBox: styled.div`
         display: flex;
@@ -80,7 +80,7 @@ const ML = {
         height: 6.8125rem;
     `,
     Title: styled.h1`
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 800;
     `,
     LikedList: styled.div`

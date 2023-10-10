@@ -23,11 +23,19 @@ export const LocalSignUp = async (SignUpData: InputType) => {
 };
 
 export const LocalNickname = async (nickname: string) => {
-    return await instance.get(`/checknick/${nickname}`);
+    return await instance.get('/checknick', {
+        params: {
+            nick: nickname,
+        },
+    });
 };
 
 export const LocalEmail = async (email: string) => {
-    return await instance.get(`/checkemail/${email}`);
+    return await instance.get('/checkemail', {
+        params: {
+            email,
+        },
+    });
 };
 
 export const SocialKakaoLogin = async (authCode: string | undefined) => {

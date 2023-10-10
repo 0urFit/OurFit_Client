@@ -37,18 +37,18 @@ export const LI = {
     `,
     EmailInput: styled.input`
         display: inline-block;
-        padding-left: 51px;
+        padding-left: 3.1875rem;
         width: 100%;
         height: 100%;
-        font-size: 14px;
+        font-size: 0.875rem;
         border-radius: inherit;
     `,
     PwInput: styled.input`
         display: inline-block;
-        padding-left: 51px;
+        padding-left: 3.1875rem;
         width: 100%;
         height: 100%;
-        font-size: 14px;
+        font-size: 0.875rem;
         border-radius: inherit;
     `,
     IconWrapper: styled.div`

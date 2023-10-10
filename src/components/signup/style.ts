@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const SU = {
     InputList: styled.form`
+        padding-bottom: 1.875rem;
+        width: 100%;
         height: calc(100% - 5.0625rem);
         overflow-y: scroll;
         -ms-overflow-style: none;
@@ -29,8 +31,8 @@ const SU = {
     `,
     ButtonWrapper: styled.div`
         position: absolute;
-        bottom: 2.5rem;
-        width: 18.375rem;
+        bottom: 0;
+        width: 100%;
         height: 3.1875rem;
     `,
     CheckboxWrapper: styled.div`
@@ -40,7 +42,7 @@ const SU = {
     SelectAllWrapper: styled.div`
         width: inherit;
         height: 1.5625rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.3);
     `,
     SelectEachWrapper: styled.div`
         margin-top: 0.875rem;

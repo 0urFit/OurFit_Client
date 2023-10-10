@@ -68,7 +68,7 @@ const HD = {
         align-items: center;
         width: 100%;
         height: inherit;
-        margin-top: 10px;
+        margin-top: 0.625rem;
     `,
     WeekSelectBox: styled.div`
         display: flex;
@@ -108,7 +108,7 @@ const HD = {
         color: #b4b4b4;
     `,
     JustSpacing: styled.td`
-        padding: 10px;
+        padding: 0.625rem;
     `,
     RoutineSlideBox: styled.div`
         display: flex;
@@ -123,7 +123,7 @@ const HD = {
         width: 100%;
         height: inherit;
         min-width: 14.625rem;
-        margin-right: 15px;
+        margin-right: 0.9375rem;
         border-radius: 0.3125rem;
         background-color: #fff;
         overflow-y: scroll;
@@ -176,7 +176,7 @@ const HD = {
     ExerciseTh: styled.th``,
     ExerciseDetailTbody: styled.tbody``,
     ExerciseDetailTd: styled.td`
-        margin-bottom: 5px;
+        margin-bottom: 0.3125rem;
         padding: 0 0.625rem;
     `,
 };
