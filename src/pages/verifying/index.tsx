@@ -1,14 +1,16 @@
 import { SocialKakaoLogin } from '@/apis/auth';
+import { ServiceErrorMessage } from '@/apis/type';
 import Loading from '@/components/loading';
 import { VerifyingPagePropsType } from '@/components/loading/type';
 import wrapper from '@/store/store';
+import axios from 'axios';
 import { GetServerSidePropsContext, GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 
 const VerifyingPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <Loading props={props} />;
 };
 
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async (ctx: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(() => async (ctx: GetServerSidePropsContext) => {
     const { code, error_description } = ctx.query;
 
     const KAKAO_CODE = code as string;
@@ -36,15 +38,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         verifyingPageProps.accessToken = accessToken;
         verifyingPageProps.refreshToken = refreshToken;
         verifyingPageProps.success = success;
-    } catch (error: any) {
-        const { response } = error;
-        const { status } = response;
+    } catch (error) {
+        if (axios.isAxiosError<ServiceErrorMessage>(error) && error.response) {
+            const { response } = error;
+            const { status } = response;
 
-        if (status === 404) {
-            const { email, gender } = response.data.result;
+            if (status === 404) {
+                const { email, gender } = response.data.result;
 
-            verifyingPageProps.userInfo.userEmail = email;
-            verifyingPageProps.userInfo.userGender = gender || '';
+                verifyingPageProps.userInfo.userEmail = email;
+                verifyingPageProps.userInfo.userGender = gender || '';
+            }
         }
     }
 

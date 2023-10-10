@@ -130,11 +130,13 @@ const Login = () => {
                     <SubmitButton buttonValue="로그인" isValid={!isValid} />
                 </LI.LoginBtnWrapper>
             </LI.LoginForm>
-            <Link href={KAKAO_API_URL}>
-                <LI.KakaoBtnWrapper>
-                    <LI.KakaoBtn>카카오로 로그인</LI.KakaoBtn>
-                </LI.KakaoBtnWrapper>
-            </Link>
+            {KAKAO_API_URL && (
+                <Link href={KAKAO_API_URL}>
+                    <LI.KakaoBtnWrapper>
+                        <LI.KakaoBtn>카카오로 로그인</LI.KakaoBtn>
+                    </LI.KakaoBtnWrapper>
+                </Link>
+            )}
             <LI.SignUpLinkBtnWrapper>
                 <LI.SignUpLinkBtn onClick={handleMoveSignUp}>회원가입</LI.SignUpLinkBtn>
             </LI.SignUpLinkBtnWrapper>
