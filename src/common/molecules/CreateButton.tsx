@@ -17,8 +17,6 @@ const CreateButton = ({ message, handleSubmit }: propsType) => {
     useEffect(() => {
         if (currentLocation.includes('home')) {
             setWidth({ width: '19.25rem' });
-        } else if (currentLocation.includes('save')) {
-            setWidth({ width: '22.125rem' });
         }
     }, []);
 
