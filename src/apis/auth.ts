@@ -1,9 +1,7 @@
-import { InputType } from '@/components/signup/type';
 import { instance, socialInstance, tokenInstance } from './client';
-interface LoginApiType {
-    email: string;
-    password: string;
-}
+import { InputType } from '@/components/signup/type';
+import { ProfileInfoEditType } from '@/components/mypage/types';
+import { LoginApiType } from './type';
 
 export const LocalLogin = async (loginData: LoginApiType) => {
     return await instance.post('/login', loginData);
@@ -52,15 +50,10 @@ export const SaveRoutineDetail = async (routineId: number, week: number) => {
     return await tokenInstance.get(`/mypage/exercise/${routineId}/${week}`);
 };
 
-export const RoutineSuccess = async (routineId: number, week: number, day: string, percent: number, lastday: boolean) => {
-    return await tokenInstance.patch('/mypage/exercise/complete', {
-        params: {
-            routineId,
-            week,
-            day,
-            percent,
-            lastday,
-        },
+export const RoutineSuccess = async (routindId: number, week: number, day: string) => {
+    return await tokenInstance.post(`/mypage/exercise/${routindId}/complete`, {
+        week,
+        day,
     });
 };
 
@@ -69,7 +62,7 @@ export const GetRoutine = async (endpoint: string | undefined) => {
 };
 
 export const GetDetailRoutine = async (routineId: number, week: number) => {
-    return await tokenInstance.get(`/exercise/${routineId}/${week}`);
+    return await tokenInstance.get(`/exercise/${routineId}/week/${week}`);
 };
 
 export const SaveRoutineInfo = async (routineId: number | undefined) => {
@@ -86,4 +79,8 @@ export const GetLikedRoutine = async () => {
 
 export const GetUserInfo = async () => {
     return await tokenInstance.get('/mypage');
+};
+
+export const EditUserInfo = async (editedUserInfoData: ProfileInfoEditType) => {
+    return await tokenInstance.patch('/mypage/u', editedUserInfoData);
 };

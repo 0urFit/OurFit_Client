@@ -1,36 +1,29 @@
 import styled from 'styled-components';
 
 const MP = {
-    DescBox: styled.div`
+    DescFormBox: styled.form`
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(8, 1fr);
         width: 100%;
+        height: 15.625rem;
         margin-bottom: 1.5625rem;
         border: 0.0625rem solid #e1e2e3;
         border-radius: 0.3125rem;
     `,
-    DescTable: styled.table`
-        width: inherit;
-        border-collapse: separate;
-        border-spacing: 10px;
-    `,
-    Thead: styled.thead``,
-    Tbody: styled.tbody``,
-    Tr: styled.tr``,
-    Th: styled.th`
-        text-align: left;
-        font-weight: 900;
-    `,
-    contentTitle: styled.td`
-        vertical-align: middle;
-        width: 50%;
-        border: 0.0625rem solid transparent;
-        font-size: 13px;
-    `,
-    content: styled.td`
-        vertical-align: middle;
-        color: #e1e2e3;
-        font-size: 13px;
-    `,
 
+    DescTitle: styled.h1``,
+    ProfileInfoEdit: styled.button`
+        justify-self: end;
+        margin-right: 0.625rem;
+    `,
+    ProfileInfoEditSuccess: styled.button`
+        justify-self: end;
+        margin-right: 0.625rem;
+    `,
+    ContentsTitle: styled.div``,
+    ContentsValue: styled.div``,
     BottomWrapper: styled.div`
         position: absolute;
         bottom: 0;

@@ -1,71 +1,81 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import styled from 'styled-components';
 
-interface Props {
+import TableBody from './TableBody';
+import NoExerciseDay from '@/common/molecules/NoExerciseDay';
+
+import { SaveRoutineDetail } from '@/apis/auth';
+import { convertToNumber } from '@/utils/convertToNumber';
+import { convertToMapObject } from '@/utils/convertToMapObject';
+import getErrorMessage from '@/utils/getErrorMessage';
+
+interface ExerciseDetailProps {
     today: string;
-    saveRoutineDetail?: [
-        {
-            day: string;
-            exercises: [];
-        },
-    ];
+    routineId: string;
+    weekProgress: string;
 }
 
-const ExerciseDetail = ({ today, saveRoutineDetail }: Props) => {
-    const [exerciseDetail, setExerciseDetail] = useState<Map<string, object>>();
+const ExerciseDetail = ({ today, routineId, weekProgress }: ExerciseDetailProps) => {
+    const [exerciseDetail, setExerciseDetail] = useState<Map<string, []>>();
+
+    const convertedData = convertToNumber(routineId, weekProgress);
 
     useEffect(() => {
-        const mapObj = new Map();
-        // 첫 렌더링 때만 값이 들어오고 그 후에는 saveRoutineDetail에 빈 배열이 들어온다.
-        for (const item of saveRoutineDetail ?? []) {
-            mapObj.set(item.day, item.exercises);
-        }
+        const fetchSaveRoutine = async (id: number, week: number) => {
+            try {
+                const response = await SaveRoutineDetail(id, week);
+                const { result } = response.data;
 
-        setExerciseDetail(mapObj);
+                setExerciseDetail(convertToMapObject(result.days));
+            } catch (error) {
+                throw new Error(getErrorMessage(error));
+            }
+        };
+
+        fetchSaveRoutine(convertedData.id, convertedData.week);
     }, []);
 
     return (
-        <RoutineBox>
-            <Title>1. Bench Press</Title>
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>Set</Th>
-                        <Th>Weight</Th>
-                        <Th>Reps</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td>1</Td>
-                        <Td>100kg</Td>
-                        <Td>10</Td>
-                    </Tr>
-                </Tbody>
-            </Table>
-        </RoutineBox>
+        <Box>
+            {!exerciseDetail?.get(today) ? (
+                <NoExerciseDay />
+            ) : (
+                exerciseDetail?.get(today)?.map(({ name, sets }) => (
+                    <RoutineBox key={name}>
+                        <Table>
+                            <Title>{name}</Title>
+                            <Thead>
+                                <Tr>
+                                    <Th>Set</Th>
+                                    <Th>Weight</Th>
+                                    <Th>Reps</Th>
+                                </Tr>
+                            </Thead>
+                            <TableBody sets={sets} />
+                        </Table>
+                    </RoutineBox>
+                ))
+            )}
+        </Box>
     );
 };
 
+const Box = styled.div``;
 const RoutineBox = styled.div``;
-const Title = styled.p`
+const Title = styled.caption`
     text-align: left;
     margin-bottom: 0.625rem;
+    font-weight: bold;
 `;
 const Table = styled.table`
     width: 100%;
+    margin-bottom: 0.625rem;
 `;
 const Thead = styled.thead`
     line-height: 1.5;
 `;
-const Tbody = styled.tbody``;
 const Tr = styled.tr``;
 const Th = styled.th``;
-const Td = styled.td`
-    font-size: 14px;
-    font-weight: bold;
-    color: #828282;
-`;
-const CheckBox = styled.input``;
 
 export default ExerciseDetail;
