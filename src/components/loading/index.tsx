@@ -31,10 +31,10 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
             manageRefreshToken.SET(refreshToken);
 
             if (success) {
-                router.push('/home');
+                router.replace('/home');
             } else {
                 dispatch(saveUserInfo(userInfo));
-                router.push('/signup/kakao');
+                router.replace('/signup/kakao');
             }
         }
     }, []);
