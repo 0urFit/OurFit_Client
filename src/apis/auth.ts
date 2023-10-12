@@ -92,3 +92,7 @@ export const GetUserInfo = async () => {
 export const EditUserInfo = async (editedUserInfoData: ProfileInfoEditType) => {
     return await tokenInstance.patch('/mypage/u', editedUserInfoData);
 };
+
+export const CheckRoutineIsSaved = async (routineId: string) => {
+    return await tokenInstance.get(`/exercise/enrolled/${routineId}`);
+};
