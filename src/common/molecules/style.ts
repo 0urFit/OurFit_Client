@@ -109,7 +109,7 @@ const SB = {
 };
 
 const CB = {
-    Button: styled.button`
+    Button: styled.button<StyledProps>`
         width: 100%;
         height: 3.75rem;
         font-weight: 700;
@@ -118,7 +118,7 @@ const CB = {
         text-align: center;
         color: #ffffff;
         border-radius: 0.625rem;
-        background-color: rgb(49, 121, 238);
+        background-color: ${({ $isSaved }) => ($isSaved ? '#e1e2e3' : '#3179ee')};
     `,
 };
 
