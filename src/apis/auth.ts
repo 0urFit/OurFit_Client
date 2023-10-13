@@ -54,11 +54,11 @@ export const MainSave = async (category: string) => {
     });
 };
 
-export const SaveRoutineDetail = async (routineId: number, week: number) => {
-    return await tokenInstance.get(`/mypage/exercise/${routineId}/${week}`);
+export const SaveRoutineDetail = async (routineId: number) => {
+    return await tokenInstance.get(`/mypage/exercise/${routineId}`);
 };
 
-export const RoutineSuccess = async (routindId: number, week: number, day: string) => {
+export const RoutineSuccess = async (routindId: number, week: number | undefined | '', day: string) => {
     return await tokenInstance.post(`/mypage/exercise/${routindId}/complete`, {
         week,
         day,

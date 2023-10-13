@@ -364,4 +364,26 @@ const NE = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE };
+const RCM = {
+    Box: styled(RM.Box)`
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        height: 12.5rem;
+        padding: 0.75rem;
+        border-radius: 10px;
+        background-color: #fff;
+    `,
+    Title: styled.p`
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5;
+    `,
+    LoadingTitle: styled.span`
+        color: #3179ee;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE, RCM };
