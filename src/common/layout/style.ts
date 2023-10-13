@@ -13,7 +13,7 @@ const DL = {
         box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
         border-radius: 0.9375rem;
 
-        @media screen and (max-width: 25.875rem) {
+        @media screen and (max-width: 26.875rem) {
             width: 100vw;
             min-width: 22.5rem;
             height: 100vh;
