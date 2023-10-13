@@ -91,9 +91,7 @@ const Save = () => {
                     ))}
                 </SV.CardList>
             )}
-            <SV.ButtonWrapper>
-                <BottomBar />
-            </SV.ButtonWrapper>
+            <BottomBar />
             {portalElement && deleteResponse ? createPortal(<RoutineModal />, portalElement) : null}
             {backDropElement && deleteResponse ? createPortal(<BackDrop />, backDropElement) : null}
         </SV.Box>

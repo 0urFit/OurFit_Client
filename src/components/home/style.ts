@@ -27,8 +27,11 @@ const H = {
         }
     `,
     BottomButtonWrapper: styled.div`
-        position: absolute;
+        position: fixed;
+        margin: 0 auto;
         bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
     `,
 };
