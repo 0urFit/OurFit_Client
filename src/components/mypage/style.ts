@@ -13,7 +13,9 @@ const MP = {
         border-radius: 0.3125rem;
     `,
 
-    DescTitle: styled.h1``,
+    DescTitle: styled.h1`
+        color: red;
+    `,
     ProfileInfoEdit: styled.button`
         justify-self: end;
         margin-right: 0.625rem;
