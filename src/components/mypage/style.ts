@@ -22,7 +22,6 @@ const MP = {
         justify-self: end;
         margin-right: 0.625rem;
     `,
-    ContentsTitle: styled.div``,
     ContentsValue: styled.div``,
     BottomWrapper: styled.div`
         position: absolute;
