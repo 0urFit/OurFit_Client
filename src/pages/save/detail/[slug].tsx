@@ -18,6 +18,8 @@ SaveDetailPage.getLayout = function getLayout(page: ReactElement) {
                 <PrevButton />
             </DL.ImgWrapper>
             {page}
+            <div id="portal"></div>
+            <div id="back-drop"></div>
         </DL.PageLayout>
     );
 };
