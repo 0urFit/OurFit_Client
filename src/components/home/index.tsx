@@ -48,9 +48,7 @@ const Home = () => {
                     <RoutineCard key={id} id={id} imgpath={imgpath} period={period} enrolled={enrolled} fewTime={fewTime} routineName={routineName} category={category} liked={liked} />
                 ))}
             </H.RoutineListBox>
-            <H.BottomButtonWrapper>
-                <BottomBar />
-            </H.BottomButtonWrapper>
+            <BottomBar />
         </H.Box>
     );
 };
