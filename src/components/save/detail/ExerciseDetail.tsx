@@ -13,18 +13,18 @@ import getErrorMessage from '@/utils/getErrorMessage';
 interface ExerciseDetailProps {
     today: string;
     routineId: string;
-    weekProgress: string;
+    handleExerciseComplete: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const ExerciseDetail = ({ today, routineId, weekProgress }: ExerciseDetailProps) => {
+const ExerciseDetail = ({ today, routineId, handleExerciseComplete }: ExerciseDetailProps) => {
     const [exerciseDetail, setExerciseDetail] = useState<Map<string, []>>();
 
-    const convertedData = convertToNumber(routineId, weekProgress);
+    const convertedData = convertToNumber(routineId);
 
     useEffect(() => {
-        const fetchSaveRoutine = async (id: number, week: number) => {
+        const fetchSaveRoutine = async (id: number) => {
             try {
-                const response = await SaveRoutineDetail(id, week);
+                const response = await SaveRoutineDetail(id);
                 const { result } = response.data;
 
                 setExerciseDetail(convertToMapObject(result.days));
@@ -33,8 +33,8 @@ const ExerciseDetail = ({ today, routineId, weekProgress }: ExerciseDetailProps)
             }
         };
 
-        fetchSaveRoutine(convertedData.id, convertedData.week);
-    }, []);
+        fetchSaveRoutine(convertedData.id);
+    }, [handleExerciseComplete]);
 
     return (
         <Box>

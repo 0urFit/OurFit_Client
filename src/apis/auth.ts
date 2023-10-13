@@ -23,11 +23,19 @@ export const LocalSignUp = async (SignUpData: InputType) => {
 };
 
 export const LocalNickname = async (nickname: string) => {
-    return await instance.get(`/checknick/${nickname}`);
+    return await instance.get('/checknick', {
+        params: {
+            nick: nickname,
+        },
+    });
 };
 
 export const LocalEmail = async (email: string) => {
-    return await instance.get(`/checkemail/${email}`);
+    return await instance.get('/checkemail', {
+        params: {
+            email,
+        },
+    });
 };
 
 export const SocialKakaoLogin = async (authCode: string | undefined) => {
@@ -46,11 +54,11 @@ export const MainSave = async (category: string) => {
     });
 };
 
-export const SaveRoutineDetail = async (routineId: number, week: number) => {
-    return await tokenInstance.get(`/mypage/exercise/${routineId}/${week}`);
+export const SaveRoutineDetail = async (routineId: number) => {
+    return await tokenInstance.get(`/mypage/exercise/${routineId}`);
 };
 
-export const RoutineSuccess = async (routindId: number, week: number, day: string) => {
+export const RoutineSuccess = async (routindId: number, week: number | undefined | '', day: string) => {
     return await tokenInstance.post(`/mypage/exercise/${routindId}/complete`, {
         week,
         day,
@@ -83,4 +91,8 @@ export const GetUserInfo = async () => {
 
 export const EditUserInfo = async (editedUserInfoData: ProfileInfoEditType) => {
     return await tokenInstance.patch('/mypage/u', editedUserInfoData);
+};
+
+export const CheckRoutineIsSaved = async (routineId: string) => {
+    return await tokenInstance.get(`/exercise/enrolled/${routineId}`);
 };

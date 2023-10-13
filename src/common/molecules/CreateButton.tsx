@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-
-import { CSSProperties } from 'styled-components';
-
 import { CB } from './style';
 
 interface propsType {
     message: string;
     handleSubmit?: () => void;
+    isSaved?: boolean;
 }
 
-const CreateButton = ({ message, handleSubmit }: propsType) => {
-    const currentLocation = useRouter().asPath;
-    const [width, setWidth] = useState<CSSProperties>({});
-
-    useEffect(() => {
-        if (currentLocation.includes('home')) {
-            setWidth({ width: '19.25rem' });
-        } else if (currentLocation.includes('save')) {
-            setWidth({ width: '22.125rem' });
-        }
-    }, []);
-
+const CreateButton = ({ message, handleSubmit, isSaved }: propsType) => {
     return (
-        <CB.Button style={width} onClick={handleSubmit}>
+        <CB.Button disabled={isSaved} onClick={handleSubmit} $isSaved={isSaved}>
             {message}
         </CB.Button>
     );

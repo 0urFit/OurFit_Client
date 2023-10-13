@@ -10,12 +10,7 @@ interface propsType {
 const InfoInput = ({ inputType, explanation, register }: propsType) => {
     return (
         <II.InputWrapper>
-            <II.Input
-                type={inputType}
-                placeholder={explanation}
-                step={inputType === 'number' ? '0.1' : ''}
-                {...register}
-            />
+            <II.Input type={inputType} placeholder={explanation} step={inputType === 'number' ? '0.1' : ''} {...register} />
         </II.InputWrapper>
     );
 };

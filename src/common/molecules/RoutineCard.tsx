@@ -35,7 +35,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
         <RC.CardBox>
             <RC.CardWrapper>
                 <RC.ImgWrapper>
-                    <Image priority sizes="(max-width: 100px)" src={imgpath} fill={true} alt="운동이미지" />
+                    <Image priority sizes="(max-width: 6.25rem)" src={imgpath} fill={true} alt="운동이미지" />
                 </RC.ImgWrapper>
                 <RC.DescWrapper>
                     <Link

@@ -13,9 +13,9 @@ const DL = {
         box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
         border-radius: 0.9375rem;
 
-        @media screen and (max-width: 414px) {
+        @media screen and (max-width: 25.875rem) {
             width: 100vw;
-            min-width: 374px;
+            min-width: 22.5rem;
             height: 100vh;
             left: 0;
             transform: none;
@@ -30,6 +30,7 @@ const DL = {
     FirstContainer: styled.div`
         display: flex;
         align-items: center;
+        position: relative;
         margin: 2.5rem 3rem;
         width: calc(100% - 6rem);
         height: calc(100% - 5rem);
@@ -37,7 +38,7 @@ const DL = {
     SecondContainer: styled.div`
         position: relative;
         display: inline-block;
-        margin: 2rem 1.125rem 0.625rem;
+        margin: 2rem 1.125rem 0.625rem 1.125rem;
         width: calc(100% - 2.25rem);
         height: calc(100% - 2.625rem);
     `,

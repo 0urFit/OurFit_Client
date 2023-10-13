@@ -6,7 +6,7 @@ import CreateButton from '@/common/molecules/CreateButton';
 import LikeControl from '@/common/molecules/LikeControl';
 import RoutineDetail from '../RoutineDetail';
 
-import { GetDetailRoutine, SaveRoutineInfo } from '@/apis/auth';
+import { CheckRoutineIsSaved, GetDetailRoutine, SaveRoutineInfo } from '@/apis/auth';
 import useAddOptions from '@/hooks/useAddOptions';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import getErrorMessage from '@/utils/getErrorMessage';
@@ -21,6 +21,7 @@ import { getServerSideProps } from '@/pages/home/detail/[slug]';
 const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [overviewInformation, setOverviewInformation] = useState({ routineName: '', programLength: 0, dayPerWeek: 0 });
     const [routineSlideList, setRoutineSlideList] = useState([]);
+    const [isSaved, setIsSaved] = useState(false);
 
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -31,8 +32,7 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
     const handleSaveRoutine = async () => {
         try {
             const response = await SaveRoutineInfo(converted_routine_id);
-
-            return response.data;
+            setIsSaved(response.data.success);
         } catch (e) {
             throw new Error(getErrorMessage(e));
         }
@@ -85,6 +85,21 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
         getRoutineDetailInfo();
     }, [week]);
 
+    useEffect(() => {
+        const getRoutineIsSave = async () => {
+            try {
+                const response = await CheckRoutineIsSaved(converted_routine_id);
+                const { success } = response.data;
+
+                setIsSaved(success);
+            } catch (error) {
+                console.log('등록안됨');
+            }
+        };
+
+        getRoutineIsSave();
+    }, [isSaved]);
+
     return (
         <HD.Box>
             <HD.RoutineTitleBox>
@@ -129,7 +144,7 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
                 </HD.RoutineMain>
                 <HD.FooterBox>
                     <LikeControl id={converted_routine_id} />
-                    <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" />
+                    <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" isSaved={isSaved} />
                 </HD.FooterBox>
             </HD.RoutineDescBox>
         </HD.Box>

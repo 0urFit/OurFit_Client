@@ -1,15 +1,16 @@
 import { Cookies } from 'react-cookie';
+import { TOKEN } from './constants';
 
 const cookies = new Cookies();
 
 export const manageRefreshToken = {
     GET: () => {
-        return cookies.get('refresh_token');
+        return cookies.get(TOKEN.REFRESH_TOKEN_KEY);
     },
     SET: (token: string) => {
-        return cookies.set('refresh_token', token);
+        return cookies.set(TOKEN.REFRESH_TOKEN_KEY, token);
     },
     REMOVE: () => {
-        return cookies.remove('refresh_token', { path: '/' });
+        return cookies.remove(TOKEN.REFRESH_TOKEN_KEY, { path: '/' });
     },
 };

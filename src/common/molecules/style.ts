@@ -23,7 +23,7 @@ const LI = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 1px solid black;
+        border: 0.0625rem solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -42,7 +42,7 @@ const LI = {
 const II = {
     InputWrapper: styled.div`
         position: relative;
-        width: 18.375rem;
+        width: 100%;
         height: 3.1875rem;
     `,
     Input: styled.input`
@@ -51,7 +51,7 @@ const II = {
         height: inherit;
         font-weight: 400;
         font-size: 0.875rem;
-        border: 1px solid black;
+        border: 0.0625rem solid black;
         border-radius: 0.625rem;
 
         &::placeholder {
@@ -109,8 +109,8 @@ const SB = {
 };
 
 const CB = {
-    Button: styled.button`
-        width: inherit;
+    Button: styled.button<StyledProps>`
+        width: 100%;
         height: 3.75rem;
         font-weight: 700;
         font-size: 1.25rem;
@@ -118,7 +118,7 @@ const CB = {
         text-align: center;
         color: #ffffff;
         border-radius: 0.625rem;
-        background-color: rgb(49, 121, 238);
+        background-color: ${({ $isSaved }) => ($isSaved ? '#e1e2e3' : '#3179ee')};
     `,
 };
 
@@ -128,7 +128,7 @@ const BB = {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         width: 100%;
         height: 4.375rem;
-        border: 1px solid #000000;
+        border: 0.0625rem solid #000000;
         border-radius: 2.5rem;
         background-color: #fff;
     `,
@@ -160,7 +160,7 @@ const RC = {
         height: 6.875rem;
         margin-top: 0.625rem;
         padding-bottom: 0.625rem;
-        border-bottom: 1px solid #e1e2e3;
+        border-bottom: 0.0625rem solid #e1e2e3;
 
         &:first-child {
             margin-top: 0;
@@ -169,7 +169,6 @@ const RC = {
     CardWrapper: styled.div`
         display: flex;
         width: 100%;
-        /* margin: 0.3125rem;  */
         height: 100%;
     `,
     ImgWrapper: styled.div`
@@ -255,10 +254,10 @@ const LC = {
 
 const PC = {
     CardBox: styled.div`
-        width: 354px;
+        width: 22.125rem;
         height: auto;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #626161;
+        margin-bottom: 0.625rem;
+        border-bottom: 0.0625rem solid #626161;
         background-color: #bfbfbf;
     `,
     CardWrapper: styled.div`
@@ -365,4 +364,26 @@ const NE = {
     `,
 };
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE };
+const RCM = {
+    Box: styled(RM.Box)`
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 80%;
+        height: 12.5rem;
+        padding: 0.75rem;
+        border-radius: 10px;
+        background-color: #fff;
+    `,
+    Title: styled.p`
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5;
+    `,
+    LoadingTitle: styled.span`
+        color: #3179ee;
+    `,
+};
+
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE, RCM };
