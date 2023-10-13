@@ -26,7 +26,7 @@ const MP = {
     ContentsValue: styled.div``,
     BottomWrapper: styled.div`
         position: absolute;
-        bottom: 0;
+        bottom: 4.375rem;
         width: 100%;
     `,
     LikeListBox: styled.div`
