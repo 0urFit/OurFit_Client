@@ -69,6 +69,7 @@ const MP = {
 
 const ML = {
     MypageLikeBox: styled.div`
+        width: 100%;
         height: 100%;
         margin: 0 1.125rem;
         overflow-y: scroll;
@@ -84,7 +85,7 @@ const ML = {
         font-weight: 800;
     `,
     LikedList: styled.div`
-        height: auto;
+        height: calc(100% - 6.8125rem);
     `,
 };
 

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
-import BottomBar from '@/common/molecules/BottomBar';
 
 import { GetRoutine } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { SelectOptions } from '@/data/SaveData';
 
 import { H } from './style';
-import OurfitLogo from '../../../public/assets/Ourfit_logo.svg';
 
 const Home = () => {
     const [routineList, setRoutineList] = useState([]);
@@ -37,9 +34,6 @@ const Home = () => {
 
     return (
         <H.Box>
-            <H.LogoBox>
-                <Image priority src={OurfitLogo} fill={true} alt="로고" />
-            </H.LogoBox>
             <H.SelectBox>
                 <SmallSelect placeholder={'운동종목'} options={SelectOptions} handleChangeCategory={handleChangeCategory} />
             </H.SelectBox>
@@ -48,7 +42,6 @@ const Home = () => {
                     <RoutineCard key={id} id={id} imgpath={imgpath} period={period} enrolled={enrolled} fewTime={fewTime} routineName={routineName} category={category} liked={liked} />
                 ))}
             </H.RoutineListBox>
-            <BottomBar />
         </H.Box>
     );
 };

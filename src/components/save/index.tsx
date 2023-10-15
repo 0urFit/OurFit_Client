@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
-import BottomBar from '@/common/molecules/BottomBar';
 import RoutineModal from '@/common/molecules/RoutineModal';
 import BackDrop from '@/common/molecules/BackDrop';
 
@@ -91,7 +90,6 @@ const Save = () => {
                     ))}
                 </SV.CardList>
             )}
-            <BottomBar />
             {portalElement && deleteResponse ? createPortal(<RoutineModal />, portalElement) : null}
             {backDropElement && deleteResponse ? createPortal(<BackDrop />, backDropElement) : null}
         </SV.Box>

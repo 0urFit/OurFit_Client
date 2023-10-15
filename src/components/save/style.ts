@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const SV = {
     Box: styled.div`
-        width: 100%;
         height: 100%;
     `,
     SelectWrapper: styled.div`
@@ -30,11 +29,8 @@ const SV = {
         line-height: 1.5rem;
     `,
     CardList: styled.div`
-        margin-top: 1.25rem;
-        width: inherit;
-        height: calc(100% - 8.125rem);
+        height: calc(100% - 2rem);
         overflow-y: scroll;
-
         &::-webkit-scrollbar {
             display: none;
         }
@@ -49,14 +45,9 @@ const SV = {
 
 const BB = {
     Container: styled.div`
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: inherit;
-        border-radius: 0.9375rem;
+        height: 100%;
     `,
     TopBox: styled.div`
-        width: inherit;
         height: 9rem;
         display: flex;
         text-align: center;
@@ -89,23 +80,17 @@ const BB = {
         }
     `,
     MainContainer: styled.div`
-        height: 100%;
+        height: calc(100% - 9rem);
         padding: 0.5rem;
         background-color: #ededed;
-        border-radius: 2.5rem 2.5rem 0.9375rem 0.9375rem;
+        border-radius: 2.5rem 2.5rem 0 0;
         border-top: 0.0625rem solid #626161;
-        overflow: hidden;
-    `,
-    MainBox: styled.div`
-        height: inherit;
     `,
     Form: styled.form`
-        height: calc(100% - 3rem);
-    `,
-    FormContents: styled.div`
-        height: calc(100% - 3.75rem);
+        height: calc(100% - 2.75rem);
         overflow-y: scroll;
     `,
+    FormContents: styled.div``,
     SubmitBtnWrapper: styled.div`
         text-align: center;
         margin-top: 0.3125rem;
@@ -130,11 +115,8 @@ const PN = {
     WeekButtonWrapper: styled.div`
         margin-right: 0.1875rem;
         width: 3rem;
-        height: inherit;
     `,
     WeekButton: styled.button<{ currentDay: boolean }>`
-        width: inherit;
-        height: inherit;
         font-weight: 600;
         font-size: 0.75rem;
         color: ${props => (props.currentDay ? '#fff' : '#000')};

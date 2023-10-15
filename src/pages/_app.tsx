@@ -2,7 +2,6 @@ import { ReactElement, ReactNode } from 'react';
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
-import DefaultLayout from '@/common/layout/DefaultLayout';
 import GlobalStyle from '@/styles/GlobalStyle';
 import wrapper from '@/store/store';
 
@@ -15,14 +14,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
-    const getLayout =
-        Component.getLayout ??
-        (page => (
-            <>
-                <GlobalStyle />
-                <DefaultLayout>{page}</DefaultLayout>
-            </>
-        ));
+    const getLayout = Component.getLayout ?? (page => page);
 
     return getLayout(
         <>
