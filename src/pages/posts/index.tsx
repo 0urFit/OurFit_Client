@@ -1,9 +1,15 @@
+import DefaultLayout from '@/common/layout/DefaultLayout';
 import Posts from '@/components/posts';
 
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
+import { ReactElement } from 'react';
 
 const PostPage = () => {
     return <Posts />;
+};
+
+PostPage.getLayout = function getLayout(page: ReactElement) {
+    return <DefaultLayout isHeader={true}>{page}</DefaultLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
