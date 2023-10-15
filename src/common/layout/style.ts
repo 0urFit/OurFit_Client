@@ -1,47 +1,50 @@
 import styled from 'styled-components';
+import { StyledProps } from '../molecules/type';
 
-const DL = {
+export const DL = {
     PageLayout: styled.div`
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Open+Sans&display=swap');
         font-family: 'Nanum Gothic', sans-serif;
         font-family: 'Open Sans', sans-serif;
-        position: fixed;
+        position: relative;
         left: 50%;
         transform: translate(-50%, 5%);
         width: 24.375rem;
         height: 52.75rem;
-        box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-        border-radius: 0.9375rem;
+        border: 1px solid #888;
 
         @media screen and (max-width: 27.5rem) {
-            width: 100vw;
+            width: 100%;
             min-width: 22.5rem;
-            height: 100vh;
+            height: 100%;
             left: 0;
             transform: none;
         }
     `,
-    ImgWrapper: styled.div`
-        position: absolute;
-        top: 1.25rem;
-        left: 1.25rem;
-        cursor: pointer;
-    `,
-    FirstContainer: styled.div`
+    AuthLayoutStyle: styled.div`
         display: flex;
         align-items: center;
-        position: relative;
-        margin: 2.5rem 3rem;
-        width: calc(100% - 6rem);
-        height: calc(100% - 5rem);
+        height: inherit;
+        margin: 0 0.9375rem;
     `,
-    SecondContainer: styled.div`
-        position: relative;
-        display: inline-block;
-        margin: 2rem 1.125rem 0.625rem 1.125rem;
-        width: calc(100% - 2.25rem);
-        height: calc(100% - 2.625rem);
+    PrevBtnWrapper: styled.div`
+        position: absolute;
+        top: 0.25rem;
+        left: 0.25rem;
+    `,
+    Header: styled.header`
+        position: sticky;
+        top: 0;
+        height: 3.75rem;
+        text-align: center;
+    `,
+    Main: styled.main<StyledProps>`
+        height: ${({ $isHeader }) => ($isHeader ? 'calc(100% - 7.5rem)' : 'calc(100% - 3.75rem)')};
+    `,
+    Nav: styled.nav`
+        position: sticky;
+        bottom: 0;
+        width: inherit;
+        height: 3.75rem;
     `,
 };
-
-export { DL };

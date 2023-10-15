@@ -1,22 +1,14 @@
 import { ReactElement } from 'react';
-import { DL } from '@/common/layout/style';
-import PrevButton from '@/common/molecules/PrevButton';
 import HomeDetail from '@/components/home/detail';
 import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next/types';
+import DefaultLayout from '@/common/layout/DefaultLayout';
 
 const HomeDetailPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <HomeDetail props={props} />;
 };
 
 HomeDetailPage.getLayout = function getLayout(page: ReactElement) {
-    return (
-        <DL.PageLayout>
-            <DL.ImgWrapper>
-                <PrevButton />
-            </DL.ImgWrapper>
-            {page}
-        </DL.PageLayout>
-    );
+    return <DefaultLayout isHeader={false}>{page}</DefaultLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {

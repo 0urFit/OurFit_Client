@@ -1,24 +1,21 @@
 import { ReactElement } from 'react';
 
-import { DL } from '@/common/layout/style';
-import PrevButton from '@/common/molecules/PrevButton';
 import MypageLikes from '@/components/mypage/likes';
 
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
+import DefaultLayout from '@/common/layout/DefaultLayout';
+import AuthLayout from '@/common/layout/AuthLayout';
 
 const MyPageLikesPage = () => {
     return <MypageLikes />;
 };
 
 MyPageLikesPage.getLayout = function getLayout(page: ReactElement) {
-    return (
-        <DL.PageLayout>
-            <DL.ImgWrapper>
-                <PrevButton />
-            </DL.ImgWrapper>
-            {page}
-        </DL.PageLayout>
-    );
+    return <DefaultLayout isHeader={true}>{page}</DefaultLayout>;
+};
+
+MyPageLikesPage.getLayout = function getLayout(page: ReactElement) {
+    return <AuthLayout isShowPrevBtn={true}>{page}</AuthLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {

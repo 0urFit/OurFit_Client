@@ -2,37 +2,19 @@ import styled from 'styled-components';
 
 const H = {
     Box: styled.div`
-        position: relative;
         height: 100%;
-    `,
-    LogoBox: styled.div`
-        position: relative;
-        width: 100%;
-        height: 1.25rem;
-        margin: 0 auto;
-        margin-bottom: 1.2219rem;
     `,
     SelectBox: styled.div`
         display: flex;
         justify-content: right;
-        margin-bottom: 0.625rem;
     `,
     RoutineListBox: styled.div`
-        height: calc(100% - 10rem);
+        height: calc(100% - 2rem);
         overflow-y: scroll;
-        padding-top: 0.625rem;
 
         &::-webkit-scrollbar {
             display: none;
         }
-    `,
-    BottomButtonWrapper: styled.div`
-        position: fixed;
-        margin: 0 auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
     `,
 };
 
@@ -63,7 +45,7 @@ const HD = {
         border: 0.0625rem solid #e1e2e3;
         border-top-left-radius: 2.5rem;
         border-top-right-radius: 2.5rem;
-        background-color: #ededed;
+        background-color: #ccc;
     `,
     RoutineMain: styled.div`
         display: flex;

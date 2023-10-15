@@ -62,17 +62,15 @@ const ExerciseDetailMain = ({ routineId, weekProgress }: ExerciseDetailMain) => 
     return (
         <>
             <BB.MainContainer>
-                <BB.MainBox>
-                    <PagiNation today={today} handleDay={handleDay} />
-                    <BB.Form onSubmit={handleCompleteWorkout}>
-                        <BB.FormContents>
-                            <ExerciseDetail handleExerciseComplete={handleCompleteWorkout} today={today} routineId={routineId} />
-                        </BB.FormContents>
-                        <BB.SubmitBtnWrapper>
-                            <CreateButton message="운동완료" />
-                        </BB.SubmitBtnWrapper>
-                    </BB.Form>
-                </BB.MainBox>
+                <PagiNation today={today} handleDay={handleDay} />
+                <BB.Form onSubmit={handleCompleteWorkout}>
+                    <BB.FormContents>
+                        <ExerciseDetail handleExerciseComplete={handleCompleteWorkout} today={today} routineId={routineId} />
+                    </BB.FormContents>
+                    <BB.SubmitBtnWrapper>
+                        <CreateButton message="운동완료" />
+                    </BB.SubmitBtnWrapper>
+                </BB.Form>
             </BB.MainContainer>
             {portalElement && isModal ? createPortal(<RoutineCompleteModal />, portalElement) : null}
             {backDropElement && isModal ? createPortal(<BackDrop />, backDropElement) : null}

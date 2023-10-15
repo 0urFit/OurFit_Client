@@ -110,53 +110,51 @@ const SignUpKakao = () => {
     }, [status, isValid, allChecked]);
 
     return (
-        <>
-            <SU.InputList onSubmit={handleSubmit(handleSignUpKakao)}>
-                {SignupKakaoData.map(el => (
-                    <SU.InputWrapper key={el.id}>
-                        <SU.InputTitle>
-                            {el.inputTitle}&nbsp;
-                            {el.essential ? '*' : ''}
-                        </SU.InputTitle>
-                        {el.inputValue === 'gender' ? (
-                            <SelectBox control={control} data={el} defaultValue={user.userGender} />
-                        ) : (
-                            <InfoInput
-                                inputType={el.inputType}
-                                explanation={el.explanation}
-                                register={register(`${el.inputValue}`, {
-                                    required: el.essential,
-                                    minLength: {
-                                        value: el.minLength ? el.minLength : 0,
-                                        message: el.minLengthMessage ? el.minLengthMessage : '',
-                                    },
-                                    pattern: {
-                                        value: el.pattern ? el.pattern : /^/,
-                                        message: el.patternMessage ? el.patternMessage : '',
-                                    },
-                                })}
-                            />
-                        )}
-                        {errors[el.inputValue]?.message && <ErrorMessage errorText={errors[el.inputValue]?.message} />}
-                    </SU.InputWrapper>
+        <SU.InputList onSubmit={handleSubmit(handleSignUpKakao)}>
+            {SignupKakaoData.map(el => (
+                <SU.InputWrapper key={el.id}>
+                    <SU.InputTitle>
+                        {el.inputTitle}&nbsp;
+                        {el.essential ? '*' : ''}
+                    </SU.InputTitle>
+                    {el.inputValue === 'gender' ? (
+                        <SelectBox control={control} data={el} defaultValue={user.userGender} />
+                    ) : (
+                        <InfoInput
+                            inputType={el.inputType}
+                            explanation={el.explanation}
+                            register={register(`${el.inputValue}`, {
+                                required: el.essential,
+                                minLength: {
+                                    value: el.minLength ? el.minLength : 0,
+                                    message: el.minLengthMessage ? el.minLengthMessage : '',
+                                },
+                                pattern: {
+                                    value: el.pattern ? el.pattern : /^/,
+                                    message: el.patternMessage ? el.patternMessage : '',
+                                },
+                            })}
+                        />
+                    )}
+                    {errors[el.inputValue]?.message && <ErrorMessage errorText={errors[el.inputValue]?.message} />}
+                </SU.InputWrapper>
+            ))}
+            <SU.CheckboxWrapper>
+                <SU.SelectAllWrapper>
+                    <input type="checkbox" name="selectall" onChange={e => selectAll(e.target.checked)} checked={allChecked ? true : false} />
+                    <SU.Span>전체 동의</SU.Span>
+                </SU.SelectAllWrapper>
+                {AgreeData.map(el => (
+                    <SU.SelectEachWrapper key={el.id}>
+                        <input type="checkbox" name="agreement" onChange={e => selectEach(e.target.checked, el.id)} checked={checkedList.includes(el.id) ? true : false} />
+                        <SU.Span>{el.content}</SU.Span>
+                    </SU.SelectEachWrapper>
                 ))}
-                <SU.CheckboxWrapper>
-                    <SU.SelectAllWrapper>
-                        <input type="checkbox" name="selectall" onChange={e => selectAll(e.target.checked)} checked={allChecked ? true : false} />
-                        <SU.Span>전체 동의</SU.Span>
-                    </SU.SelectAllWrapper>
-                    {AgreeData.map(el => (
-                        <SU.SelectEachWrapper key={el.id}>
-                            <input type="checkbox" name="agreement" onChange={e => selectEach(e.target.checked, el.id)} checked={checkedList.includes(el.id) ? true : false} />
-                            <SU.Span>{el.content}</SU.Span>
-                        </SU.SelectEachWrapper>
-                    ))}
-                </SU.CheckboxWrapper>
-                <SU.ButtonWrapper>
-                    <SubmitButton buttonValue="회원가입" isValid={isChecked} />
-                </SU.ButtonWrapper>
-            </SU.InputList>
-        </>
+            </SU.CheckboxWrapper>
+            <SU.ButtonWrapper>
+                <SubmitButton buttonValue="회원가입" isValid={isChecked} />
+            </SU.ButtonWrapper>
+        </SU.InputList>
     );
 };
 

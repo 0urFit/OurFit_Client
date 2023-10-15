@@ -1,21 +1,14 @@
 import { ReactElement } from 'react';
-import { DL } from '@/common/layout/style';
-import PrevButton from '@/common/molecules/PrevButton';
+
 import SignUp from '@/components/signup';
+import AuthLayout from '@/common/layout/AuthLayout';
 
 const SignupPage = () => {
     return <SignUp />;
 };
 
 SignupPage.getLayout = function getLayout(page: ReactElement) {
-    return (
-        <DL.PageLayout>
-            <DL.ImgWrapper>
-                <PrevButton />
-            </DL.ImgWrapper>
-            <DL.FirstContainer>{page}</DL.FirstContainer>
-        </DL.PageLayout>
-    );
+    return <AuthLayout isShowPrevBtn={true}>{page}</AuthLayout>;
 };
 
 export default SignupPage;
