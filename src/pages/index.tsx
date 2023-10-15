@@ -1,21 +1,17 @@
 import { ReactElement } from 'react';
 
-import { DL } from '@/common/layout/style';
 import Login from '@/components/login';
+import AuthLayout from '@/common/layout/AuthLayout';
 
 import { TOKEN } from '@/utils/constants';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
 
-export default function LoginPage() {
+const LoginPage = () => {
     return <Login />;
-}
+};
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
-    return (
-        <DL.PageLayout>
-            <DL.FirstContainer>{page}</DL.FirstContainer>
-        </DL.PageLayout>
-    );
+    return <AuthLayout isShowPrevBtn={false}>{page}</AuthLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
@@ -34,3 +30,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
         props: {},
     };
 };
+
+export default LoginPage;

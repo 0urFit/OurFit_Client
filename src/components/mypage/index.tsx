@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import BottomBar from '@/common/molecules/BottomBar';
 import RoutineCard from '@/common/molecules/RoutineCard';
 import LogoutButton from './LogoutButton';
 import EditInput from './EditInput';
@@ -156,7 +155,6 @@ const Mypage = () => {
                 <MP.LogoutWrapper>
                     <LogoutButton />
                 </MP.LogoutWrapper>
-                <BottomBar />
             </MP.BottomWrapper>
         </>
     );

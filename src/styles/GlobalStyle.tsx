@@ -3,10 +3,14 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
   * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+  }
+  #__next {
+    height: 100vh;
   }
 
   ol, ul {

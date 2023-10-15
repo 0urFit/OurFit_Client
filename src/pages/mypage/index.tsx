@@ -1,9 +1,15 @@
+import DefaultLayout from '@/common/layout/DefaultLayout';
 import Mypage from '@/components/mypage';
 
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
+import { ReactElement } from 'react';
 
 const ProfilePage = () => {
     return <Mypage />;
+};
+
+ProfilePage.getLayout = function getLayout(page: ReactElement) {
+    return <DefaultLayout isHeader={true}>{page}</DefaultLayout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {

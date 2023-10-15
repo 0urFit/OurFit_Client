@@ -125,11 +125,9 @@ const CB = {
 const BB = {
     BottomBarList: styled.ul`
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        width: 100%;
-        height: 4.375rem;
-        border: 0.0625rem solid #000000;
-        border-radius: 2.5rem;
+        grid-template-columns: repeat(4, 1fr);
+        width: inherit;
+        height: inherit;
         background-color: #fff;
     `,
     ItemWrapper: styled(Link)`
@@ -224,7 +222,7 @@ const RC = {
         width: 4.375rem;
         height: 1.5625rem;
         background-color: ${({ enrolled }) => (enrolled ? '#e1e2e3' : '#317aee')};
-        border-radius: 0.3125rem;
+        border-radius: 0.25rem;
     `,
     DeleteWrapper: styled.div`
         width: 4.375rem;

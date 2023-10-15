@@ -13,6 +13,7 @@ interface StyledProps extends HTMLAttributes<HTMLDivElement> {
     enrolled?: boolean;
     $today?: boolean;
     $isSaved?: boolean;
+    $isHeader?: boolean;
 }
 
 type RoutineProps = {
