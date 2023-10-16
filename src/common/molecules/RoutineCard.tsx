@@ -40,7 +40,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                 <RC.DescWrapper>
                     <Link
                         href={{
-                            pathname: `${pathName}/detail/[slug]`,
+                            pathname: `${pathName === '/mypage/likes' && '/home'}/detail/[slug]`,
                             query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
                         }}
                     >
