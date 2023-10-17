@@ -6,7 +6,7 @@ import { BB } from '../style';
 import ExerciseDetailMain from './ExerciseDetailMain';
 
 const SaveDetail = ({ props: { data } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const { period, routineId, slug, weekProgress } = data;
+    const { period, routineId, slug } = data;
 
     return (
         <BB.Container>
@@ -19,7 +19,7 @@ const SaveDetail = ({ props: { data } }: InferGetServerSidePropsType<typeof getS
                     </BB.TagWrapper>
                 </BB.TopWrapper>
             </BB.TopBox>
-            <ExerciseDetailMain routineId={routineId} weekProgress={weekProgress} />
+            <ExerciseDetailMain routineId={routineId} />
         </BB.Container>
     );
 };
