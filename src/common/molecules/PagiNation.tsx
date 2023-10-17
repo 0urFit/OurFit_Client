@@ -34,6 +34,8 @@ const DayBtn = styled.button<StyledProps>`
     border-radius: 50%;
     background-color: ${({ $today }) => $today && '#3179ee'};
 `;
-const Day = styled.span``;
+const Day = styled.span`
+    color: #000;
+`;
 
 export default PagiNation;
