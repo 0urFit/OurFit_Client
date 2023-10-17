@@ -6,7 +6,7 @@ import PagiNation from '@/common/molecules/PagiNation';
 import RoutineCompleteModal from '@/common/molecules/RoutineCompleteModal';
 import BackDrop from '@/common/molecules/BackDrop';
 
-import { RoutineSuccess } from '@/apis/auth';
+import { RoutineSuccess, SaveRoutineDetail } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { convertToNumber } from '@/utils/convertToNumber';
 
@@ -14,18 +14,22 @@ import { BB } from '../style';
 import { useRouter } from 'next/router';
 import { ModalType } from '../type';
 import { createPortal } from 'react-dom';
+import { filteringMapObject } from '@/utils/filteringMapObject';
 interface ExerciseDetailMain {
     routineId: string;
-    weekProgress: string;
 }
 
-const ExerciseDetailMain = ({ routineId, weekProgress }: ExerciseDetailMain) => {
+const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
     const [today, setToday] = useState('Mon');
     const [portalElement, setPortalElement] = useState<ModalType>(null);
     const [backDropElement, setBackDropElement] = useState<ModalType>(null);
     const [isModal, setIsModal] = useState(false);
+    const [successByDay, setSuccessByDay] = useState<Map<string, boolean>>(new Map());
+    const [week, setWeek] = useState(1);
 
     const router = useRouter();
+
+    const convertedRoutineId = convertToNumber(routineId);
 
     const handleDay = (clickedDay: string) => {
         setToday(clickedDay);
@@ -42,17 +46,43 @@ const ExerciseDetailMain = ({ routineId, weekProgress }: ExerciseDetailMain) => 
     const handleCompleteWorkout = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const covertedData = convertToNumber(routineId, weekProgress);
+        const covertedData = convertToNumber(routineId);
 
         try {
-            const response = await RoutineSuccess(covertedData.id, covertedData.week, today);
+            const response = await RoutineSuccess(covertedData.id, week, today);
             const { code } = response.data;
+
+            initializeDay();
+            fetchSuccess();
 
             code === 'EX100' && moveMypage();
         } catch (error) {
             throw new Error(getErrorMessage(error));
         }
     };
+
+    const fetchSuccess = async () => {
+        try {
+            const response = await SaveRoutineDetail(convertedRoutineId.id);
+            const { result } = response.data;
+
+            setWeek(result.currentWeek);
+            setSuccessByDay(filteringMapObject(result.days));
+        } catch (error) {
+            throw new Error(getErrorMessage(error));
+        }
+    };
+
+    const initializeDay = () => {
+        const keysList = Array.from(successByDay.keys());
+        const lastDay = keysList[keysList.length - 1];
+
+        lastDay === today && setToday('Mon');
+    };
+
+    useEffect(() => {
+        fetchSuccess();
+    }, []);
 
     useEffect(() => {
         setPortalElement(document.getElementById('portal'));
@@ -67,9 +97,11 @@ const ExerciseDetailMain = ({ routineId, weekProgress }: ExerciseDetailMain) => 
                     <BB.FormContents>
                         <ExerciseDetail handleExerciseComplete={handleCompleteWorkout} today={today} routineId={routineId} />
                     </BB.FormContents>
-                    <BB.SubmitBtnWrapper>
-                        <CreateButton message="운동완료" />
-                    </BB.SubmitBtnWrapper>
+                    {successByDay.has(today) && (
+                        <BB.SubmitBtnWrapper>
+                            <CreateButton message="운동완료" isSaved={successByDay.get(today)} />
+                        </BB.SubmitBtnWrapper>
+                    )}
                 </BB.Form>
             </BB.MainContainer>
             {portalElement && isModal ? createPortal(<RoutineCompleteModal />, portalElement) : null}

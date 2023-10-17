@@ -17,10 +17,12 @@ const MP = {
     ProfileInfoEdit: styled.button`
         justify-self: end;
         margin-right: 0.625rem;
+        color: #000;
     `,
     ProfileInfoEditSuccess: styled.button`
         justify-self: end;
         margin-right: 0.625rem;
+        color: #000;
     `,
     ContentsTitle: styled.div``,
     ContentsValue: styled.div``,
