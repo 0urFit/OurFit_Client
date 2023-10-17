@@ -52,6 +52,7 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
             const response = await RoutineSuccess(covertedData.id, week, today);
             const { code } = response.data;
 
+            initializeDay();
             fetchSuccess();
 
             code === 'EX100' && moveMypage();
@@ -70,6 +71,13 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
         } catch (error) {
             throw new Error(getErrorMessage(error));
         }
+    };
+
+    const initializeDay = () => {
+        const keysList = Array.from(successByDay.keys());
+        const lastDay = keysList[keysList.length - 1];
+
+        lastDay === today && setToday('Mon');
     };
 
     useEffect(() => {
