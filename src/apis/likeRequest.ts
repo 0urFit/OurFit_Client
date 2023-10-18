@@ -8,15 +8,6 @@ export class LikeRequest {
         this.routineId = routineId;
     }
 
-    async LikeGet() {
-        try {
-            const response = await tokenInstance.get(`/exercise/liked/${this.routineId}`);
-            return response;
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    }
-
     async LikePost() {
         try {
             const response = await tokenInstance.post(`/exercise/${this.routineId}/likes`);
