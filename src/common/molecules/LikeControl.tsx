@@ -11,11 +11,12 @@ import { LikeRequest } from '@/apis/likeRequest';
 
 interface LikeControlType {
     id: number | undefined;
+    liked: boolean;
     handleLikeList?: () => void;
 }
 
-const LikeControl = ({ id, handleLikeList }: LikeControlType) => {
-    const [isLike, setIsLike] = useState(false);
+const LikeControl = ({ id, liked, handleLikeList }: LikeControlType) => {
+    const [isLike, setIsLike] = useState(liked);
 
     const handleLiked = async (routindId: number | undefined) => {
         const likeRequest = new LikeRequest(routindId);
@@ -41,22 +42,6 @@ const LikeControl = ({ id, handleLikeList }: LikeControlType) => {
             throw new Error(getErrorMessage(e));
         }
     };
-
-    useEffect(() => {
-        const fetchLiked = async () => {
-            const likeRequest = new LikeRequest(id);
-
-            try {
-                const response = await likeRequest.LikeGet();
-                const { result } = response.data;
-                setIsLike(result);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchLiked();
-    }, []);
 
     useEffect(() => {
         handleLikeList?.();
