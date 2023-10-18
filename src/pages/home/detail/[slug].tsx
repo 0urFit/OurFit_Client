@@ -12,7 +12,7 @@ HomeDetailPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const { routineId } = ctx.query;
+    const { routineId, liked } = ctx.query;
     const { cookies } = ctx.req;
 
     if (!cookies.refresh_token) {
@@ -25,12 +25,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     }
 
     const assure_routine_id = routineId as string;
+    const assure_liked = liked as string;
 
     const converted_routine_id = parseInt(assure_routine_id);
+    const converted_liked = Boolean(assure_liked);
 
     return {
         props: {
             converted_routine_id,
+            converted_liked,
         },
     };
 };
