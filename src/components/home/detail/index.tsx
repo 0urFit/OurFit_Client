@@ -18,7 +18,7 @@ import { DetailRoutineType, ResultType } from '../type';
 import { InferGetServerSidePropsType } from 'next/types';
 import { getServerSideProps } from '@/pages/home/detail/[slug]';
 
-const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const HomeDetail = ({ props: { converted_routine_id, converted_liked } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [overviewInformation, setOverviewInformation] = useState({ routineName: '', programLength: 0, dayPerWeek: 0 });
     const [routineSlideList, setRoutineSlideList] = useState([]);
     const [isSaved, setIsSaved] = useState(false);
@@ -143,7 +143,7 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
                     </HD.RoutineSlideBox>
                 </HD.RoutineMain>
                 <HD.FooterBox>
-                    <LikeControl id={converted_routine_id} />
+                    <LikeControl id={converted_routine_id} liked={converted_liked} />
                     <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" isSaved={isSaved} />
                 </HD.FooterBox>
             </HD.RoutineDescBox>
