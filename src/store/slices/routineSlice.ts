@@ -36,4 +36,4 @@ const routineSlice = createSlice({
 });
 
 export const { saveRoutineInfo } = routineSlice.actions;
-export default routineSlice;
+export default routineSlice.reducer;

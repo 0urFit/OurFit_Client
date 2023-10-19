@@ -13,7 +13,7 @@ import { RoutineProps } from './type';
 import { SaveRoutineInfo } from '@/apis/auth';
 import getErrorMessage from '@/utils/getErrorMessage';
 
-const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
+const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, liked, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
     const [isEnrolled, setIsEnrolled] = useState(enrolled);
 
     const pathName = useRouter().asPath;
@@ -41,7 +41,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                     <Link
                         href={{
                             pathname: `${pathName.includes('/mypage') ? '/home' : pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
+                            query: { slug: DeletedBlankRoutineName, liked: liked, routineId: id, period, weekProgress },
                         }}
                     >
                         <RC.span>{routineName}</RC.span>
@@ -57,7 +57,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                             <RC.CoachName>{routineName}</RC.CoachName>
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
-                            <LikeControl id={id} handleLikeList={handleLikeList} />
+                            <LikeControl id={id} liked={liked} handleLikeList={handleLikeList} />
                             {pathName === '/save' ? (
                                 <RC.DeleteWrapper>
                                     <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>
