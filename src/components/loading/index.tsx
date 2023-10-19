@@ -27,10 +27,10 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
         } else {
             const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
 
-            manageAccessToken.SET(accessToken);
-            manageRefreshToken.SET(refreshToken);
-
             if (success) {
+                manageAccessToken.SET(accessToken);
+                manageRefreshToken.SET(refreshToken);
+
                 router.replace('/home');
             } else {
                 dispatch(saveUserInfo(userInfo));
