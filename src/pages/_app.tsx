@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
 import GlobalStyle from '@/styles/GlobalStyle';
-import wrapper from '@/store/store';
+import { Providers } from '@/store/Providers';
 
 export type NextPageWithLayout = NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;
@@ -19,9 +19,11 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
     return getLayout(
         <>
             <GlobalStyle />
-            <Component {...pageProps} />
+            <Providers>
+                <Component {...pageProps} />
+            </Providers>
         </>,
     );
 }
 
-export default wrapper.withRedux(App);
+export default App;
