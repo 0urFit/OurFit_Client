@@ -21,4 +21,4 @@ const periodSlice = createSlice({
 });
 
 export const { setWeek } = periodSlice.actions;
-export default periodSlice;
+export default periodSlice.reducer;
