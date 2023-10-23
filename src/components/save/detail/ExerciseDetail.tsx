@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TableBody from './TableBody';
 import NoExerciseDay from '@/common/molecules/NoExerciseDay';
 
-import { SaveRoutineDetail } from '@/apis/auth';
+import { SaveRoutineDetail } from '@/apis/apiService';
 import { convertToNumber } from '@/utils/convertToNumber';
 import { convertToMapObject } from '@/utils/convertToMapObject';
 import getErrorMessage from '@/utils/getErrorMessage';

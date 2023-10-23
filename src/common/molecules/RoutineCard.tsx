@@ -10,7 +10,7 @@ import deleteBlank from '@/utils/deleteBlank';
 import { RC } from './style';
 
 import { RoutineProps } from './type';
-import { SaveRoutineInfo } from '@/apis/auth';
+import { SaveRoutineInfo } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 
 const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, liked, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
