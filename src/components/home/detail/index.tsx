@@ -6,7 +6,7 @@ import CreateButton from '@/common/molecules/CreateButton';
 import LikeControl from '@/common/molecules/LikeControl';
 import RoutineDetail from '../RoutineDetail';
 
-import { CheckRoutineIsSaved, GetDetailRoutine, SaveRoutineInfo } from '@/apis/auth';
+import { CheckRoutineIsSaved, GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
 import useAddOptions from '@/hooks/useAddOptions';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import getErrorMessage from '@/utils/getErrorMessage';

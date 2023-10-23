@@ -8,8 +8,8 @@ import LoginInput from '@/common/molecules/LoginInput';
 import ErrorMessage from '@/common/molecules/ErrorMessage';
 import SubmitButton from '@/common/molecules/SubmitButton';
 
-import { LocalLogin } from '../../apis/auth';
-import { KAKAO_API_URL } from '../../apis/client';
+import { LocalLogin } from '../../apis/apiService';
+import { KAKAO_API_URL } from '@/apis/constants';
 import { manageRefreshToken } from '@/utils/manageCookie';
 
 import { LI } from './style';
