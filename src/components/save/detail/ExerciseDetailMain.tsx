@@ -6,7 +6,7 @@ import PagiNation from '@/common/molecules/PagiNation';
 import RoutineCompleteModal from '@/common/molecules/RoutineCompleteModal';
 import BackDrop from '@/common/molecules/BackDrop';
 
-import { RoutineSuccess, SaveRoutineDetail } from '@/apis/auth';
+import { RoutineSuccess, SaveRoutineDetail } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { convertToNumber } from '@/utils/convertToNumber';
 
