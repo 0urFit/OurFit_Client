@@ -10,6 +10,7 @@ type ResponseResult = {
     weeks: number;
     days: daysType;
     isliked: boolean;
+    isenrolled: boolean;
 };
 
 type ResultType = ResponseResult[];
