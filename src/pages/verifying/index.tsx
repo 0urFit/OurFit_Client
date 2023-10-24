@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { SocialKakaoLogin } from '@/apis/auth';
+import { SocialKakaoLogin } from '@/apis/apiService';
 import { ServiceErrorMessage } from '@/apis/type';
 import Loading from '@/components/loading';
 import { VerifyingPagePropsType } from '@/components/loading/type';

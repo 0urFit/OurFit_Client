@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { SU } from './style';
 import { InputType, StatusType, ErrorType } from './type';
 import { AgreeData, SignupData } from '@/data/SignUpData';
-import { LocalEmail, LocalNickname, LocalSignUp } from '@/apis/auth';
+import { LocalEmail, LocalNickname, LocalSignUp } from '@/apis/apiService';
 import SubmitButton from '@/common/molecules/SubmitButton';
 import InfoInput from '@/common/molecules/InfoInput';
 import ErrorMessage from '@/common/molecules/ErrorMessage';

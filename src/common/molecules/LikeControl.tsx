@@ -7,7 +7,7 @@ import getErrorMessage from '@/utils/getErrorMessage';
 import { LC } from './style';
 import LikeIcon from '../../../public/assets/like-icon.svg';
 import FilledLikeIcon from '../../../public/assets/filled-like-icon.svg';
-import { LikeRequest } from '@/apis/likeRequest';
+import { LikeDelete, LikePost } from '@/apis/apiService';
 
 interface LikeControlType {
     id: number | undefined;
@@ -19,29 +19,35 @@ const LikeControl = ({ id, liked, handleLikeList }: LikeControlType) => {
     const [isLike, setIsLike] = useState(liked);
 
     const handleLiked = async (routindId: number | undefined) => {
-        const likeRequest = new LikeRequest(routindId);
-
-        try {
-            switch (isLike) {
-                case false: {
-                    const response = await likeRequest.LikePost();
+        switch (isLike) {
+            case false: {
+                try {
+                    const response = await LikePost(routindId);
                     const { result } = response.data;
 
                     setIsLike(result);
                     break;
-                }
-                case true: {
-                    const response = await likeRequest.LikeDelete();
-                    const { result } = response.data;
-
-                    setIsLike(result);
-                    break;
+                } catch (error) {
+                    throw new Error(getErrorMessage(error));
                 }
             }
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
+            case true: {
+                try {
+                    const response = await LikeDelete(routindId);
+                    const { result } = response.data;
+
+                    setIsLike(result);
+                    break;
+                } catch (error) {
+                    throw new Error(getErrorMessage(error));
+                }
+            }
         }
     };
+
+    useEffect(() => {
+        setIsLike(liked);
+    }, [liked]);
 
     useEffect(() => {
         handleLikeList?.();

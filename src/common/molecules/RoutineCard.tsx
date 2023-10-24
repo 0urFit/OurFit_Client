@@ -10,7 +10,7 @@ import deleteBlank from '@/utils/deleteBlank';
 import { RC } from './style';
 
 import { RoutineProps } from './type';
-import { SaveRoutineInfo } from '@/apis/auth';
+import { SaveRoutineInfo } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 
 const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, liked, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
@@ -41,7 +41,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                     <Link
                         href={{
                             pathname: `${pathName.includes('/mypage') ? '/home' : pathName}/detail/[slug]`,
-                            query: { slug: DeletedBlankRoutineName, liked: liked, routineId: id, period, weekProgress },
+                            query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
                         }}
                     >
                         <RC.span>{routineName}</RC.span>

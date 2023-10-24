@@ -7,7 +7,7 @@ import RoutineCard from '@/common/molecules/RoutineCard';
 import LogoutButton from './LogoutButton';
 import EditInput from './EditInput';
 
-import { EditUserInfo, GetLikedRoutine, GetUserInfo, SaveRoutineInfo } from '@/apis/auth';
+import { EditUserInfo, GetLikedRoutine, GetUserInfo, SaveRoutineInfo } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 
 import { Entries, UserInfoType, ProfileInfoEditType } from './types';

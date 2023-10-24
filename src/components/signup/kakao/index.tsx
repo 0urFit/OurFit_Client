@@ -6,7 +6,7 @@ import { SU } from '../style';
 import { InputType, ErrorType } from '../type';
 import { AgreeData } from '@/data/SignUpData';
 import { SignupKakaoData } from '@/data/SignUpKakaoData';
-import { LocalNickname, LocalSignUp } from '@/apis/auth';
+import { LocalNickname, LocalSignUp } from '@/apis/apiService';
 import { RootState } from '@/store/store';
 import SelectBox from '../SelectBox';
 import InfoInput from '@/common/molecules/InfoInput';

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import SmallSelect from '@/common/molecules/SmallSelect';
 import RoutineCard from '@/common/molecules/RoutineCard';
 
-import { GetRoutine } from '@/apis/auth';
+import { GetRoutine } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { SelectOptions } from '@/data/SaveData';
 

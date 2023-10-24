@@ -7,7 +7,7 @@ import RoutineCard from '@/common/molecules/RoutineCard';
 import RoutineModal from '@/common/molecules/RoutineModal';
 import BackDrop from '@/common/molecules/BackDrop';
 
-import { DeleteRoutine, MainSave } from '@/apis/auth';
+import { DeleteRoutine, MainSave } from '@/apis/apiService';
 import { SelectOptions } from '@/data/SaveData';
 import getErrorMessage from '@/utils/getErrorMessage';
 

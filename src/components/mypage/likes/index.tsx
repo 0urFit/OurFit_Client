@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ML } from '../style';
-import { GetLikedRoutine } from '@/apis/auth';
+import { GetLikedRoutine } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 import RoutineCard from '@/common/molecules/RoutineCard';
 
