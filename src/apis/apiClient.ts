@@ -23,7 +23,7 @@ export class ApiInstance {
 
     setInterceptors() {
         this.axiosAuthenticated.interceptors.request.use(this.reqMiddleWare.bind(this), this.reqOnError.bind(this));
-        this.axiosAuthenticated.interceptors.response.use(this.resMiddleWare.bind(this), this.resMiddleWare.bind(this));
+        this.axiosAuthenticated.interceptors.response.use(this.resMiddleWare.bind(this), this.resOnError.bind(this));
     }
 
     reqMiddleWare(config: InternalAxiosRequestConfig) {
