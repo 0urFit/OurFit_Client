@@ -22,16 +22,14 @@ export class ApiInstance {
     }
 
     setInterceptors() {
-        this.axiosAuthenticated.interceptors.request.use(this.reqMiddleWare.bind(this), this.reqOnError.bind(this));
-        this.axiosAuthenticated.interceptors.response.use(this.resMiddleWare.bind(this), this.resOnError.bind(this));
+        this.axiosAuthenticated.interceptors.request.use(this.reqMiddleWare, this.reqOnError);
+        this.axiosAuthenticated.interceptors.response.use(this.resMiddleWare, this.resOnError);
     }
 
     reqMiddleWare(config: InternalAxiosRequestConfig) {
         const newConfig = config;
 
-        if (this.auth) {
-            newConfig.headers.Authorization = `Bearer ${manageAccessToken.GET()}`;
-        }
+        newConfig.headers.Authorization = `Bearer ${manageAccessToken.GET()}`;
 
         return newConfig;
     }
