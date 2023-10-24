@@ -99,10 +99,6 @@ export const EditUserInfo = async (editedUserInfoData: ProfileInfoEditType) => {
     return await instanceAuthenticated.patch(`${MYPAGE.MYPAGE_UPDATE}`, editedUserInfoData);
 };
 
-export const CheckRoutineIsSaved = async (routineId: string) => {
-    return await instanceAuthenticated.get(`${EXERCISE.EXERCISE_ENROLLED}/${routineId}`);
-};
-
 export const LikePost = async (routineId: number | undefined) => {
     return await instanceAuthenticated.post(`${EXERCISE.EXERCISE}/${routineId}${EXERCISE.LIKES}`);
 };

@@ -6,7 +6,7 @@ import CreateButton from '@/common/molecules/CreateButton';
 import LikeControl from '@/common/molecules/LikeControl';
 import RoutineDetail from '../RoutineDetail';
 
-import { CheckRoutineIsSaved, GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
+import { GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
 import useAddOptions from '@/hooks/useAddOptions';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import getErrorMessage from '@/utils/getErrorMessage';
@@ -18,10 +18,11 @@ import { DetailRoutineType, ResultType } from '../type';
 import { InferGetServerSidePropsType } from 'next/types';
 import { getServerSideProps } from '@/pages/home/detail/[slug]';
 
-const HomeDetail = ({ props: { converted_routine_id, converted_liked } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [overviewInformation, setOverviewInformation] = useState({ routineName: '', programLength: 0, dayPerWeek: 0 });
     const [routineSlideList, setRoutineSlideList] = useState([]);
     const [isSaved, setIsSaved] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
 
     const dispatch = useAppDispatch();
     const router = useRouter();
@@ -41,7 +42,10 @@ const HomeDetail = ({ props: { converted_routine_id, converted_liked } }: InferG
     const saveRoutineInformation = (response: DetailRoutineType) => {
         const { result } = response.data;
         const [routine_information]: ResultType = result;
-        const { routineName, period, days } = routine_information;
+        const { routineName, period, days, isliked, isenrolled } = routine_information;
+
+        setIsLiked(isliked);
+        setIsSaved(isenrolled);
 
         const dayPerWeek = days.length;
 
@@ -84,21 +88,6 @@ const HomeDetail = ({ props: { converted_routine_id, converted_liked } }: InferG
     useEffect(() => {
         getRoutineDetailInfo();
     }, [week]);
-
-    useEffect(() => {
-        const getRoutineIsSave = async () => {
-            try {
-                const response = await CheckRoutineIsSaved(converted_routine_id);
-                const { success } = response.data;
-
-                setIsSaved(success);
-            } catch (error) {
-                console.log('등록안됨');
-            }
-        };
-
-        getRoutineIsSave();
-    }, [isSaved]);
 
     return (
         <HD.Box>
@@ -143,7 +132,7 @@ const HomeDetail = ({ props: { converted_routine_id, converted_liked } }: InferG
                     </HD.RoutineSlideBox>
                 </HD.RoutineMain>
                 <HD.FooterBox>
-                    <LikeControl id={converted_routine_id} liked={converted_liked} />
+                    <LikeControl id={converted_routine_id} liked={isLiked} />
                     <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" isSaved={isSaved} />
                 </HD.FooterBox>
             </HD.RoutineDescBox>
