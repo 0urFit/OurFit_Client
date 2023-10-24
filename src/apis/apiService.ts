@@ -31,26 +31,21 @@ export const LocalSignUp = async (SignUpData: InputType) => {
 };
 
 export const LocalNickname = async (nickname: string) => {
+    console.log(nickname);
     return await instanceUnAuthenticated.get(`${AUTH.CHECKNICK}`, {
-        params: {
-            nick: nickname,
-        },
+        nick: nickname,
     });
 };
 
 export const LocalEmail = async (email: string) => {
     return await instanceUnAuthenticated.get(`${AUTH.CHECKEMAIL}`, {
-        params: {
-            email,
-        },
+        email,
     });
 };
 
 export const SocialKakaoLogin = async (authCode: string | undefined) => {
     return await instanceUnAuthenticated.get(`${AUTH.KAKAO}`, {
-        params: {
-            authorizationCode: authCode,
-        },
+        authorizationCode: authCode,
     });
 };
 
