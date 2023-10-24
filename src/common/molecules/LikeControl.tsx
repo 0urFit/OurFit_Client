@@ -46,6 +46,10 @@ const LikeControl = ({ id, liked, handleLikeList }: LikeControlType) => {
     };
 
     useEffect(() => {
+        setIsLike(liked);
+    }, [liked]);
+
+    useEffect(() => {
         handleLikeList?.();
     }, [isLike]);
 
