@@ -6,7 +6,7 @@ import CreateButton from '@/common/molecules/CreateButton';
 import LikeControl from '@/common/molecules/LikeControl';
 import RoutineDetail from '../RoutineDetail';
 
-import { CheckRoutineIsSaved, GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
+import { GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
 import useAddOptions from '@/hooks/useAddOptions';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
 import getErrorMessage from '@/utils/getErrorMessage';
@@ -42,9 +42,10 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
     const saveRoutineInformation = (response: DetailRoutineType) => {
         const { result } = response.data;
         const [routine_information]: ResultType = result;
-        const { routineName, period, days, isliked } = routine_information;
+        const { routineName, period, days, isliked, isenrolled } = routine_information;
 
         setIsLiked(isliked);
+        setIsSaved(isenrolled);
 
         const dayPerWeek = days.length;
 
@@ -87,21 +88,6 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
     useEffect(() => {
         getRoutineDetailInfo();
     }, [week]);
-
-    useEffect(() => {
-        const getRoutineIsSave = async () => {
-            try {
-                const response = await CheckRoutineIsSaved(converted_routine_id);
-                const { success } = response.data;
-
-                setIsSaved(success);
-            } catch (error) {
-                console.log('등록안됨');
-            }
-        };
-
-        getRoutineIsSave();
-    }, [isSaved]);
 
     return (
         <HD.Box>
