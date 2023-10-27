@@ -1,9 +1,10 @@
-import { getServerSideProps } from '@/pages/save/detail/[slug]';
-
 import { InferGetServerSidePropsType } from 'next/types';
 
-import { BB } from '../style';
 import ExerciseDetailMain from './ExerciseDetailMain';
+
+import { getServerSideProps } from '@/pages/save/detail/[slug]';
+
+import { BB } from '../style';
 
 const SaveDetail = ({ props: { data } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const { period, routineId, slug } = data;
