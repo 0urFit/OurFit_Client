@@ -12,6 +12,7 @@ import { RC } from './style';
 import { RoutineProps } from './type';
 import { SaveRoutineInfo } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
+import { ROUTES } from '@/route/routes';
 
 const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, category, liked, weekProgress, handleButton, handleLikeList }: RoutineProps) => {
     const [isEnrolled, setIsEnrolled] = useState(enrolled);
@@ -40,7 +41,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                 <RC.DescWrapper>
                     <Link
                         href={{
-                            pathname: `${pathName.includes('/mypage') ? '/home' : pathName}/detail/[slug]`,
+                            pathname: `${pathName.includes(ROUTES.MYPAGE) ? ROUTES.HOME : pathName}/detail/[slug]`,
                             query: { slug: DeletedBlankRoutineName, routineId: id, period, weekProgress },
                         }}
                     >
@@ -58,7 +59,7 @@ const RoutineCard = ({ id, imgpath, period, enrolled, fewTime, routineName, cate
                         </RC.CoachNameWrapper>
                         <RC.ClickWrapper>
                             <LikeControl id={id} liked={liked} handleLikeList={handleLikeList} />
-                            {pathName === '/save' ? (
+                            {pathName === ROUTES.SAVE ? (
                                 <RC.DeleteWrapper>
                                     <RC.AddBtn onClick={() => handleButton?.(id)}>삭 제</RC.AddBtn>
                                 </RC.DeleteWrapper>

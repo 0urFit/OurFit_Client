@@ -12,6 +12,7 @@ import getErrorMessage from '@/utils/getErrorMessage';
 
 import { Entries, UserInfoType, ProfileInfoEditType } from './types';
 import { MP } from './style';
+import { ROUTES } from '@/route/routes';
 
 const Mypage = () => {
     const [routineCardList, setRoutineCardList] = useState([]);
@@ -121,7 +122,7 @@ const Mypage = () => {
                 <MP.LikeHeader>
                     <MP.Title>Likes</MP.Title>
                     <Link
-                        href="/mypage/likes"
+                        href={ROUTES.MYPAGE_LIKES}
                         style={{
                             color: '#000',
                         }}

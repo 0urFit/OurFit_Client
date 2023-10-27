@@ -11,6 +11,7 @@ import { manageRefreshToken } from '@/utils/manageCookie';
 
 import { InferGetServerSidePropsType } from 'next/types';
 import { isLoading, BeatLoaderColor, BeatLoaderSize, Box } from './style';
+import { ROUTES } from '@/route/routes';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -26,7 +27,7 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
 
     useEffect(() => {
         if (message) {
-            router.push('/');
+            router.push(ROUTES.LOGIN);
         } else {
             const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
 
@@ -34,10 +35,10 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
                 manageAccessToken.SET(accessToken);
                 manageRefreshToken.SET(refreshToken);
 
-                router.replace('/home');
+                router.replace(ROUTES.HOME);
             } else {
                 dispatch(saveUserInfo(userInfo));
-                router.replace('/signup/kakao');
+                router.replace(ROUTES.SIGNUP_KAKAO);
             }
         }
     }, []);
