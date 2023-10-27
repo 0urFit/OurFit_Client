@@ -16,6 +16,7 @@ import { filteringMapObject } from '@/utils/filteringMapObject';
 import useModal from '@/hooks/useModal';
 
 import { BB } from '../style';
+import { ROUTES } from '@/route/routes';
 interface ExerciseDetailMain {
     routineId: string;
 }
@@ -39,7 +40,7 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
         updateIsModal(true);
 
         setTimeout(() => {
-            router.replace('/mypage');
+            router.replace(ROUTES.MYPAGE);
         }, 2500);
     };
 
