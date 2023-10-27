@@ -1,10 +1,11 @@
 import axios from 'axios';
 
+import Loading from '@/components/verifying';
+
 import { SocialKakaoLogin } from '@/apis/apiService';
 import { ServiceErrorMessage } from '@/apis/type';
-import Loading from '@/components/loading';
-import { VerifyingPagePropsType } from '@/components/loading/type';
 
+import { VerifyingPagePropsType } from '@/components/verifying/type';
 import { GetServerSidePropsContext, GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 
 const VerifyingPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {

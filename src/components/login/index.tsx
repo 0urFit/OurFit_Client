@@ -19,6 +19,7 @@ import PadlockIcon from '../../../public/assets/padlock-icon.png';
 
 import { LoginForm, IsUserState } from './type';
 import { manageAccessToken } from '@/utils/manageLocalStorage';
+import { ROUTES } from '@/route/routes';
 
 const Login = () => {
     const router = useRouter();
@@ -47,7 +48,7 @@ const Login = () => {
             manageAccessToken.SET(accessToken);
             manageRefreshToken.SET(refreshToken);
 
-            router.push('/home');
+            router.push(ROUTES.HOME);
         } catch (e) {
             setPwValidMsg(true);
             setIsUser({
@@ -58,7 +59,7 @@ const Login = () => {
     };
 
     const handleMoveSignUp = () => {
-        router.push('/signup');
+        router.push(ROUTES.SIGNUP);
     };
 
     useEffect(() => {

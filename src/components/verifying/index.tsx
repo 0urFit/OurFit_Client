@@ -1,13 +1,17 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import { BeatLoader } from 'react-spinners';
-import { InferGetServerSidePropsType } from 'next/types';
 
 import { getServerSideProps } from '@/pages/verifying';
 import { useAppDispatch } from '@/store/hook';
 import { saveUserInfo } from '@/store/slices/userSlice';
 import { manageAccessToken } from '@/utils/manageLocalStorage';
 import { manageRefreshToken } from '@/utils/manageCookie';
+
+import { InferGetServerSidePropsType } from 'next/types';
+import { isLoading, BeatLoaderColor, BeatLoaderSize, Box } from './style';
+import { ROUTES } from '@/route/routes';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -23,7 +27,7 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
 
     useEffect(() => {
         if (message) {
-            router.push('/');
+            router.push(ROUTES.LOGIN);
         } else {
             const { accessToken, refreshToken, success, userInfo } = verifyingPageProps;
 
@@ -31,18 +35,18 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
                 manageAccessToken.SET(accessToken);
                 manageRefreshToken.SET(refreshToken);
 
-                router.replace('/home');
+                router.replace(ROUTES.HOME);
             } else {
                 dispatch(saveUserInfo(userInfo));
-                router.replace('/signup/kakao');
+                router.replace(ROUTES.SIGNUP_KAKAO);
             }
         }
     }, []);
 
     return (
-        <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-            <BeatLoader size={20} color="#36d7b7" loading={true} cssOverride={override} />
-        </div>
+        <Box>
+            <BeatLoader size={BeatLoaderSize} color={BeatLoaderColor} loading={isLoading} cssOverride={override} />
+        </Box>
     );
 };
 
