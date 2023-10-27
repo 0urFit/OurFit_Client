@@ -1,13 +1,16 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+
 import { BeatLoader } from 'react-spinners';
-import { InferGetServerSidePropsType } from 'next/types';
+import styled from 'styled-components';
 
 import { getServerSideProps } from '@/pages/verifying';
 import { useAppDispatch } from '@/store/hook';
 import { saveUserInfo } from '@/store/slices/userSlice';
 import { manageAccessToken } from '@/utils/manageLocalStorage';
 import { manageRefreshToken } from '@/utils/manageCookie';
+
+import { InferGetServerSidePropsType } from 'next/types';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -40,10 +43,17 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
     }, []);
 
     return (
-        <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <Box>
             <BeatLoader size={20} color="#36d7b7" loading={true} cssOverride={override} />
-        </div>
+        </Box>
     );
 };
+
+const Box = styled.div`
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+`;
 
 export default Loading;
