@@ -1,8 +1,7 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import { BeatLoader } from 'react-spinners';
-import styled from 'styled-components';
 
 import { getServerSideProps } from '@/pages/verifying';
 import { useAppDispatch } from '@/store/hook';
@@ -11,6 +10,7 @@ import { manageAccessToken } from '@/utils/manageLocalStorage';
 import { manageRefreshToken } from '@/utils/manageCookie';
 
 import { InferGetServerSidePropsType } from 'next/types';
+import { isLoading, BeatLoaderColor, BeatLoaderSize, Box } from './style';
 
 const override: React.CSSProperties = {
     display: 'flex',
@@ -44,16 +44,9 @@ const Loading = ({ props: { verifyingPageProps, SocialLoginCancelMessage } }: In
 
     return (
         <Box>
-            <BeatLoader size={20} color="#36d7b7" loading={true} cssOverride={override} />
+            <BeatLoader size={BeatLoaderSize} color={BeatLoaderColor} loading={isLoading} cssOverride={override} />
         </Box>
     );
 };
-
-const Box = styled.div`
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-`;
 
 export default Loading;
