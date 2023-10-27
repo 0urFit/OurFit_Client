@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { createPortal } from 'react-dom';
+import { useRouter } from 'next/router';
+
 import ExerciseDetail from './ExerciseDetail';
 import CreateButton from '@/common/molecules/CreateButton';
 import PagiNation from '@/common/molecules/PagiNation';
@@ -9,23 +12,20 @@ import BackDrop from '@/common/molecules/BackDrop';
 import { RoutineSuccess, SaveRoutineDetail } from '@/apis/apiService';
 import getErrorMessage from '@/utils/getErrorMessage';
 import { convertToNumber } from '@/utils/convertToNumber';
+import { filteringMapObject } from '@/utils/filteringMapObject';
+import useModal from '@/hooks/useModal';
 
 import { BB } from '../style';
-import { useRouter } from 'next/router';
-import { ModalType } from '../type';
-import { createPortal } from 'react-dom';
-import { filteringMapObject } from '@/utils/filteringMapObject';
 interface ExerciseDetailMain {
     routineId: string;
 }
 
 const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
     const [today, setToday] = useState('Mon');
-    const [portalElement, setPortalElement] = useState<ModalType>(null);
-    const [backDropElement, setBackDropElement] = useState<ModalType>(null);
-    const [isModal, setIsModal] = useState(false);
     const [successByDay, setSuccessByDay] = useState<Map<string, boolean>>(new Map());
     const [week, setWeek] = useState(1);
+
+    const { isModal, updateIsModal, portalElement, backDropElement } = useModal();
 
     const router = useRouter();
 
@@ -36,7 +36,7 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
     };
 
     const moveMypage = () => {
-        setIsModal(prev => !prev);
+        updateIsModal(true);
 
         setTimeout(() => {
             router.replace('/mypage');
@@ -82,11 +82,6 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
 
     useEffect(() => {
         fetchSuccess();
-    }, []);
-
-    useEffect(() => {
-        setPortalElement(document.getElementById('portal'));
-        setBackDropElement(document.getElementById('back-drop'));
     }, []);
 
     return (
