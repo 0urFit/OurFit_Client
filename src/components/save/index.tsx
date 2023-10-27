@@ -10,18 +10,17 @@ import BackDrop from '@/common/molecules/BackDrop';
 import { DeleteRoutine, MainSave } from '@/apis/apiService';
 import { SelectOptions } from '@/data/SaveData';
 import getErrorMessage from '@/utils/getErrorMessage';
+import useModal from '@/hooks/useModal';
 
 import { SV } from './style';
 import WeightIcon from '../../../public/assets/weight-icon.svg';
 import { RoutineProps } from '../../common/molecules/type';
-import { ModalType } from './type';
 
 const Save = () => {
     const [selectedValue, setSelectedValue] = useState<string>('all');
     const [saveData, setSaveData] = useState<RoutineProps[]>([]);
-    const [deleteResponse, setDeleteResponse] = useState(false);
-    const [portalElement, setPortalElement] = useState<ModalType>(null);
-    const [backDropElement, setBackDropElement] = useState<ModalType>(null);
+
+    const { isModal, updateIsModal, portalElement, backDropElement } = useModal();
 
     const handleSave = async (category: string) => {
         try {
@@ -35,10 +34,10 @@ const Save = () => {
     };
 
     const handleDeleteRoutine = async (id: number | undefined) => {
-        setDeleteResponse(true);
+        updateIsModal(true);
         try {
             const response = await DeleteRoutine(id);
-            setDeleteResponse(false);
+            updateIsModal(false);
             handleSave(selectedValue);
 
             return response;
@@ -50,11 +49,6 @@ const Save = () => {
     const handleChangeCategory = (categoryData: string) => {
         setSelectedValue(categoryData);
     };
-
-    useEffect(() => {
-        setPortalElement(document.getElementById('portal'));
-        setBackDropElement(document.getElementById('back-drop'));
-    }, []);
 
     useEffect(() => {
         handleSave(selectedValue);
@@ -90,8 +84,8 @@ const Save = () => {
                     ))}
                 </SV.CardList>
             )}
-            {portalElement && deleteResponse ? createPortal(<RoutineModal />, portalElement) : null}
-            {backDropElement && deleteResponse ? createPortal(<BackDrop />, backDropElement) : null}
+            {portalElement && isModal ? createPortal(<RoutineModal />, portalElement) : null}
+            {backDropElement && isModal ? createPortal(<BackDrop />, backDropElement) : null}
         </SV.Box>
     );
 };
