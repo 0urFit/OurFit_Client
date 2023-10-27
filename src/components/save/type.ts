@@ -48,8 +48,6 @@ type SaveRoutineInfo = {
     ];
 };
 
-type ModalType = Element | null;
-
 type RoutineItemType = {
     sequence: number;
     weight: number;
@@ -57,4 +55,4 @@ type RoutineItemType = {
     id: number;
 };
 
-export type { SelectType, RoutineType, TodayExercisesType, ModalType, SaveRoutineInfo, RoutineItemType };
+export type { SelectType, RoutineType, TodayExercisesType, SaveRoutineInfo, RoutineItemType };
