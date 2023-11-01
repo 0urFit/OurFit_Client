@@ -7,7 +7,7 @@ export const ROUTES = {
     HOME_DETAIL: '/home/detail',
     SAVE: '/save',
     SAVE_DETAIL: '/save/detail',
-    POST: '/post',
+    POSTS: '/posts',
     MYPAGE: '/mypage',
     MYPAGE_LIKES: '/mypage/likes',
 };
