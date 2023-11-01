@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 
 import SaveDetail from '@/components/save/detail';
+import DefaultLayout from '@/common/layout/DefaultLayout';
 
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
 import { GetServerSidePropsContext } from 'next/types';
-import DefaultLayout from '@/common/layout/DefaultLayout';
 
 const SaveDetailPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return <SaveDetail props={props} />;

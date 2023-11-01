@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 
 import DefaultLayout from '@/common/layout/DefaultLayout';
-
 import Home from '@/components/home';
 
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
