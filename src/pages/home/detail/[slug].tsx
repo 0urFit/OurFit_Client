@@ -14,7 +14,17 @@ HomeDetailPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const { cookies } = ctx.req;
     const { routineId } = ctx.query;
+
+    if (!cookies.refresh_token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
 
     const assure_routine_id = routineId as string;
 
