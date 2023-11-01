@@ -15,6 +15,18 @@ SaveDetailPage.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const { cookies } = ctx.req;
+
+    if (!cookies.refresh_token) {
+        return {
+            redirect: {
+                destination: '/',
+
+                permanent: false,
+            },
+        };
+    }
+
     return {
         props: {
             data: ctx.query,
