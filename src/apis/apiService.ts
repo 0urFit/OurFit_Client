@@ -1,7 +1,7 @@
 import { ApiInstance } from './apiClient';
 import { InputType } from '@/components/signup/type';
 import { ProfileInfoEditType } from '@/components/mypage/types';
-import { LoginApiType } from './type';
+import { GetRoutineType, LoginApiType } from './type';
 import { AUTH, EXERCISE, MYPAGE } from './constants';
 
 const instanceAuthenticated = new ApiInstance(true);
@@ -66,8 +66,10 @@ export const RoutineSuccess = async (routindId: number, week: number | undefined
     });
 };
 
-export const GetRoutine = async (endpoint: string | undefined) => {
-    return await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${endpoint}`);
+export const GetRoutine = async (endpoint: string | undefined): Promise<GetRoutineType[]> => {
+    const response = await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${endpoint}`);
+    const { result } = response.data;
+    return result;
 };
 
 export const GetDetailRoutine = async (routineId: number, week: number) => {

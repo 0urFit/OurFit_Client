@@ -383,5 +383,13 @@ const RCM = {
         color: #3179ee;
     `,
 };
+const LD = {
+    Box: styled.div`
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    `,
+};
 
-export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE, RCM };
+export { LI, II, TI, SB, CB, BB, RC, PC, EM, PB, LC, PP, RM, BD, NE, RCM, LD };
