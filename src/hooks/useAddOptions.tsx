@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type OptionPropertyType = {
     value: string;
     label: string;
 };
 
-const useAddOptions = () => {
+const useAddOptions = (periodToNumber: number) => {
     const [selectWeekOptions, setSelectWeekOptions] = useState<Array<OptionPropertyType>>([]);
 
-    const setOptionArray = (period: number) => {
-        const periodArray = Array.from({ length: period }, (_, index) => index + 1);
+    useEffect(() => {
+        const periodArray = Array.from({ length: periodToNumber }, (_, index) => index + 1);
         const result: string[] = [];
 
         for (const element of periodArray) {
@@ -21,9 +21,9 @@ const useAddOptions = () => {
                 return [...prev, { value: element, label: element }];
             });
         }
-    };
+    }, []);
 
-    return { selectWeekOptions, setOptionArray };
+    return { selectWeekOptions };
 };
 
 export default useAddOptions;

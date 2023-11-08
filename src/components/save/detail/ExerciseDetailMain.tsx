@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom';
 import { useRouter } from 'next/router';
 
 import ExerciseDetail from './ExerciseDetail';
-import CreateButton from '@/common/molecules/CreateButton';
 import PagiNation from '@/common/molecules/PagiNation';
 import RoutineCompleteModal from '@/common/molecules/RoutineCompleteModal';
 import BackDrop from '@/common/molecules/BackDrop';
@@ -17,6 +16,7 @@ import useModal from '@/hooks/useModal';
 
 import { BB } from '../style';
 import { ROUTES } from '@/route/routes';
+import RoutineCompleteButton from '@/common/molecules/RoutineCompleteButton';
 interface ExerciseDetailMain {
     routineId: string;
 }
@@ -95,7 +95,7 @@ const ExerciseDetailMain = ({ routineId }: ExerciseDetailMain) => {
                     </BB.FormContents>
                     {successByDay.has(today) && (
                         <BB.SubmitBtnWrapper>
-                            <CreateButton message="운동완료" isSaved={successByDay.get(today)} />
+                            <RoutineCompleteButton message="운동완료" isSaved={successByDay.get(today)} />
                         </BB.SubmitBtnWrapper>
                     )}
                 </BB.Form>

@@ -1,7 +1,7 @@
 import { ApiInstance } from './apiClient';
 import { InputType } from '@/components/signup/type';
 import { ProfileInfoEditType } from '@/components/mypage/types';
-import { LoginApiType } from './type';
+import { GetRoutineDetailInformationType, GetRoutineOverviewType, GetRoutineType, LoginApiType } from './type';
 import { AUTH, EXERCISE, MYPAGE } from './constants';
 
 const instanceAuthenticated = new ApiInstance(true);
@@ -66,12 +66,22 @@ export const RoutineSuccess = async (routindId: number, week: number | undefined
     });
 };
 
-export const GetRoutine = async (endpoint: string | undefined) => {
-    return await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${endpoint}`);
+export const GetRoutine = async (endpoint: string | undefined): Promise<GetRoutineType[]> => {
+    const response = await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${endpoint}`);
+    const { result } = response.data;
+    return result;
 };
 
-export const GetDetailRoutine = async (routineId: number, week: number) => {
-    return await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${routineId}${EXERCISE.WEEK}/${week}`);
+export const GetRoutineOverview = async (routineId: number): Promise<GetRoutineOverviewType> => {
+    const response = await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${routineId}/view`);
+    const { result } = response.data;
+    return result;
+};
+
+export const GetDetailRoutine = async (routineId: number, week: number): Promise<GetRoutineDetailInformationType[]> => {
+    const response = await instanceAuthenticated.get(`${EXERCISE.EXERCISE}/${routineId}${EXERCISE.WEEK}/${week}`);
+    const { days } = response.data.result[0];
+    return days;
 };
 
 export const SaveRoutineInfo = async (routineId: number | undefined) => {
