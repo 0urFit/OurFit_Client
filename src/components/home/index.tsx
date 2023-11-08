@@ -20,6 +20,7 @@ const Home = () => {
     const { data: routineList, isPending } = useQuery({
         queryKey: ['get-routine', routineCategory],
         queryFn: () => GetRoutine(routineCategory),
+        gcTime: 0,
     });
 
     return (
