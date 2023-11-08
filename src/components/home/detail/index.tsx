@@ -1,98 +1,53 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+
+import { useQuery } from '@tanstack/react-query';
 
 import SmallSelect from '@/common/molecules/SmallSelect';
 import CreateButton from '@/common/molecules/CreateButton';
 import LikeControl from '@/common/molecules/LikeControl';
 import RoutineDetail from '../RoutineDetail';
 
-import { GetDetailRoutine, SaveRoutineInfo } from '@/apis/apiService';
+import { GetDetailRoutine, GetRoutineOverview } from '@/apis/apiService';
 import useAddOptions from '@/hooks/useAddOptions';
 import { useAppDispatch, useAppSelector } from '@/store/hook';
-import getErrorMessage from '@/utils/getErrorMessage';
 import { setWeek } from '@/store/slices/periodSlice';
+import { convertToNumber } from '@/utils/convertToNumber';
 
 import { HD } from '../style';
 
-import { DetailRoutineType, ResultType } from '../type';
 import { InferGetServerSidePropsType } from 'next/types';
 import { getServerSideProps } from '@/pages/home/detail/[slug]';
 
 const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const [overviewInformation, setOverviewInformation] = useState({ routineName: '', programLength: 0, dayPerWeek: 0 });
-    const [routineSlideList, setRoutineSlideList] = useState([]);
-    const [isSaved, setIsSaved] = useState(false);
-    const [isLiked, setIsLiked] = useState(false);
-
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    const { selectWeekOptions, setOptionArray } = useAddOptions();
+    const { period } = router.query;
+    const assure_query = period as string;
+    const periodToNumber = convertToNumber(assure_query);
+
+    const { selectWeekOptions } = useAddOptions(periodToNumber.id);
     const { week } = useAppSelector(state => state.period);
-
-    const handleSaveRoutine = async () => {
-        try {
-            const response = await SaveRoutineInfo(converted_routine_id);
-            setIsSaved(response.data.success);
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    };
-
-    const saveRoutineInformation = (response: DetailRoutineType) => {
-        const { result } = response.data;
-        const [routine_information]: ResultType = result;
-        const { routineName, period, days, isliked, isenrolled } = routine_information;
-
-        setIsLiked(isliked);
-        setIsSaved(isenrolled);
-
-        const dayPerWeek = days.length;
-
-        setOverviewInformation(() => {
-            return { routineName, programLength: period, dayPerWeek };
-        });
-    };
-
-    const saveRoutineSlideList = (response: DetailRoutineType) => {
-        const { result } = response.data;
-        const [routine_information]: ResultType = result;
-        const { days } = routine_information;
-
-        setRoutineSlideList(days);
-    };
 
     const handleWeek = (selectedWeek: number) => {
         dispatch(setWeek(selectedWeek));
     };
 
-    const getRoutineDetailInfo = async () => {
-        try {
-            const response = await GetDetailRoutine(converted_routine_id, week);
+    const { data: routinDetailInformation } = useQuery({
+        queryKey: ['routine-detail', week],
+        queryFn: () => GetDetailRoutine(converted_routine_id, week),
+    });
 
-            saveRoutineInformation(response);
-            saveRoutineSlideList(response);
-        } catch (e) {
-            throw new Error(getErrorMessage(e));
-        }
-    };
-
-    useEffect(() => {
-        const { period } = router.query;
-        const assure_query = period as string;
-        const conveted_period = parseInt(assure_query);
-
-        setOptionArray(conveted_period);
-    }, []);
-
-    useEffect(() => {
-        getRoutineDetailInfo();
-    }, [week]);
+    const { data: routineOverviewInformation } = useQuery({
+        queryKey: ['routine-overview', converted_routine_id],
+        queryFn: () => GetRoutineOverview(converted_routine_id),
+        gcTime: 0,
+    });
 
     return (
         <HD.Box>
             <HD.RoutineTitleBox>
-                <HD.RoutineTitle>{overviewInformation.routineName}</HD.RoutineTitle>
+                <HD.RoutineTitle>{routineOverviewInformation?.routineName}</HD.RoutineTitle>
             </HD.RoutineTitleBox>
             <HD.RoutineDescBox>
                 <HD.WeekSelectBox>
@@ -116,24 +71,22 @@ const HomeDetail = ({ props: { converted_routine_id } }: InferGetServerSideProps
                                 </HD.Tr>
                                 <HD.Tr>
                                     <HD.ContentTitle>Day Per Week</HD.ContentTitle>
-                                    <HD.Content>{overviewInformation.dayPerWeek} days</HD.Content>
+                                    <HD.Content>{routineOverviewInformation?.weeks} days</HD.Content>
                                 </HD.Tr>
                                 <HD.Tr>
                                     <HD.ContentTitle>Program Length</HD.ContentTitle>
-                                    <HD.Content>{overviewInformation.programLength} weeks</HD.Content>
+                                    <HD.Content>{routineOverviewInformation?.period} weeks</HD.Content>
                                 </HD.Tr>
                             </HD.Tbody>
                         </HD.OverviewDataTable>
                     </HD.OverviewBox>
                     <HD.RoutineSlideBox>
-                        {routineSlideList.map(({ day, exercises }) => (
-                            <RoutineDetail key={day} day={day} exercises={exercises} />
-                        ))}
+                        {routinDetailInformation && routinDetailInformation.map(({ day, exercises }) => <RoutineDetail key={day} day={day} exercises={exercises} />)}
                     </HD.RoutineSlideBox>
                 </HD.RoutineMain>
                 <HD.FooterBox>
-                    <LikeControl id={converted_routine_id} liked={isLiked} />
-                    <CreateButton handleSubmit={handleSaveRoutine} message="등록하기" isSaved={isSaved} />
+                    <LikeControl id={converted_routine_id} liked={routineOverviewInformation?.isliked} />
+                    <CreateButton routindId={converted_routine_id} message="등록하기" isEnrolled={routineOverviewInformation?.isenrolled} />
                 </HD.FooterBox>
             </HD.RoutineDescBox>
         </HD.Box>
