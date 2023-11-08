@@ -11,7 +11,7 @@ import { LikeDelete, LikePost } from '@/apis/apiService';
 
 interface LikeControlType {
     id: number | undefined;
-    liked: boolean;
+    liked?: boolean;
     handleLikeList?: () => void;
 }
 

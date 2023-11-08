@@ -21,3 +21,17 @@ export type GetRoutineType = {
     routineName: string;
     category: string;
 };
+
+export type GetRoutineOverviewType = {
+    routineName: string;
+    level: number;
+    weeks: number;
+    period: number;
+    isenrolled: boolean;
+    isliked: boolean;
+};
+
+export type GetRoutineDetailInformationType = {
+    day: string;
+    exercises: [];
+};
