@@ -16,7 +16,7 @@
 </br>
 <strong>강해지고 싶고!</strong>
 
-<h3 style="color: yellowgreen"><a href="https://ourfit.net">OurFit과 함께하세요</a></h3>
+<h3 style="color: yellowgreen"><a href="https://develop.d2rl7twtxp6qfs.amplifyapp.com/">OurFit과 함께하세요</a></h3>
 
 <span style="color: green">🚨 웹/앱으로 만든것이기 때문에 개발자 도구에서 device toolbar를 클릭후 사용해주세요</span>
 
